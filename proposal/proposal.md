@@ -1,7 +1,7 @@
 Project Proposal
 ================
 Conquerors
-26 October 2021
+2021-10-25
 
 ``` r
 library(tidyverse)
@@ -11,13 +11,26 @@ library(readr)
 
 ## 1. Introduction
 
+Fundamental Question: Which variables (or combinations of these) are the
+most important indicators when determining whether an individual will
+subscribe to a term deposit?
+
+Data:
+
+Where it came from?
+
+How it was collected?
+
+What are the cases?
+
+What are the variables
+
 ## 2. Data
 
 ``` r
-banking <- read_csv2("/cloud/project/data/Banking Dataset.csv")
+banking <- read_delim("/cloud/project/data/Banking Dataset.csv",
+            delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
-
-    ## ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
 
     ## Rows: 45211 Columns: 17
 
