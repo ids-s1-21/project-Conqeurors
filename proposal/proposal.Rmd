@@ -1,15 +1,15 @@
 ---
-title: "Project proposal"
-author: "Team name"
+title: "Project Proposal"
+author: "Conquerors"
+date: "26 October 2021"
 output: github_document
 ---
 
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
+library(readr)
 ```
-
-*For instructions on what each section should include, please see the [project page](https://idsed.digital/assessments/project/#proposal) on the course website. Remove this text when completing your proposal*.
 
 ## 1. Introduction
 
@@ -17,6 +17,12 @@ library(broom)
 
 ## 2. Data
 
+```{r import-data}
+
+banking <- read_csv2("/cloud/project/data/Banking Dataset.csv")
+glimpse(banking)
+
+```
 
 
 ## 3. Data analysis plan
