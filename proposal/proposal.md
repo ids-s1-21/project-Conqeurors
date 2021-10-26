@@ -1,7 +1,7 @@
 Project Proposal
 ================
 Conquerors
-2021-10-25
+2021-10-26
 
 ``` r
 library(tidyverse)
@@ -15,15 +15,15 @@ Fundamental Question: Which variables (or combinations of these) are the
 most important indicators when determining whether an individual will
 subscribe to a term deposit?
 
-Data:
+Data: Where it came from? How it was collected? What are the cases? What
+are the variables
 
-Where it came from?
-
-How it was collected?
-
-What are the cases?
-
-What are the variables
+The dataset “Banking Dataset - Marketing Targets” by Prakhar Rathi
+contains data from a direct marketing campaign by a Portuguese Banking
+Institution. Clients were contacted by phone calls in order to collect
+the data.There are 45,211 cases with 17 variables;labelled: age, job,
+marital, education, default, balance, housing, loan, contact, day,
+month, duration, campaign, pdays, previous, poutcome, y.
 
 ## 2. Data
 
@@ -68,3 +68,13 @@ glimpse(banking)
     ## $ y         <chr> "no", "no", "no", "no", "no", "no", "no", "no", "no", "no", …
 
 ## 3. Data analysis plan
+
+The outcome of this data(Y) is whether or not the client has subscribed
+to the term deposit the bank is offering. The predictor(X) variables are
+all the other variables in the dataset excluding Y which is the outcome
+variable. Our question will be answered by determining which of these
+variables are better predictors for this outcome.
+
+We are not using any comparison groups because our data analysis
+research question is not based on experiment testing but rather on
+analyzing causation between different sets of variables.
