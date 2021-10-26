@@ -42,5 +42,23 @@ The outcome of this data(Y) is whether or not the client has subscribed to the t
 We are not using any comparison groups because our data analysis research question is not based on experiment testing but rather on analyzing causation between different sets of variables. 
 
 
+```{r Example stats}
+ggplot(data = banking, mapping = aes(x = y))+
+  geom_bar()+
+  facet_wrap(~job, nrow=2)+
+   labs(
+    x = "Subscried to a a term deposit",
+    y = "Frequency",
+    title = "Job vs Subscribing to a term deposit",
+  )
+```
+
+```{r Example plot}
+banking %>%
+  ggplot(aes(x=balance)) +
+  geom_histogram( bindwith = 5000) +
+   facet_wrap(~y, scales = "free") +
+ggtitle("Relationship between Balance and if the client subscribed to the term deposit") + xlab("Balance") + ylab("count")
+```
 
 

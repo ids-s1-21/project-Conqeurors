@@ -78,3 +78,30 @@ variables are better predictors for this outcome.
 We are not using any comparison groups because our data analysis
 research question is not based on experiment testing but rather on
 analyzing causation between different sets of variables.
+
+``` r
+ggplot(data = banking, mapping = aes(x = y))+
+  geom_bar()+
+  facet_wrap(~job, nrow=2)+
+   labs(
+    x = "Subscried to a a term deposit",
+    y = "Frequency",
+    title = "Job vs Subscribing to a term deposit",
+  )
+```
+
+![](proposal_files/figure-gfm/Example%20stats-1.png)<!-- -->
+
+``` r
+banking %>%
+  ggplot(aes(x=balance)) +
+  geom_histogram( bindwith = 5000) +
+   facet_wrap(~y, scales = "free") +
+ggtitle("Relationship between Balance and if the client subscribed to the term deposit") + xlab("Balance") + ylab("count")
+```
+
+    ## Warning: Ignoring unknown parameters: bindwith
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](proposal_files/figure-gfm/Example%20plot-1.png)<!-- -->
