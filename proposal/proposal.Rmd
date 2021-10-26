@@ -40,6 +40,15 @@ glimpse(banking)
 The outcome of this data(Y) is whether or not the client has subscribed to the term deposit the bank is offering. The predictor(X) variables are all the other variables in the dataset excluding Y which is the outcome variable. Our question will be answered by determining which of these variables are better predictors for this outcome.
 
 We are not using any comparison groups because our data analysis research question is not based on experiment testing but rather on analyzing causation between different sets of variables. 
+```{r Example }
+ggplot(data = banking, mapping = aes(x = y))+
+  geom_bar()+
+   labs(
+    x = "Subscried to a a term deposit",
+    y = "Frequency",
+    title = "Subscribing to a term deposit",
+  )
+```
 ```{r Example stats}
 ggplot(data = banking, mapping = aes(x = y))+
   geom_bar()+
