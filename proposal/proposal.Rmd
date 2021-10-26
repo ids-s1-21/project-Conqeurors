@@ -72,5 +72,6 @@ banking %>%
 ggtitle("Relationship between Balance and if the client subscribed to the term deposit") + xlab("Balance") + ylab("count")
 ```
 The statistical methods that could be used is finding the mean,median, linear regression equation, standard deviation, a histogram, a box plot, and a bar plot.
+Using the mean and median of numerical variables like age, bank balance and duration of calls out of the people which subscribed to the term deposit to approximate what is the ideal numer value for this variables.
 
 

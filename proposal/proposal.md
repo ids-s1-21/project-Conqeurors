@@ -116,4 +116,10 @@ ggtitle("Relationship between Balance and if the client subscribed to the term d
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](proposal_files/figure-gfm/Example%20plot-1.png)<!-- -->
+![](proposal_files/figure-gfm/Example%20plot-1.png)<!-- --> The
+statistical methods that could be used is finding the mean,median,
+linear regression equation, standard deviation, a histogram, a box plot,
+and a bar plot. Using the mean and median of numerical variables like
+age, bank balance and duration of calls out of the people which
+subscribed to the term deposit to approximate what is the ideal numer
+value for this variables.
