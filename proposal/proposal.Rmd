@@ -17,9 +17,18 @@ Fundamental Question: Which variables (or combinations of these) are the most im
 
 Data:
 Where it came from?
+The dataset "Banking Dataset - Marketing Targets" by Prakhar Rathi contains data  from a direct marketing campaign by a Portuguese Banking Institution.
+
 How it was collected?
+Clients were contacted by phone calls in order to collect the data.
+
+
 What are the cases?
+There are 45,211 cases with 17 variables
+
+
 What are the variables
+variables;labelled: age, job, marital, education, default, balance, housing, loan, contact, day, month, duration, campaign, pdays, previous, poutcome, y.
 
 The dataset "Banking Dataset - Marketing Targets" by Prakhar Rathi contains data  from a direct marketing campaign by a Portuguese Banking Institution. Clients were contacted by phone calls in order to collect the data.There are 45,211 cases with 17 variables;labelled: age, job, marital, education, default, balance, housing, loan, contact, day, month, duration, campaign, pdays, previous, poutcome, y.
 
@@ -72,6 +81,6 @@ banking %>%
 ggtitle("Relationship between Balance and if the client subscribed to the term deposit") + xlab("Balance") + ylab("count")
 ```
 The statistical methods that could be used is finding the mean,median, linear regression equation, standard deviation, a histogram, a box plot, and a bar plot.
-Using the mean and median of numerical variables like age, bank balance and duration of calls out of the people which subscribed to the term deposit to approximate what is the ideal numer value for this variables.
+Using the mean and median of numerical variables like age, bank balance and duration of calls out of the people which subscribed to the term deposit to approximate what is the ideal numeric value for this variables. In addition, a histogram, box plot or bar plot may be used to summarize discrete or continuous data that are measured on an interval scale like the relationship between how age and marital status affect the costumers decision.
 
 
