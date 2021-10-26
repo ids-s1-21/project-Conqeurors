@@ -23,7 +23,7 @@ The data set "Banking Dataset - Marketing Targets" by Prakhar Rathi contains dat
 
 The data was collected directly from the bank's records through a semi-outomatic feature selection and DM models.
 
-***What are the cases?**
+**What are the cases?**
 
 There are 45,211 cases with 17 variables
 

@@ -187,6 +187,7 @@ labs(
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](proposal_files/figure-gfm/balance_vs_duration-1.png)<!-- -->
+
 **Statistical Methods**
 
 Some of the statistical methods that could be used in finding an answer
