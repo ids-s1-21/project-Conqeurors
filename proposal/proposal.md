@@ -69,12 +69,33 @@ glimpse(banking)
 
 ## 3. Data analysis plan
 
-The outcome of this data(Y) is whether or not the client has subscribed
+The outcome of this data (Y) is whether or not the client has subscribed
 to the term deposit the bank is offering. The predictor(X) variables are
-all the other variables in the dataset excluding Y which is the outcome
+all the other variables in the data set excluding Y which is the outcome
 variable. Our question will be answered by determining which of these
 variables are better predictors for this outcome.
 
 We are not using any comparison groups because our data analysis
 research question is not based on experiment testing but rather on
-analyzing causation between different sets of variables.
+analyzing causation between different sets of variables that have all
+been pre-recorded.
+
+``` r
+banking %>%
+mutate(
+  job= fct_recode(job, Administrative = "admin.", Management = "management", Entrepreneur= "entrepreneur", `Blue Collar` = "blue-collar", Housemaid = "housemaid", Technician = "technician" , Services = "services", Student = "student" , `Self Employed`= "self-employed", Unemployed = "unemployed", Unknown= "unknown", Retred = "retired" )) %>%
+ggplot(aes(y = y,fill= y)) +
+  geom_bar() +
+  guides(fill = "none") +
+  scale_fill_manual(values = c("yes"="#3b9e37", "no"="#d91a1a")) +
+  facet_wrap(.~job, scales = "free_x") +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Number of clients that subscribed to a term deposit",
+    subtitle= "Faceted by jobs"
+    
+  )
+```
+
+![](proposal_files/figure-gfm/Example%20stats-1.png)<!-- -->
