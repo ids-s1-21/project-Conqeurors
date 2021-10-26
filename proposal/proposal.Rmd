@@ -16,15 +16,12 @@ library(readr)
 Fundamental Question: Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit?
 
 Data:
-
 Where it came from?
-
 How it was collected?
-
 What are the cases?
-
 What are the variables
 
+The dataset "Banking Dataset - Marketing Targets" by Prakhar Rathi contains data  from a direct marketing campaign by a Portuguese Banking Institution. Clients were contacted by phone calls in order to collect the data.There are 45,211 cases with 17 variables;labelled: age, job, marital, education, default, balance, housing, loan, contact, day, month, duration, campaign, pdays, previous, poutcome, y.
 
 ## 2. Data
 
