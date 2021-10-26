@@ -82,6 +82,18 @@ analyzing causation between different sets of variables.
 ``` r
 ggplot(data = banking, mapping = aes(x = y))+
   geom_bar()+
+   labs(
+    x = "Subscried to a a term deposit",
+    y = "Frequency",
+    title = "Subscribing to a term deposit",
+  )
+```
+
+![](proposal_files/figure-gfm/Example-1.png)<!-- -->
+
+``` r
+ggplot(data = banking, mapping = aes(x = y))+
+  geom_bar()+
   facet_wrap(~job, nrow=2)+
    labs(
     x = "Subscried to a a term deposit",
