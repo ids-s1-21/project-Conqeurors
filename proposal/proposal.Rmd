@@ -71,6 +71,6 @@ banking %>%
    facet_wrap(~y, scales = "free") +
 ggtitle("Relationship between Balance and if the client subscribed to the term deposit") + xlab("Balance") + ylab("count")
 ```
-A statistical method that could be used is finding the mean,median, linear regression equation, standard deviation, a histogram, a box plot, and a bar plot.
+The statistical methods that could be used is finding the mean,median, linear regression equation, standard deviation, a histogram, a box plot, and a bar plot.
 
 
