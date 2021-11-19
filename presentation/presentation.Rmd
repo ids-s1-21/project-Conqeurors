@@ -28,7 +28,7 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
             delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-glimpse(banking)
+glimpse(banking_train)
 ```
 
 ## A statement of the overall goal / research question {data-background-image="img/confetti.jpg"}
