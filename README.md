@@ -1,6 +1,7 @@
-Project title
+Client Behavior Prediction Model (For term-deposit subscriptions in
+banking)
 ================
-by Team name
+by Conquerors
 
 ## Summary
 
