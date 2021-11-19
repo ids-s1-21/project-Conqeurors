@@ -1,6 +1,6 @@
 ---
-title: Project title
-author: by Team name
+title: Client Behavior Prediction Model (For term-deposit subscriptions in banking)
+author: by Conquerors
 output: github_document
 ---
 
