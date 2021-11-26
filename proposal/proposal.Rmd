@@ -21,7 +21,7 @@ The data set "Banking Dataset - Marketing Targets" by Prakhar Rathi contains dat
 
 **How was it collected?**
 
-The data was collected directly from the bank's records through a semi-outomatic feature selection and DM models.
+The data was collected directly from the bank's records through a semi-automatic feature selection and DM models.
 
 **What are the cases?**
 
