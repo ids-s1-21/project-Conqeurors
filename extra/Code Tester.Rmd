@@ -3,15 +3,6 @@ title: "Code Tester"
 output: github_document
 ---
 
-<<<<<<< HEAD
-```{r test}
-library(tidyverse)
-set.seed(45211)
-banking_split<-initial_split(banking, prop=.8)
-mock_test<-testing(banking_split)
-train_df<-training(banking_split)
-=======
-
 ```{r load-packages, include = FALSE}
 # Add any additional packages you need to this chunk
 library(rmarkdown)
@@ -34,7 +25,7 @@ banking_train <- banking_train %>%
 
 ```{r split_csv}
 
-set.seed(1115)
+set.seed(45211)
 ######
 banking_split <- initial_split(banking_train, prop = 0.8)
 reduced_train_df <-training(banking_split)
@@ -66,6 +57,11 @@ banking_pred %>%
     truth = y,
     .pred_1,
     event_level = "second") 
->>>>>>> d30b9022f1ffed9dd058355ad6137368c62aed9f
+
 ```
+```{r 17x17 grid}
+
+
+```
+
 
