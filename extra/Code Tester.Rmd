@@ -4,6 +4,10 @@ output: html_document
 ---
 
 ```{r test}
-
+library(tidyverse)
+set.seed(45211)
+banking_split<-initial_split(banking, prop=.8)
+mock_test<-testing(banking_split)
+train_df<-training(banking_split)
 ```
 
