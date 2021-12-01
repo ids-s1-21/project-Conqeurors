@@ -88,7 +88,7 @@ banking_pred %>%
 
 ```
 
-```{r probability_alterations}
+```{r prediction_matrix}
 cutoff <- 0.5
 banking_pred %>%
   mutate(
@@ -101,6 +101,16 @@ banking_pred %>%
 ```
 
 ```{r cross-validation}
+set.seed(777)
+
+folds <-vfold_cv(banking_train, v = 10)
+#Divided data into ten folds because of the large dataset size.
+
+banking_fit <- banking_wflow %>%
+  fit_resamples(folds)
+
+banking_fit
+
+collect_metrics(banking_fit)
 
 ```
-

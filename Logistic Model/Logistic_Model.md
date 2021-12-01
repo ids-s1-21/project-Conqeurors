@@ -116,3 +116,54 @@ banking_pred %>%
 |:----------------------------------|-------------------------:|------------------:|
 | Client Predicted to Not Subscribe |                     7731 |               690 |
 | Client Predicted to Subscribe     |                      247 |               375 |
+
+``` r
+set.seed(777)
+
+folds <-vfold_cv(banking_train, v = 10)
+#Divided data into ten folds because of the large dataset size.
+
+banking_fit <- banking_wflow %>%
+  fit_resamples(folds)
+```
+
+    ## ! Fold03: preprocessor 1/1, model 1/1 (predictions): There are new levels in a fac...
+
+    ## ! Fold04: preprocessor 1/1, model 1/1 (predictions): There are new levels in a fac...
+
+    ## ! Fold10: preprocessor 1/1, model 1/1 (predictions): There are new levels in a fac...
+
+``` r
+banking_fit
+```
+
+    ## Warning: This tuning result has notes. Example notes on model fitting include:
+    ## preprocessor 1/1, model 1/1 (predictions): There are new levels in a factor: NA
+    ## preprocessor 1/1, model 1/1 (predictions): There are new levels in a factor: NA
+    ## preprocessor 1/1, model 1/1 (predictions): There are new levels in a factor: NA
+
+    ## # Resampling results
+    ## # 10-fold cross-validation 
+    ## # A tibble: 10 × 4
+    ##    splits               id     .metrics         .notes          
+    ##    <list>               <chr>  <list>           <list>          
+    ##  1 <split [40689/4522]> Fold01 <tibble [2 × 4]> <tibble [0 × 1]>
+    ##  2 <split [40690/4521]> Fold02 <tibble [2 × 4]> <tibble [0 × 1]>
+    ##  3 <split [40690/4521]> Fold03 <tibble [2 × 4]> <tibble [1 × 1]>
+    ##  4 <split [40690/4521]> Fold04 <tibble [2 × 4]> <tibble [1 × 1]>
+    ##  5 <split [40690/4521]> Fold05 <tibble [2 × 4]> <tibble [0 × 1]>
+    ##  6 <split [40690/4521]> Fold06 <tibble [2 × 4]> <tibble [0 × 1]>
+    ##  7 <split [40690/4521]> Fold07 <tibble [2 × 4]> <tibble [0 × 1]>
+    ##  8 <split [40690/4521]> Fold08 <tibble [2 × 4]> <tibble [0 × 1]>
+    ##  9 <split [40690/4521]> Fold09 <tibble [2 × 4]> <tibble [0 × 1]>
+    ## 10 <split [40690/4521]> Fold10 <tibble [2 × 4]> <tibble [1 × 1]>
+
+``` r
+collect_metrics(banking_fit)
+```
+
+    ## # A tibble: 2 × 6
+    ##   .metric  .estimator  mean     n  std_err .config             
+    ##   <chr>    <chr>      <dbl> <int>    <dbl> <chr>               
+    ## 1 accuracy binary     0.899    10 0.000701 Preprocessor1_Model1
+    ## 2 roc_auc  binary     0.910    10 0.00145  Preprocessor1_Model1
