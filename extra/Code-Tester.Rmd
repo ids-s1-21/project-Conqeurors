@@ -55,12 +55,14 @@ banking_rec <- banking_rec %>%
 ```{r banking_logistic_model}
 banking_mod <- logistic_reg() %>%
   set_engine("glm")
+
 ```
 
 ```{r workflow}
 banking_wflow <-workflow() %>%
   add_model(banking_mod) %>%
   add_recipe(banking_rec)
+
 ```
 
 
@@ -68,6 +70,7 @@ banking_wflow <-workflow() %>%
  banking_fit <- banking_wflow %>%
   fit(data = reduced_train_df)
 tidy(banking_fit) 
+
 ```
 
 ```{r prediction}
@@ -90,54 +93,110 @@ banking_pred %>%
 ```
 
 ```{r 17 graph grid}
-banking_train%>%
+#variableGraphs<-function(df,name){
+ # variable<- banking_test[ , name]
+   #variable<- banking_test[ , name] %>%
+banking_test%>%
   ggplot(aes(x=job,y=y))+
   geom_jitter()
-banking_train%>%
+banking_test%>%
+  ggplot(aes(x=age,y=y))+
+  geom_jitter()
+banking_test%>%
   ggplot(aes(x=marital,y=y))+
   geom_jitter()
-banking_train%>%
+banking_test%>%
   ggplot(aes(x=education,y=y))+
   geom_jitter()
-banking_train%>%
+banking_test%>%
   ggplot(aes(x=default,y=y))+
   geom_jitter()
-banking_train%>%
+banking_test%>%
+  ggplot(aes(x=balance,y=y))+
+  geom_jitter()
+banking_test%>%
   ggplot(aes(x=housing,y=y))+
   geom_jitter()
-banking_train%>%
+banking_test%>%
   ggplot(aes(x=loan,y=y))+
   geom_jitter()
-banking_train%>%
+banking_test%>%
   ggplot(aes(x=contact,y=y))+
   geom_jitter()
-banking_train%>%
+banking_test%>%
+  ggplot(aes(x=day,y=y))+
+  geom_jitter()
+banking_test%>%
   ggplot(aes(x=month,y=y))+
   geom_jitter()
-banking_train%>%
+banking_test%>%
+  ggplot(aes(x=duration,y=y))+
+  geom_jitter()
+banking_test%>%
+  ggplot(aes(x=campaign,y=y))+
+  geom_jitter()
+banking_test%>%
+  ggplot(aes(x=pdays,y=y))+
+  geom_jitter()
+banking_test%>%
+  ggplot(aes(x=previous,y=y))+
+  geom_jitter()
+banking_test%>%
   ggplot(aes(x=poutcome,y=y))+
   geom_jitter()
-banking_train%>%
-  ggplot(aes(x=age,y=y))+
-  geom_point()
-banking_train%>%
-  ggplot(aes(x=balance,y=y))+
-  geom_point()
-banking_train%>%
-  ggplot(aes(x=day,y=y))+
-  geom_point()
-banking_train%>%
-  ggplot(aes(x=duration,y=y))+
-  geom_point()
-banking_train%>%
-  ggplot(aes(x=campaign,y=y))+
-  geom_point()
-banking_train%>%
-  ggplot(aes(x=pdays,y=y))+
-  geom_point()
-banking_train%>%
-  ggplot(aes(x=previous,y=y))+
-  geom_point()
+```
+
+```{r  graph grid}
+banking_test%>%
+  ggplot(aes(y=age,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=job,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=marital,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=education,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=default,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=balance,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=housing,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=loan,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=contact,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=day,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=month,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=duration,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=campaign,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=pdays,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=previous,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=poutcome,color=y))+
+  geom_bar()
+
+#variableGraphs(df=banking_test, name=c("job"))
 ```
 
 
