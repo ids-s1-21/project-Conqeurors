@@ -30,20 +30,40 @@ banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 ```
 
+```{r load-data2, include=FALSE}
+banking <- read_delim("/cloud/project/data/Banking Dataset.csv",
+            delim = ";", escape_double = FALSE, trim_ws = TRUE)
+```
+
 ## Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? {data-background-image="img/random.png"}
 
 
 # Our Methodology
 
-We built a logistic regression model to answer this question...
+We built a logistic regression model to answer which variables are the most important indicators when determining wether an individual will subscribe to a term deposit via phone. Firstly we made a huge grid to determine which variables have the strongest correlation with the output variable and after that we fittet a linear regression on these variables. (Will complete after we finish the presentation)
 
 # Our Dataset
 
-Our data was collected from...
+The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. 
 
-# Using reveal.js
+# The general picture
 
-It's possible to have a horizontal sliding transition as well as nest multiple slides to create a vertical stack.
+The general outcome of the company's campaign to get clients to subscribe to term deposits.
+```{r campaign_success, out.width="80%", fig.width=6, echo = FALSE }
+banking %>%
+  mutate(y=fct_recode(y, Subscribed= "yes", 
+        `Not Subscribed` = "no")) %>%
+ggplot(aes(y = y,fill= y)) +
+  geom_bar() +
+  guides(fill = "none") +
+  scale_fill_manual(values = c("Subscribed"="#3b9e37", 
+                              "Not Subscribed"="#d91a1a")) +
+   labs(
+    x = NULL,
+    y = NULL,
+    title = "Number of clients that subscribed to a term deposit",
+  )
+```
 
 When presenting, you use the left/right arrows to step through the top-level (horizontal) slides. When you arrive at a vertical stack you can optionally press the up/down arrows to view the vertical slides or skip past them by pressing the right arrow.
 
