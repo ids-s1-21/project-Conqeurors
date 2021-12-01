@@ -39,7 +39,7 @@ We built a logistic regression model to answer this question...
 
 # Our Dataset
 
-Our data was collected from...
+The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. 
 
 # Using reveal.js
 
