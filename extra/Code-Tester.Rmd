@@ -62,9 +62,55 @@ banking_pred %>%
 
 ```
 
-```{r 17x17 grid}
-
-ggpairs(banking_test)
+```{r 17 graph grid}
+banking_train%>%
+  ggplot(aes(x=job,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=marital,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=education,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=default,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=housing,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=loan,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=contact,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=month,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=poutcome,y=y))+
+  geom_jitter()
+banking_train%>%
+  ggplot(aes(x=age,y=y))+
+  geom_point()
+banking_train%>%
+  ggplot(aes(x=balance,y=y))+
+  geom_point()
+banking_train%>%
+  ggplot(aes(x=day,y=y))+
+  geom_point()
+banking_train%>%
+  ggplot(aes(x=duration,y=y))+
+  geom_point()
+banking_train%>%
+  ggplot(aes(x=campaign,y=y))+
+  geom_point()
+banking_train%>%
+  ggplot(aes(x=pdays,y=y))+
+  geom_point()
+banking_train%>%
+  ggplot(aes(x=previous,y=y))+
+  geom_point()
 ```
 
 
