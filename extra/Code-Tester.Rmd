@@ -36,6 +36,20 @@ glimpse(reduced_train_df)
 glimpse(banking_test)
 ```
 
+```{r recipe}
+banking_recipe <- recipe(
+  y ~ .,
+  data = reduced_train_df
+)
+summary(banking_recipe)
+
+#banking_rec <- banking_rec %>%
+  #step_rm(Variables to be removed),
+  #step_cut()
+  
+```
+
+
 ```{r initial_logistic_model}
 trial_fit <- logistic_reg() %>%
   set_engine("glm") %>%
@@ -64,7 +78,7 @@ banking_pred %>%
 
 ```{r 17x17 grid}
 
-ggpairs(banking_test)
+#ggpairs(banking_test)
 ```
 
 
