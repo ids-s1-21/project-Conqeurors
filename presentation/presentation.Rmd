@@ -30,15 +30,15 @@ banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 ```
 
-## A statement of the overall goal / research question {data-background-image="img/confetti.jpg"}
+## Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? {data-background-image="img/confetti.jpg"}
 
-# Section title
+# Our Methodology
 
-# Hello World
+We built a logistic regression model to answer this question...
 
-- Click the `Knit` button to compile your presentation
+# Our Dataset
 
-- Make sure to commit and push all resulting files to your GitHub repo
+Our data was collected from...
 
 # Using reveal.js
 
