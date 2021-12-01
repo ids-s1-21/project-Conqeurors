@@ -32,19 +32,46 @@ set.seed(45211)
 banking_split <- initial_split(banking_train, prop = 0.8)
 reduced_train_df <-training(banking_split)
 banking_test <-testing(banking_split)
-glimpse(reduced_train_df)
-glimpse(banking_test)
+nrow(banking_train)
+nrow(banking_test)
 ```
 
-```{r initial_logistic_model}
-trial_fit <- logistic_reg() %>%
-  set_engine("glm") %>%
-  fit(y ~ ., data = reduced_train_df, family = "binomial")
-trial_fit
+```{r recipe}
+banking_rec<- recipe(
+  y ~ .,
+  data = reduced_train_df
+)
+
+banking_rec <- banking_rec %>%
+  step_rm(day, pdays) %>%
+  step_cut(campaign, previous, breaks = c(0, 1)) %>%
+  step_cut(age, breaks = c(25,40,65)) %>%
+  step_cut(balance, breaks = c(-0.1, 0.1, 1000, 10000)) %>%
+  step_cut(duration, breaks = c(60, 120, 180, 240, 300, 360, 420, 480, 540, 600)) %>%
+  step_dummy(all_nominal(),-all_outcomes()) %>%
+  step_zv(all_predictors())
 ```
 
-```{r}
-banking_pred <- predict(trial_fit, banking_test, type = "prob") %>%
+```{r banking_logistic_model}
+banking_mod <- logistic_reg() %>%
+  set_engine("glm")
+```
+
+```{r workflow}
+banking_wflow <-workflow() %>%
+  add_model(banking_mod) %>%
+  add_recipe(banking_rec)
+```
+
+
+```{r fit}
+ banking_fit <- banking_wflow %>%
+  fit(data = reduced_train_df)
+tidy(banking_fit) 
+```
+
+```{r prediction}
+banking_pred <- predict(banking_fit, banking_test, type = "prob") %>%
   bind_cols(banking_test %>% select(y))
 
 banking_pred %>%
