@@ -10,12 +10,14 @@ library(tidyverse)
 library(tidymodels)
 library(knitr)
 library(revealjs)
+library(GGally)
 ```
 
 
 ```{r read_csv}
 banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
             delim = ";", escape_double = FALSE, trim_ws = TRUE)
+rename(banking_train, yes=y)
 ```
 
 ```{r modify_df}
@@ -59,9 +61,36 @@ banking_pred %>%
     event_level = "second") 
 
 ```
+
 ```{r 17x17 grid}
 
+  
+ library(corrplot)
+library(vcd)
+banking_test%>%
+  mutate(
+  job= factor(job),
+  marital=factor(marital),
+  education=factor(education),
+  defualt=factor(default),
+  housing= factor(housing),
+  loan=factor(loan),
+  contact=factor(contact),
+  month=factor(month),
+  poutcome=factor(poutcome)
+)
+banking_test[] <- lapply(banking_test,as.integer)
+  
+cor(banking_test)
 
+#ggpairs(banking_test, upper = list(continuous = "points"))
+library(sjPlot)
+#sjp.corr(factor(banking_test))
+#sjt.corr(factor(banking_test))
+#corrplot(banking_test)
+#catcorrm <- function(vars,dat) sapply(vars, function(y) sapply(vars, function(x) assocstats(table(dat[,x], dat[,y]))$cramer))
+#v<-variable.names(banking_test)
+#catcorrm(v,banking_test)
 ```
 
 
