@@ -146,8 +146,57 @@ banking_test%>%
 banking_test%>%
   ggplot(aes(x=poutcome,y=y))+
   geom_jitter()
+```
 
-
+```{r  graph grid}
+banking_test%>%
+  ggplot(aes(y=age,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=job,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=marital,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=education,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=default,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=balance,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=housing,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=loan,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=contact,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=day,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=month,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=duration,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=campaign,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=pdays,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=previous,color=y))+
+  geom_bar()
+banking_test%>%
+  ggplot(aes(y=poutcome,color=y))+
+  geom_bar()
 
 #variableGraphs(df=banking_test, name=c("job"))
 ```
