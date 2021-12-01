@@ -96,8 +96,6 @@ banking_pred %>%
 #variableGraphs<-function(df,name){
  # variable<- banking_test[ , name]
    #variable<- banking_test[ , name] %>%
-write.csv(banking_test, "banking_test.csv")
-data <- read.csv("banking_test.csv")
 banking_test%>%
   ggplot(aes(x=job,y=y))+
   geom_jitter()
