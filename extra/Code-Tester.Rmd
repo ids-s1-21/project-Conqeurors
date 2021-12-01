@@ -36,15 +36,6 @@ glimpse(reduced_train_df)
 glimpse(banking_test)
 ```
 
-```{r recipe}
-### Recipe:
-
-banking_rec <- recipe(
-  y ~ .,
-  data = reduced_train_df
-)
-```
-
 ```{r initial_logistic_model}
 trial_fit <- logistic_reg() %>%
   set_engine("glm") %>%

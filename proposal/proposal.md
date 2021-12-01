@@ -1,7 +1,7 @@
 Project Proposal
 ================
 Conquerors
-2021-10-26
+2021-11-19
 
 ``` r
 library(tidyverse)
@@ -29,7 +29,7 @@ to subscribe to term deposits.
 The data was collected directly from the bank’s records through a
 semi-outomatic feature selection and DM models.
 
-\***What are the cases?**
+**What are the cases?**
 
 There are 45,211 cases with 17 variables
 
