@@ -9,25 +9,23 @@ library(rmarkdown)
 library(tidyverse)
 library(tidymodels)
 library(knitr)
-library(revealjs)
-library(GGally)
 ```
 
-
-```{r read_csv}
+```{r read_csv, include = FALSE}
 banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
             delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
 
+
 ```{r modify_df}
 banking_train <- banking_train %>%
-  mutate(y = factor(if_else(y == "yes", 1, 0)))
+  mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
 ```
 
 ```{r split_csv}
 
-set.seed(45211)
-######
+set.seed(45221)
+#80-20 Split of Data
 banking_split <- initial_split(banking_train, prop = 0.8)
 reduced_train_df <-training(banking_split)
 banking_test <-testing(banking_split)
@@ -36,19 +34,21 @@ nrow(banking_test)
 ```
 
 ```{r recipe}
+#Model Recipe
 banking_rec<- recipe(
   y ~ .,
   data = reduced_train_df
 )
 
 banking_rec <- banking_rec %>%
-  step_rm(day, pdays) %>%
-  step_cut(campaign, previous, breaks = c(0, 1)) %>%
-  step_cut(age, breaks = c(25,40,65)) %>%
-  step_cut(balance, breaks = c(-0.1, 0.1, 1000, 10000)) %>%
-  step_cut(duration, breaks = c(60, 120, 180, 240, 300, 360, 420, 480, 540, 600)) %>%
-  step_dummy(all_nominal(),-all_outcomes()) %>%
-  step_zv(all_predictors())
+  step_rm( pdays) %>% #Removed this variable due to low impact on model.
+  step_cut(campaign, previous, breaks = c(0, 1)) %>% #Only care about values x = 0 and x >= 1 for these variables.
+  step_cut(age, breaks = c(25,40,65)) %>% #Created age groups
+  step_cut(balance, breaks = c(-0.1, 0.1, 1000, 10000)) %>% #Created balance groups
+  step_cut(day, breaks = c(10,20)) %>% #Categorized days variable into beginning, middle, or end of the month.
+  step_cut(duration, breaks = c(60, 120, 180, 240, 300, 360, 420, 480, 540, 600)) %>% #Divided Calls by duration in minutes.
+  step_dummy(all_nominal(),-all_outcomes()) %>% #Created Dummy Variables
+  step_zv(all_predictors()) #Removed Zero Variance Variables
 ```
 
 ```{r banking_logistic_model}
