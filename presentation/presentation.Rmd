@@ -30,7 +30,7 @@ banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 ```
 
-## Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? {data-background-image="img/confetti.jpg"}
+## Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? {data-background-image="img/random.png"}
 
 
 # Our Methodology
