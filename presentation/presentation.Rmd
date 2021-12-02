@@ -1,23 +1,15 @@
 ---
 title: "Client Behavior Prediction Model"
-<<<<<<< HEAD
 subtitle: <font size='7'>For term-deposit  subscriptions  in  banking</font>
-=======
-subtitle: <font size='6'>For    term-deposit    subscriptions   in    banking</font>
->>>>>>> c3c600444637b52707c53eac468929540cdb79e3
 author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
 institute: <font size='10'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
-<<<<<<< HEAD
     theme: default
     highlightLines: true
-=======
-    theme: sky
     background_transition: fade
->>>>>>> c3c600444637b52707c53eac468929540cdb79e3
 ---
 
 ```{r load-packages, include = FALSE}
@@ -225,42 +217,12 @@ tidy(banking_fit)
 
 # Initial Results
 
-Our initial Results were surprisingly high:
-```{r prediction, echo = FALSE}
-banking_pred <- predict(banking_fit, reduced_test_df, type = "prob") %>%
-  bind_cols(reduced_test_df %>% select(y))
 
-banking_pred %>%
-  roc_curve(
-    truth = y,
-    .pred_1,
-    event_level = "second") %>%
-  autoplot()
-
-banking_pred %>%
-  roc_auc(
-    truth = y,
-    .pred_1,
-    event_level = "second") 
-
-```
-----
-
-```{r prediction_matrix, echo = False}
-cutoff <- 0.5
-banking_pred %>%
-  mutate(
-    subscribed = if_else(y == 1, "Client Subscribed", "Client did not Subscribe"),
-    subscribed_pred = if_else(.pred_1>cutoff, "Client Predicted to Subscribe", "Client Predicted to Not Subscribe") )%>%
-      count(subscribed_pred, subscribed) %>%
-      pivot_wider(names_from = subscribed, values_from = n) %>%
-      kable(col.names = c("","Client did not Subscribe", "Client Subscribed", formtat = "html")
-  )
-```
 # Cross Validation
 
 
 # Final Test
+
 
 # Conclusion
 
