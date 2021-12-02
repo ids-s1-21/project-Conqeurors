@@ -37,8 +37,11 @@ banking <- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 # Our question
 
-Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? 
+```{r image1, echo = FALSE, out.width = "40%", fig.align = "centre", fig.cap = ""}
+include_graphics("https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-bank-account-e1534519443766.jpeg.optimal.jpeg")
+```
 
+Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? 
 
 # Our Methodology
 
@@ -184,31 +187,12 @@ kable(head(iris), format = "html")
 
 # Images
 
-```{r castle, echo = FALSE, out.width = "60%", fig.align = "center", fig.cap = "Image credit: Photo by Jörg Angeli on Unsplash."}
-include_graphics("https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80")
-```
 
-Or you can also include a full page image. See next slide.
+# Final Test
 
-## {data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}
 
-# Math Expressions
+# Conclusion
 
-You can write LaTeX math expressions inside a pair of dollar signs (\$...\$), e.g. $\alpha+\beta$. You can use the display style with double dollar signs:
-
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-
-# Feeling adventurous?
-
-You can learn more about the options available at the following pages:
-
-- https://github.com/rstudio/revealjs
-
-- https://bookdown.org/yihui/rmarkdown/revealjs.html
-
-- http://www.jenniferbradham.org/post/reveal_js_markdown/
-
-- https://revealjs.com/
 
 # Ethics
 
