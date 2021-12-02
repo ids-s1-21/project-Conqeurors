@@ -114,12 +114,13 @@ ggplot(aes(y = y,fill= y)) +
 ----
 
 ```{r visualization_duration,echo = FALSE }
-banking_train%>%
-  ggplot(aes(x=duration,y=y))+
+banking_train %>%
+  ggplot(aes(x=duration,y=y, color=y))+
+  theme(legend.position = "none")+
   geom_jitter()+
  labs(
-    x = "Clients subscribed?",
-    y = "Duration of last contact",
+    Y= "Clients subscribed?",
+    x = "Duration of last contact",
     title = "Relationship between clients duration of last contact 
     with the bank and whether they subscribe to term deposits") 
 ```
