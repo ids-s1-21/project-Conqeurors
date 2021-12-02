@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Conquerors  Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema " />
-  <meta name="dcterms.date" content="2021-12-01" />
+  <meta name="dcterms.date" content="2021-12-02" />
   <title>Client Behavior Prediction Model</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -137,36 +137,36 @@
   <h1 class="subtitle"><font size='6'>For term-deposit subscriptions in banking</font></h1>
   <h2 class="author"><font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font></h2>
   <h3 class="institute"><font size='10'>University of Edinburgh</font></h2>
-  <h3 class="date"><font size = '6'>2021-12-01</font></h3>
+  <h3 class="date"><font size = '6'>2021-12-02</font></h3>
 </section>
 
-<<<<<<< HEAD
-<section id="which-variables-or-combinations-of-these-are-the-most-important-indicators-when-determining-whether-an-individual-will-subscribe-to-a-term-deposit-element" class="slide level2" data-background-image="img/confetti.jpg">
-<h2 data-background-image="img/confetti.jpg">Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? element</h2>
-=======
 <section id="which-variables-or-combinations-of-these-are-the-most-important-indicators-when-determining-whether-an-individual-will-subscribe-to-a-term-deposit" class="slide level2" data-background-image="img/random.png">
 <h2 data-background-image="img/random.png">Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit?</h2>
->>>>>>> c847a5865ba98d7137ccf019e736bdf6a33dfe43
 </section>
 <section id="our-methodology" class="title-slide slide level1">
 <h1>Our Methodology</h1>
-<p>We built a logistic regression model to answer this question…</p>
+<p>We built a logistic regression model to answer which variables are the most important indicators when determining wether an individual will subscribe to a term deposit via phone. Firstly we made a huge grid to determine which variables have the strongest correlation with the output variable and after that we fittet a linear regression on these variables. (Will complete after we finish the presentation)</p>
 </section>
 
 <section id="our-dataset" class="title-slide slide level1">
 <h1>Our Dataset</h1>
-<p>Our data was collected from…</p>
+<p>The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called “Banking Dataset - Marketing Targets” by Prakhar Rathi and contains data derived from <em>S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing</em>.</p>
 </section>
 
 <section>
-<section id="using-reveal.js" class="title-slide slide level1">
-<h1>Using reveal.js</h1>
-<p>It’s possible to have a horizontal sliding transition as well as nest multiple slides to create a vertical stack.</p>
-<p>When presenting, you use the left/right arrows to step through the top-level (horizontal) slides. When you arrive at a vertical stack you can optionally press the up/down arrows to view the vertical slides or skip past them by pressing the right arrow.</p>
-<p>(click the down key now)</p>
+<section id="the-general-picture" class="title-slide slide level1">
+<h1>The general picture</h1>
+<p>The general outcome of the company’s campaign to get clients to subscribe to term deposits. <img src="presentation_files/figure-revealjs/campaign_success-1.png" width="80%" /></p>
 </section>
-<section id="reveal.js" class="slide level2">
-<h2>reveal.js</h2>
+<section class="slide level2">
+
+<p>Could the client’s jobs have an impact on whether they subscribe to term deposits?</p>
+<div class="fragment">
+<p><img src="presentation_files/figure-revealjs/job_impact-1.png" width="900%" /></p>
+</div>
+</section>
+<section class="slide level2">
+
 <ul>
 <li><p>The presentation is created using the <code>reveal.js</code> package</p></li>
 <li><p>You can create a slide show broken up into sections by using the # and ## heading tags</p></li>
