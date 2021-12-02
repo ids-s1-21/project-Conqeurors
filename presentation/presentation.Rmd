@@ -1,6 +1,6 @@
 ---
 title: "Client Behavior Prediction Model"
-subtitle: <font size='7'>For  term-deposit  subscriptions  in  banking</font>
+subtitle: <font size='6'>For    term-deposit    subscriptions   in    banking</font>
 author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
 institute: <font size='10'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
@@ -8,6 +8,7 @@ output:
   revealjs::revealjs_presentation:
     self_contained: false
     theme: sky
+    background_transition: fade
 ---
 
 ```{r load-packages, include = FALSE}
