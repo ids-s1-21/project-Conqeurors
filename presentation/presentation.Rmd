@@ -132,10 +132,9 @@ Is there a connection between the clients decision and what month of the year it
 banking_train %>%
   mutate(
     month = fct_relevel(month, "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"),
-     y = fct_recode(y, Subscribed = "yes", 
-                   Didn't Subscribe = "no")
-  ) %>%
-  ggplot(aes(x=month,fill=y))+
+ y = fct_recode(y, Subscribed = "yes", 
+               `Didn't Subscribe` = "no")) %>%
+ggplot(aes(x=month,fill=y))+
   geom_bar()+
   scale_fill_manual(values = c("Subscribed"="#3b9e37", 
                                "Didn't Subscribe"="#d91a1a")) +
