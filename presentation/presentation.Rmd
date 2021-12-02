@@ -1,12 +1,13 @@
 ---
 title: "Client Behavior Prediction Model"
-subtitle: <font size='6'>For term-deposit subscriptions in banking</font>
+subtitle: <font size='7'>For  term-deposit  subscriptions  in  banking</font>
 author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
 institute: <font size='10'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
+    theme: sky
 ---
 
 ```{r load-packages, include = FALSE}
@@ -28,9 +29,10 @@ banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 ```
 
-# Our question
+# Our question 
 
-```{r image1, echo = FALSE, out.width = "40%", fig.align = "centre", fig.cap = ""}
+
+```{r image1, echo = FALSE, out.width = "30%", fig.align = "centre", fig.cap = ""}
 include_graphics("https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-bank-account-e1534519443766.jpeg.optimal.jpeg")
 ```
 
@@ -71,7 +73,7 @@ Could the client's jobs have had an impact on whether they subscribed to term de
 
 . . .
 
-```{r job_impact, out.width="90%", fig.width=6, echo = FALSE }
+```{r job_impact, out.width="85%", fig.width=6, echo = FALSE }
 banking_train %>%
 mutate(
   job= fct_recode(job, Administrative = "admin.",
@@ -121,7 +123,7 @@ ggplot(aes(y = y,fill= y)) +
 
 
 
-# Images
+# Fitting it all together
 
 
 # Final Test
