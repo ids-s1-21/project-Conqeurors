@@ -108,8 +108,46 @@ ggplot(aes(y = y,fill= y)) +
     subtitle= "Faceted by jobs"
   )
 ```
-
-
+----
+banking_train%>%
+  ggplot(aes(y=duration,color=y))+
+  geom_bar()+
+  labs(
+    x = "Duration of last contact",
+    color= "Clients subscribed?",
+    title = "Relationship between the duration of last contact
+    and whether they subscribe to term deposits",
+  ) 
+----
+banking_train%>%
+  ggplot(aes(x=contact,y=y))+
+  geom_jitter()+
+ labs(
+    x = "Methods of contact",
+    y = "Clients subscribed?",
+    title = "Relationship between clients methods contact 
+    with the bank and whether they subscribe to term deposits",
+  ) 
+----
+banking_train%>%
+  ggplot(aes(y=job,color=y))+
+  geom_bar()+
+labs(
+    y = "Job",
+    color= "Clients subscribed?",
+    title = "Relationship between clients age 
+    and whether they subscribe to term deposits",
+  ) 
+----
+banking_train%>%
+  ggplot(aes(y=housing,color=y))+
+  geom_bar()+
+  labs(
+    y= "Housing",
+    color= "Clients subscribed?",
+    title = "Relationship between clients housing
+    and whether they subscribe to term deposits",
+  ) 
 ----
 
 Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?
