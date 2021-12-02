@@ -85,7 +85,7 @@
             code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
               </style>
 
-  <link rel="stylesheet" href="presentation_files/reveal.js-4.1.2/dist/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="presentation_files/reveal.js-4.1.2/dist/theme/sky.css" id="theme">
 
 
   <style type="text/css">
@@ -134,7 +134,7 @@
 
 <section id="title-slide">
   <h1 class="title">Client Behavior Prediction Model</h1>
-  <h1 class="subtitle"><font size='6'>For term-deposit subscriptions in banking</font></h1>
+  <h1 class="subtitle"><font size='7'>For term-deposit subscriptions in banking</font></h1>
   <h2 class="author"><font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font></h2>
   <h3 class="institute"><font size='10'>University of Edinburgh</font></h2>
   <h3 class="date"><font size = '6'>2021-12-02</font></h3>
@@ -142,12 +142,13 @@
 
 <section id="our-question" class="title-slide slide level1">
 <h1>Our question</h1>
-<p>Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit?</p>
+<p><img src="https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-bank-account-e1534519443766.jpeg.optimal.jpeg" width="30%" /></p>
+<p>Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? Can we use these to build a predictive model?</p>
 </section>
 
 <section id="our-methodology" class="title-slide slide level1">
 <h1>Our Methodology</h1>
-<p>We built a logistic regression model to answer which variables are the most important indicators when determining wether an individual will subscribe to a term deposit via phone. Firstly we made a huge grid to determine which variables have the strongest correlation with the output variable and after that we fittet a linear regression on these variables. (Will complete after we finish the presentation)</p>
+<p>We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.</p>
 </section>
 
 <section id="our-dataset" class="title-slide slide level1">
@@ -157,263 +158,84 @@
 
 <section>
 <section id="the-general-picture" class="title-slide slide level1">
-<h1>The general picture</h1>
-<p>The general outcome of the company’s campaign to get clients to subscribe to term deposits.</p>
-<div class="fragment">
+<h1>The General Picture</h1>
+<p>The results of the marketing campaign are as follows:</p>
 <p><img src="presentation_files/figure-revealjs/campaign_success-1.png" width="70%" /></p>
-</div>
 </section>
 <section class="slide level2">
 
-<p>Could the client’s jobs have an impact on whether they subscribe to term deposits?</p>
-<div class="fragment">
-<p><img src="presentation_files/figure-revealjs/job_impact-1.png" width="900%" /></p>
-</div>
+<p>Could the client’s jobs have had an impact on whether they subscribed to term deposits?</p>
+<<<<<<< HEAD
+<p><img src="presentation_files/figure-revealjs/job_impact-1.png" width="90%" /></p>
 </section>
 <section class="slide level2">
 
-<ul>
-<li><p>The presentation is created using the <code>reveal.js</code> package</p></li>
-<li><p>You can create a slide show broken up into sections by using the # and ## heading tags</p></li>
-<li><p>You can also create a new slide without a header using a horizontal rule (—-)</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<ul>
-<li>You can also add pauses between content on a slide using (“. . .”)</li>
-</ul>
+<p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
+<p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
+=======
 <div class="fragment">
-<p>Like this.</p>
-<p>…or using “::: fragment”</p>
+<p><img src="presentation_files/figure-revealjs/job_impact-1.png" width="85%" /></p>
+</div>
+>>>>>>> 6bbae086fdea8722f0617e523da55e5f57d9ff23
+</section></section>
+<section id="our-model-plan" class="title-slide slide level1">
+<h1>Our model plan</h1>
+
+</section>
+
+<section id="how-we-split-our-data" class="title-slide slide level1">
+<h1>How we split our data</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45221</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#80-20 Split of Data</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>banking_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(banking_train, <span class="at">prop =</span> <span class="fl">0.8</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>reduced_train_df <span class="ot">&lt;-</span><span class="fu">training</span>(banking_split)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>reduced_test_df <span class="ot">&lt;-</span><span class="fu">testing</span>(banking_split)</span></code></pre></div>
+<p>Number of Rows in Sub-Train Dataframe:</p>
+<pre><code>## [1] 36168</code></pre>
+<p>Number of Rows in Sub-Test Dataframe:</p>
+<pre><code>## [1] 9043</code></pre>
+</section>
+
+<section id="our-recipe" class="title-slide slide level1">
+<h1>Our recipe</h1>
+
+</section>
+
+<section id="our-workflow" class="title-slide slide level1">
+<h1>Our workflow</h1>
+
+</section>
+
+<section id="fitting-it-all-together" class="title-slide slide level1">
+<h1>Fitting it all together</h1>
+
+</section>
+
+<section id="final-test" class="title-slide slide level1">
+<h1>Final Test</h1>
+
+</section>
+
+<section id="conclusion" class="title-slide slide level1">
+<h1>Conclusion</h1>
+
+</section>
+
+<section id="ethics" class="title-slide slide level1">
+<h1>Ethics</h1>
+<p>However, even after all this analysis and correlation, each person’s ethics can affect the results in a way that is unpredictable.</p>
 <div class="fragment">
-<p>Like this.</p>
-</div>
-</div>
-</section></section>
-<section id="layouts" class="title-slide slide level1">
-<h1>Layouts</h1>
-<p>You can use plain text</p>
 <ul>
-<li>or bullet points</li>
+<li>Loyalty; If the client is loyal to their bank and another bank tries to make him subscribe to a term deposit, it may be that he rejects only because of his loyalty towards his bank.</li>
 </ul>
-<div>
-<div style="float: left; width: 50%;">
-or text in two columns
 </div>
-<div style="float: left; width: 50%;">
-like this
-</div>
-</div>
-<p>because you can combine HTML and Markdown syntax.</p>
-<p style="font-size: 8pt; position: absolute; bottom: -5em; width: 100%; text-align: center;">
-*You can also add footnotes
-</p>
-</section>
-
-<section id="code" class="title-slide slide level1">
-<h1>Code</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a boring regression</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 5
-##   term        estimate std.error statistic  p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
-## 2 speed           3.93     0.416      9.46 1.49e-12</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 12
-##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.
-## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-</section>
-
-<section>
-<section id="plots" class="title-slide slide level1">
-<h1>Plots</h1>
-<p><img src="presentation_files/figure-revealjs/plot-iris-1.png" width="80%" /></p>
-</section>
-<section id="plot-and-text" class="slide level2">
-<h2>Plot and text</h2>
-<div class="columns">
-<div class="column">
+<div class="fragment">
 <ul>
-<li>Some text</li>
-<li>goes here</li>
+<li>Trustworthiness; If the client doesn’t know about the bank and how well it does normally, he decides not to trust it despite was he is being told.</li>
 </ul>
-</div><div class="column">
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="100%" /></p>
 </div>
-</div>
-</section>
-<section id="different-widths" class="slide level2">
-<h2>Different widths</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<ul>
-<li>Some text</li>
-<li>goes here</li>
-</ul>
-</div><div class="column" style="width:60%;">
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="100%" /></p>
-</div>
-</div>
-</section></section>
-<section id="tables" class="title-slide slide level1">
-<h1>Tables</h1>
-<p>If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:right;">
-Sepal.Length
-</th>
-<th style="text-align:right;">
-Sepal.Width
-</th>
-<th style="text-align:right;">
-Petal.Length
-</th>
-<th style="text-align:right;">
-Petal.Width
-</th>
-<th style="text-align:left;">
-Species
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-5.1
-</td>
-<td style="text-align:right;">
-3.5
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.9
-</td>
-<td style="text-align:right;">
-3.0
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.7
-</td>
-<td style="text-align:right;">
-3.2
-</td>
-<td style="text-align:right;">
-1.3
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.6
-</td>
-<td style="text-align:right;">
-3.1
-</td>
-<td style="text-align:right;">
-1.5
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5.0
-</td>
-<td style="text-align:right;">
-3.6
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5.4
-</td>
-<td style="text-align:right;">
-3.9
-</td>
-<td style="text-align:right;">
-1.7
-</td>
-<td style="text-align:right;">
-0.4
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-</tbody>
-</table>
-</section>
-
-<section>
-<section id="images" class="title-slide slide level1">
-<h1>Images</h1>
-<p><img src="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" title="Image credit: Photo by Jörg Angeli on Unsplash." alt="Image credit: Photo by Jörg Angeli on Unsplash." width="60%" style="display: block; margin: auto;" /></p>
-<p>Or you can also include a full page image. See next slide.</p>
-</section>
-<section id="section" class="slide level2" data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80">
-<h2 data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80"></h2>
-</section></section>
-<section id="math-expressions" class="title-slide slide level1">
-<h1>Math Expressions</h1>
-<p>You can write LaTeX math expressions inside a pair of dollar signs ($…$), e.g. <span class="math inline">\(\alpha+\beta\)</span>. You can use the display style with double dollar signs:</p>
-<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i\]</span></p>
-</section>
-
-<section id="feeling-adventurous" class="title-slide slide level1">
-<h1>Feeling adventurous?</h1>
-<p>You can learn more about the options available at the following pages:</p>
-<ul>
-<li><p><a href="https://github.com/rstudio/revealjs" class="uri">https://github.com/rstudio/revealjs</a></p></li>
-<li><p><a href="https://bookdown.org/yihui/rmarkdown/revealjs.html" class="uri">https://bookdown.org/yihui/rmarkdown/revealjs.html</a></p></li>
-<li><p><a href="http://www.jenniferbradham.org/post/reveal_js_markdown/" class="uri">http://www.jenniferbradham.org/post/reveal_js_markdown/</a></p></li>
-<li><p><a href="https://revealjs.com/" class="uri">https://revealjs.com/</a></p></li>
-</ul>
 </section>
     </div>
   </div>

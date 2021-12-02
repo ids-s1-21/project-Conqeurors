@@ -1,22 +1,22 @@
 ---
 title: "Client Behavior Prediction Model"
-subtitle: <font size='6'>For term-deposit subscriptions in banking</font>
+subtitle: <font size='7'>For  term-deposit  subscriptions  in  banking</font>
 author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
 institute: <font size='10'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
+    theme: sky
 ---
 
 ```{r load-packages, include = FALSE}
-# Add any additional packages you need to this chunk
 library(rmarkdown)
 library(tidyverse)
 library(tidymodels)
-library(palmerpenguins)
 library(knitr)
 library(revealjs)
+library(corrplot)
 ```
 
 ```{r setup, include=FALSE}
@@ -30,58 +30,55 @@ banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 ```
 
-```{r load-data2, include=FALSE}
-banking <- read_delim("/cloud/project/data/Banking Dataset.csv",
-            delim = ";", escape_double = FALSE, trim_ws = TRUE)
+# Our question 
+
+
+```{r image1, echo = FALSE, out.width = "30%", fig.align = "centre", fig.cap = ""}
+include_graphics("https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-bank-account-e1534519443766.jpeg.optimal.jpeg")
 ```
 
-# Our question
-
-Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? 
-
+Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? Can we use these to build a predictive model? 
 
 # Our Methodology
 
-We built a logistic regression model to answer which variables are the most important indicators when determining wether an individual will subscribe to a term deposit via phone. Firstly we made a huge grid to determine which variables have the strongest correlation with the output variable and after that we fittet a linear regression on these variables. (Will complete after we finish the presentation)
+We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.
 
 # Our Dataset
 
 The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. 
 
-# The general picture
+# The General Picture
 
-The general outcome of the company's campaign to get clients to subscribe to term deposits.
+The results of the marketing campaign are as follows:
 
-. . .
 
 ```{r campaign_success, out.width="70%", fig.width=6, echo = FALSE }
-banking %>%
+banking_train %>%
   mutate(y=fct_recode(y, Subscribed= "yes", 
-        `Not Subscribed` = "no")) %>%
+        `Didn't Subscribe` = "no")) %>%
 ggplot(aes(y = y,fill= y)) +
   geom_bar() +
   guides(fill = "none") +
   scale_fill_manual(values = c("Subscribed"="#3b9e37", 
-                              "Not Subscribed"="#d91a1a")) +
+                              "Didn't Subscribe"="#d91a1a")) +
    labs(
     x = NULL,
     y = NULL,
-    title = "Number of clients that subscribed to a term deposit",
+    title = "Effectiveness of Marketing Campaign",
   )
 ```
 
 ----
 
-Could the client's jobs have an impact on whether they subscribe to term deposits?
+Could the client's jobs have had an impact on whether they subscribed to term deposits?
 
-. . .
 
-```{r job_impact, out.width="900%", fig.width=6, echo = FALSE }
-banking %>%
+```{r job_impact, out.width="85%", fig.width=6, echo = FALSE }
+banking_train %>%
 mutate(
   job= fct_recode(job, Administrative = "admin.",
                   Management = "management", 
-                  Entrepreneur= "entrepreneur",
+                  Entrepreneur = "entrepreneur",
                   `Blue Collar` = "blue-collar", 
                   Housemaid = "housemaid", 
                   Technician = "technician" , 
@@ -91,13 +88,17 @@ mutate(
                   Unemployed = "unemployed", 
                   Unknown= "unknown", 
                   Retred = "retired" ),
-  y=fct_recode(y, Subscribed= "yes", 
-               `Not Subscribed` = "no")) %>%
+  y = fct_recode(y, Subscribed = "yes", 
+               `Didn't Subscribe` = "no")) %>%
 ggplot(aes(y = y,fill= y)) +
   geom_bar() +
   guides(fill = "none") +
   scale_fill_manual(values = c("Subscribed"="#3b9e37", 
-                               "Not Subscribed"="#d91a1a")) +
+                               "Didn't Subscribe"="#d91a1a")) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+    ) +
   facet_wrap(.~job, scales = "free_x") +
   labs(
     x = NULL,
@@ -107,142 +108,74 @@ ggplot(aes(y = y,fill= y)) +
   )
 ```
 
-----
-
-- The presentation is created using the `reveal.js` package
-
-- You can create a slide show broken up into sections by using the # and ## heading tags
-
-- You can also create a new slide without a header using a horizontal rule (----)
 
 ----
 
-- You can also add pauses between content on a slide using (". . .")
+Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?
 
-. . .
+<font size = '6'>**Correlation between numerical predictors**</font>
+```{r correlation_matrix, out.width="80%", fig.align = "centre", fig.width=6, echo = FALSE }
+cor <-banking_train %>%
+  mutate(Outcome = if_else(y == "yes", 1, 0)) %>%
+  summarize(age, balance, day, duration, campaign, pdays, previous,Outcome) %>%
+cor(method = "pearson")
 
-Like this.
+corrplot(cor,type = "lower", bg = "#e8e8e8", method = c("number"), order = "original", tl.col = "black", tl.srt = 45)
 
-...or using "::: fragment"
-
-::: fragment
-
-Like this.
-
-:::
-
-# Layouts
-
-You can use plain text
-
-- or bullet points
-
-<div>
-  <div style="float: left; width: 50%;">or text in two columns</div>
-  <div style="float: left; width: 50%;">like this</div>
-</div>
-
-because you can combine HTML and Markdown syntax.
-
-<p style="font-size: 8pt; position: absolute; bottom: -5em; width: 100%; text-align: center;">*You can also add footnotes</p>
-
-# Code
-
-```{r boring-regression}
-# a boring regression
-model <- lm(dist ~ speed, data = cars)
-tidy(model)
-glance(model)
 ```
 
-# Plots
+# Our model plan 
 
-```{r recode-species, echo = FALSE}
-# In this chunk I'm doing a bunch of analysis that I don't want to present 
-# in my slides. But I need the resulting data frame for a plot I want to present.
-iris_modified <- iris %>%
-  mutate(Species = fct_other(Species, keep = "setosa"))
+
+# How we split our data
+```{r modify_df, echo = FALSE}
+banking_train <- banking_train %>%
+  mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
 ```
 
-```{r plot-iris, echo = FALSE}
-# Code hidden with echo = FALSE
-# Uses modified iris dataset from previous chunk
-# Play around with height and width until you're happy with the look
-ggplot(data = iris_modified, mapping = aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
-  geom_point() + 
-  theme_minimal() # theme options: https://ggplot2.tidyverse.org/reference/ggtheme.html
+```{r split_csv, echo = TRUE}
+
+set.seed(45221)
+
+#80-20 Split of Data
+
+banking_split <- initial_split(banking_train, prop = 0.8)
+reduced_train_df <-training(banking_split)
+reduced_test_df <-testing(banking_split)
 ```
-
-## Plot and text
-
-::: columns
-:::: column
-* Some text
-* goes here
-::::
-
-:::: column
-```{r warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
-# see how I changed out.width and fig.width from defaults
-# to make the figure bigger
-ggplot(penguins, aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot() +
-  theme_minimal()
+Number of Rows in Sub-Train Dataframe:
+```{r display_subclass1, echo = FALSE}
+nrow(reduced_train_df)
 ```
-::::
-:::
-
-## Different widths
-
-::: columns
-:::: {.column width="40%"}
-* Some text
-* goes here
-::::
-
-:::: {.column width="60%"}
-```{r warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
-# see how I changed out.width and fig.width from defaults
-# to make the figure bigger
-ggplot(penguins, aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot() +
-  theme_minimal()
+Number of Rows in Sub-Test Dataframe:
+```{r display_subclass2, echo = FALSE}
+nrow(reduced_test_df)
 ```
-::::
-:::
+# Our recipe
+ 
+. . .  
+ 
+# Our workflow 
 
-# Tables
 
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
 
-```{r iris-table, echo = FALSE}
-kable(head(iris), format = "html")
-```
+# Fitting it all together
 
-# Images
 
-```{r castle, echo = FALSE, out.width = "60%", fig.align = "center", fig.cap = "Image credit: Photo by Jörg Angeli on Unsplash."}
-include_graphics("https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80")
-```
+# Final Test
 
-Or you can also include a full page image. See next slide.
 
-## {data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}
+# Conclusion
 
-# Math Expressions
 
-You can write LaTeX math expressions inside a pair of dollar signs (\$...\$), e.g. $\alpha+\beta$. You can use the display style with double dollar signs:
+# Ethics
 
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
+However, even after all this analysis and correlation, each person's ethics can affect the results in a way that is unpredictable.
 
-# Feeling adventurous?
+. . . 
 
-You can learn more about the options available at the following pages:
+- Loyalty; If the client is loyal to their bank and another bank tries to make him subscribe to a term deposit, it may be that he rejects only because of his loyalty towards his bank.
 
-- https://github.com/rstudio/revealjs
+. . . 
 
-- https://bookdown.org/yihui/rmarkdown/revealjs.html
-
-- http://www.jenniferbradham.org/post/reveal_js_markdown/
-
-- https://revealjs.com/
+- Trustworthiness; If the client doesn't know about the bank and how well it does normally, he decides not to trust it despite was he is being told.
