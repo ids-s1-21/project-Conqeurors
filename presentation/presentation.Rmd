@@ -1,13 +1,14 @@
 ---
 title: "Client Behavior Prediction Model"
-subtitle: <font size='7'>For  term-deposit  subscriptions  in  banking</font>
+subtitle: <font size='7'>For term-deposit  subscriptions  in  banking</font>
 author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
 institute: <font size='10'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
-    theme: sky
+    theme: default
+    highlightLines: true
 ---
 
 ```{r load-packages, include = FALSE}
@@ -124,10 +125,10 @@ corrplot(cor,type = "lower", bg = "#e8e8e8", method = c("number"), order = "orig
 
 ```
 
-# Our model plan 
+# Our Model Plan 
 
 
-# How we split our data
+# How we Split Our Data
 ```{r modify_df, echo = FALSE}
 banking_train <- banking_train %>%
   mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
@@ -151,19 +152,106 @@ Number of Rows in Sub-Test Dataframe:
 ```{r display_subclass2, echo = FALSE}
 nrow(reduced_test_df)
 ```
-# Our recipe
+
+# Our Recipe
+
+The recipe we used for this particular model can be observed below:
+
+1. We removed the pdays variable because it had minimal correlation with our outcome.
+2. We cut the campaign variable in breaks of 0 and 1.
+3. We created relevant age groups.
+4. We created times of the month from the day variable.
+5. We classified calls by their duration in minutes rather than seconds.
+6. We created dummy variables and removed zero variance variables.
+
+----
+
+```{r recipe}
+banking_rec<- recipe(
+  y ~ .,
+  data = reduced_train_df
+)
+
+banking_rec <- banking_rec %>%
+  step_rm(pdays) %>% 
+  #Removed this variable due to low impact on model.
+  step_cut(campaign, previous, breaks = c(0, 1)) %>% 
+  #Only care about values x = 0 and x >= 1 for these variables.
+  step_cut(age, breaks = c(25,40,65)) %>% 
+  #Created age groups
+  step_cut(balance, breaks = c(-0.1, 0.1, 1000, 10000)) %>% 
+  #Created balance groups
+  step_cut(day, breaks = c(10,20)) %>% 
+  #Categorized days variable into beginning, middle, or end of the month.
+  step_cut(duration, breaks = c(60, 120, 180, 240, 300, 360, 420, 480, 540, 600)) %>% 
+  #Divided Calls by duration in minutes.
+  step_dummy(all_nominal(),-all_outcomes()) %>% 
+  #Created Dummy Variables
+  step_zv(all_predictors()) 
+  #Removed Zero Variance Variables
+``` 
  
-. . .  
- 
-# Our workflow 
-
-
-
 # Fitting it all together
+
+```{r banking_logistic_model, echo = FALSE}
+banking_mod <- logistic_reg() %>%
+  set_engine("glm")
+```
+
+```{r workflow, echo = FALSE}
+banking_wflow <-workflow() %>%
+  add_model(banking_mod) %>%
+  add_recipe(banking_rec)
+```
+We applied our recipe into a workflow and fitted it all into a model.
+```{r fit}
+ banking_fit <- banking_wflow %>%
+  fit(data = reduced_train_df)
+
+```
+----
+```{r fit2, echo = FALSE}
+tidy(banking_fit) 
+```
+
+# Initial Results
+
+Our initial Results were surprisingly high:
+```{r prediction, echo = FALSE}
+banking_pred <- predict(banking_fit, reduced_test_df, type = "prob") %>%
+  bind_cols(reduced_test_df %>% select(y))
+
+banking_pred %>%
+  roc_curve(
+    truth = y,
+    .pred_1,
+    event_level = "second") %>%
+  autoplot()
+
+banking_pred %>%
+  roc_auc(
+    truth = y,
+    .pred_1,
+    event_level = "second") 
+
+```
+----
+
+```{r prediction_matrix, echo = False}
+cutoff <- 0.5
+banking_pred %>%
+  mutate(
+    subscribed = if_else(y == 1, "Client Subscribed", "Client did not Subscribe"),
+    subscribed_pred = if_else(.pred_1>cutoff, "Client Predicted to Subscribe", "Client Predicted to Not Subscribe") )%>%
+      count(subscribed_pred, subscribed) %>%
+      pivot_wider(names_from = subscribed, values_from = n) %>%
+      kable(col.names = c("","Client did not Subscribe", "Client Subscribed", formtat = "html")
+  )
+```
+# Cross Validation
 
 
 # Final Test
-
 
 # Conclusion
 
