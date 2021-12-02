@@ -1,22 +1,24 @@
 ---
 title: "Client Behavior Prediction Model"
-subtitle: <font size='6'>For term-deposit subscriptions in banking</font>
+subtitle: <font size='7'>For term-deposit  subscriptions  in  banking</font>
 author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
 institute: <font size='10'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
+    theme: default
+    highlightLines: true
+    background_transition: fade
 ---
 
 ```{r load-packages, include = FALSE}
-# Add any additional packages you need to this chunk
 library(rmarkdown)
 library(tidyverse)
 library(tidymodels)
-library(palmerpenguins)
 library(knitr)
 library(revealjs)
+library(corrplot)
 ```
 
 ```{r setup, include=FALSE}
@@ -30,181 +32,355 @@ banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 ```
 
-```{r load-data2, include=FALSE}
-banking <- read_delim("/cloud/project/data/Banking Dataset.csv",
-            delim = ";", escape_double = FALSE, trim_ws = TRUE)
+# Our question 
+
+
+```{r image1, echo = FALSE, out.width = "30%", fig.align = "centre", fig.cap = ""}
+include_graphics("https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-bank-account-e1534519443766.jpeg.optimal.jpeg")
 ```
 
-## Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? {data-background-image="img/random.png"}
-
+Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? Can we use these to build a predictive model? 
 
 # Our Methodology
 
-We built a logistic regression model to answer which variables are the most important indicators when determining wether an individual will subscribe to a term deposit via phone. Firstly we made a huge grid to determine which variables have the strongest correlation with the output variable and after that we fittet a linear regression on these variables. (Will complete after we finish the presentation)
+We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.
 
 # Our Dataset
 
 The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. 
 
-# The general picture
+# The General Picture
 
-The general outcome of the company's campaign to get clients to subscribe to term deposits.
-```{r campaign_success, out.width="80%", fig.width=6, echo = FALSE }
-banking %>%
+The results of the marketing campaign are as follows:
+
+
+```{r campaign_success, out.width="70%", fig.width=6, echo = FALSE }
+banking_train %>%
   mutate(y=fct_recode(y, Subscribed= "yes", 
-        `Not Subscribed` = "no")) %>%
+        `Didn't Subscribe` = "no")) %>%
 ggplot(aes(y = y,fill= y)) +
   geom_bar() +
   guides(fill = "none") +
   scale_fill_manual(values = c("Subscribed"="#3b9e37", 
-                              "Not Subscribed"="#d91a1a")) +
+                              "Didn't Subscribe"="#d91a1a")) +
    labs(
     x = NULL,
     y = NULL,
-    title = "Number of clients that subscribed to a term deposit",
+    title = "Effectiveness of Marketing Campaign",
   )
 ```
 
-When presenting, you use the left/right arrows to step through the top-level (horizontal) slides. When you arrive at a vertical stack you can optionally press the up/down arrows to view the vertical slides or skip past them by pressing the right arrow.
+----
 
-(click the down key now)
+Could the client's jobs have had an impact on whether they subscribed to term deposits?
 
-## reveal.js
 
-- The presentation is created using the `reveal.js` package
+```{r job_impact, out.width="85%", fig.width=6, echo = FALSE }
+banking_train %>%
+mutate(
+  job= fct_recode(job, Administrative = "admin.",
+                  Management = "management", 
+                  Entrepreneur = "entrepreneur",
+                  `Blue Collar` = "blue-collar", 
+                  Housemaid = "housemaid", 
+                  Technician = "technician" , 
+                  Services = "services", 
+                  Student = "student" , 
+                  `Self Employed`= "self-employed", 
+                  Unemployed = "unemployed", 
+                  Unknown= "unknown", 
+                  Retred = "retired" ),
+  y = fct_recode(y, Subscribed = "yes", 
+               `Didn't Subscribe` = "no")) %>%
+ggplot(aes(y = y,fill= y)) +
+  geom_bar() +
+  guides(fill = "none") +
+  scale_fill_manual(values = c("Subscribed"="#3b9e37", 
+                               "Didn't Subscribe"="#d91a1a")) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+    ) +
+  facet_wrap(.~job, scales = "free_x") +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Number of clients that subscribed to a term deposit",
+    subtitle= "Faceted by jobs"
+  )
+```
 
-- You can create a slide show broken up into sections by using the # and ## heading tags
+----
+<<<<<<< HEAD
+```{r visualization_duration,echo = FALSE }
+banking_train%>%
+  ggplot(aes(x=duration,y=y))+
+  geom_jitter()+
+ labs(
+    x = "Clients subscribed?",
+    y = "Duration of last contact",
+    title = "Relationship between clients duration of last contact 
+    with the bank and whether they subscribe to term deposits",
+=======
 
-- You can also create a new slide without a header using a horizontal rule (----)
+```{r visualization_month, echo = FALSE}
+banking_train %>%
+  mutate(
+    month = fct_relevel(month, "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"),
+     y = fct_recode(y, Subscribed = "yes", 
+               `Didn't Subscribe` = "no")
+  ) %>%
+  ggplot(aes(x=month,fill=y))+
+  geom_bar()+
+  scale_fill_manual(values = c("Subscribed"="#3b9e37", 
+                               "Didn't Subscribe"="#d91a1a")) +
+  labs(
+    x = "Month",
+    y = "Clients Subscribed",
+    title = "Relationship between time of the year and subscriptions",
+    fill = "Outcome"
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
+  ) 
+```
 
 ----
 
-- You can also add pauses between content on a slide using (". . .")
+```{r visualization_contact,echo = FALSE }
+banking_train %>%
+  ggplot(aes(x = contact, y = y, color = contact))+
+  geom_jitter()+
+  theme(legend.position = "none") +
+  labs(
+    x = "Methods of contact",
+    y = "Clients subscribed?",
+    title = "Relationship between clients methods contact 
+    with the bank and whether they subscribe to term deposits",
+  ) 
+```
+
+----
+
+```{r visualization_pdays,echo = FALSE }
+banking_train%>%
+  ggplot(aes(x = pdays, y = y)) +
+  geom_jitter(alpha = 0.3, color = "#2c9af5") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  labs(
+    y = "Outcome",
+    x = "Days",
+    title = "Relationship between the number of days since a client was contacted
+    and whether they subscribed"
+  ) 
+```
+
+
+----
+
+Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?
+
+<font size = '6'>**Correlation between numerical predictors**</font>
+```{r correlation_matrix, out.width="80%", fig.align = "centre", fig.width=6, echo = FALSE }
+cor <-banking_train %>%
+  mutate(Outcome = if_else(y == "yes", 1, 0)) %>%
+  summarize(age, balance, day, duration, campaign, pdays, previous,Outcome) %>%
+cor(method = "pearson")
+
+corrplot(cor,type = "lower", bg = "#e8e8e8", method = c("number"), order = "original", tl.col = "black", tl.srt = 45)
+
+```
+
+# Our Model Plan 
+
+
+# How we Split Our Data
+```{r modify_df, echo = FALSE}
+banking_train <- banking_train %>%
+  mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
+```
+
+```{r split_csv, echo = TRUE}
+
+set.seed(45221)
+
+#80-20 Split of Data
+
+banking_split <- initial_split(banking_train, prop = 0.8)
+reduced_train_df <-training(banking_split)
+reduced_test_df <-testing(banking_split)
+```
+Number of Rows in Sub-Train Dataframe:
+```{r display_subclass1, echo = FALSE}
+nrow(reduced_train_df)
+```
+Number of Rows in Sub-Test Dataframe:
+```{r display_subclass2, echo = FALSE}
+nrow(reduced_test_df)
+```
+
+# Our Recipe
+
+The recipe we used for this particular model can be observed below:
+
+1. We removed the pdays variable because it had minimal correlation with our outcome.
+2. We cut the campaign variable in breaks of 0 and 1.
+3. We created relevant age groups.
+4. We created times of the month from the day variable.
+5. We classified calls by their duration in minutes rather than seconds.
+6. We created dummy variables and removed zero variance variables.
+
+----
+
+```{r recipe}
+banking_rec<- recipe(
+  y ~ .,
+  data = reduced_train_df
+)
+
+banking_rec <- banking_rec %>%
+  step_rm(pdays) %>% 
+  #Removed this variable due to low impact on model.
+  step_cut(campaign, previous, breaks = c(0, 1)) %>% 
+  #Only care about values x = 0 and x >= 1 for these variables.
+  step_cut(age, breaks = c(25,40,65)) %>% 
+  #Created age groups
+  step_cut(balance, breaks = c(-0.1, 0.1, 1000, 10000)) %>% 
+  #Created balance groups
+  step_cut(day, breaks = c(10,20)) %>% 
+  #Categorized days variable into beginning, middle, or end of the month.
+  step_cut(duration, breaks = c(60, 120, 180, 240, 300, 360, 420, 480, 540, 600)) %>% 
+  #Divided Calls by duration in minutes.
+  step_dummy(all_nominal(),-all_outcomes()) %>% 
+  #Created Dummy Variables
+  step_zv(all_predictors()) 
+  #Removed Zero Variance Variables
+``` 
+ 
+# Fitting it all together
+
+```{r banking_logistic_model, echo = FALSE}
+banking_mod <- logistic_reg() %>%
+  set_engine("glm")
+```
+
+```{r workflow, echo = FALSE}
+banking_wflow <-workflow() %>%
+  add_model(banking_mod) %>%
+  add_recipe(banking_rec)
+```
+We applied our recipe into a workflow and fitted it all into a model.
+```{r fit}
+ banking_fit <- banking_wflow %>%
+  fit(data = reduced_train_df)
+
+```
+
+----
+
+```{r fit2, echo = FALSE}
+tidy(banking_fit) 
+```
+
+# Initial Results
+
+```{r initial result, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2Fprediction-1.png")
+```
+
+```{r prediction,  out.width="10%", echo = FALSE}
+banking_pred <- predict(banking_fit, reduced_test_df, type = "prob") %>%
+  bind_cols(reduced_test_df %>% select(y))
+
+banking_pred %>%
+  roc_auc(
+    truth = y,
+    .pred_1,
+    event_level = "second")
+
+
+```
+
+----
+
+# Results Matrix
+
+```{r prediction_matrix, echo = FALSE}
+cutoff <- 0.5
+banking_pred %>%
+  mutate(
+    subscribed = if_else(y == 1, "Client Subscribed", "Client did not Subscribe"),
+    subscribed_pred = if_else(.pred_1>cutoff, "Client Predicted to Subscribe", "Client Predicted Not to Subscribe")) %>%
+      count(subscribed_pred, subscribed) %>%
+      pivot_wider(names_from = subscribed, values_from = n) %>%
+      kable(col.names = c("","Client did not Subscribe", "Client Subscribed"),format = "html"
+  )
+```
+
+# Cross Validation
+
+- We carried out cross validation to make sure our model was not subject to overfitting.
+
+- This was done by partitioning the data into 10 subsets
+
+# Final Test
+
+Time for the truth. We tested our model and the results were:
 
 . . .
 
-Like this.
-
-...or using "::: fragment"
-
-::: fragment
-
-Like this.
-
-:::
-
-# Layouts
-
-You can use plain text
-
-- or bullet points
-
-<div>
-  <div style="float: left; width: 50%;">or text in two columns</div>
-  <div style="float: left; width: 50%;">like this</div>
-</div>
-
-because you can combine HTML and Markdown syntax.
-
-<p style="font-size: 8pt; position: absolute; bottom: -5em; width: 100%; text-align: center;">*You can also add footnotes</p>
-
-# Code
-
-```{r boring-regression}
-# a boring regression
-model <- lm(dist ~ speed, data = cars)
-tidy(model)
-glance(model)
+```{r final result, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2FFinal_Test-1.png")
 ```
 
-# Plots
+```{r Final_Test, echo = FALSE}
 
-```{r recode-species, echo = FALSE}
-# In this chunk I'm doing a bunch of analysis that I don't want to present 
-# in my slides. But I need the resulting data frame for a plot I want to present.
-iris_modified <- iris %>%
-  mutate(Species = fct_other(Species, keep = "setosa"))
+banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
+
+banking_test_final <- banking_test_final %>%
+  mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
+  
+banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
+  bind_cols(banking_test_final %>% select(y))
+
+banking_final_pred %>%
+  roc_auc(
+    truth = y,
+    .pred_1,
+    event_level = "second") 
+
 ```
 
-```{r plot-iris, echo = FALSE}
-# Code hidden with echo = FALSE
-# Uses modified iris dataset from previous chunk
-# Play around with height and width until you're happy with the look
-ggplot(data = iris_modified, mapping = aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
-  geom_point() + 
-  theme_minimal() # theme options: https://ggplot2.tidyverse.org/reference/ggtheme.html
+Our Model Proved to be surprisingly successful!
+
+----
+
+```{r results_matrix_final, echo = FALSE}
+cutoff <- 0.5
+banking_final_pred %>%
+  mutate(
+    subscribed = if_else(y == 1, "Client Subscribed", "Client did not Subscribe"),
+    subscribed_pred = if_else(.pred_1>cutoff, "Client Predicted to Subscribe", "Client Predicted to Not Subscribe") )%>%
+      count(subscribed_pred, subscribed) %>%
+      pivot_wider(names_from = subscribed, values_from = n) %>%
+      kable(col.names = c("","Client did not Subscribe", "Client Subscribed")
+  )
 ```
 
-## Plot and text
+# Conclusion
 
-::: columns
-:::: column
-* Some text
-* goes here
-::::
 
-:::: column
-```{r warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
-# see how I changed out.width and fig.width from defaults
-# to make the figure bigger
-ggplot(penguins, aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot() +
-  theme_minimal()
-```
-::::
-:::
+# Ethics
 
-## Different widths
+Models like the one we created are constantly used by financial institutions to predict future client behavior. 
 
-::: columns
-:::: {.column width="40%"}
-* Some text
-* goes here
-::::
+Though effective, the ethics of this must be observed...
 
-:::: {.column width="60%"}
-```{r warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
-# see how I changed out.width and fig.width from defaults
-# to make the figure bigger
-ggplot(penguins, aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot() +
-  theme_minimal()
-```
-::::
-:::
+. . . 
 
-# Tables
+- Is it correct to leave possible customers out of the possibility of subscribing to a term deposit because they happen to have the wrong job, too little balance, or did not graduate from high school?
 
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
+. . . 
 
-```{r iris-table, echo = FALSE}
-kable(head(iris), format = "html")
-```
+- Modelling is effective but ethics must always come first.
 
-# Images
-
-```{r castle, echo = FALSE, out.width = "60%", fig.align = "center", fig.cap = "Image credit: Photo by Jörg Angeli on Unsplash."}
-include_graphics("https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80")
-```
-
-Or you can also include a full page image. See next slide.
-
-## {data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}
-
-# Math Expressions
-
-You can write LaTeX math expressions inside a pair of dollar signs (\$...\$), e.g. $\alpha+\beta$. You can use the display style with double dollar signs:
-
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-
-# Feeling adventurous?
-
-You can learn more about the options available at the following pages:
-
-- https://github.com/rstudio/revealjs
-
-- https://bookdown.org/yihui/rmarkdown/revealjs.html
-
-- http://www.jenniferbradham.org/post/reveal_js_markdown/
-
-- https://revealjs.com/
+# Thank You for your Attention

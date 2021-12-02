@@ -134,18 +134,21 @@
 
 <section id="title-slide">
   <h1 class="title">Client Behavior Prediction Model</h1>
-  <h1 class="subtitle"><font size='6'>For term-deposit subscriptions in banking</font></h1>
+  <h1 class="subtitle"><font size='7'>For term-deposit subscriptions in banking</font></h1>
   <h2 class="author"><font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font></h2>
   <h3 class="institute"><font size='10'>University of Edinburgh</font></h2>
   <h3 class="date"><font size = '6'>2021-12-02</font></h3>
 </section>
 
-<section id="which-variables-or-combinations-of-these-are-the-most-important-indicators-when-determining-whether-an-individual-will-subscribe-to-a-term-deposit" class="slide level2" data-background-image="img/random.png">
-<h2 data-background-image="img/random.png">Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit?</h2>
+<section id="our-question" class="title-slide slide level1">
+<h1>Our question</h1>
+<p><img src="https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-bank-account-e1534519443766.jpeg.optimal.jpeg" width="30%" /></p>
+<p>Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? Can we use these to build a predictive model?</p>
 </section>
+
 <section id="our-methodology" class="title-slide slide level1">
 <h1>Our Methodology</h1>
-<p>We built a logistic regression model to answer which variables are the most important indicators when determining wether an individual will subscribe to a term deposit via phone. Firstly we made a huge grid to determine which variables have the strongest correlation with the output variable and after that we fittet a linear regression on these variables. (Will complete after we finish the presentation)</p>
+<p>We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.</p>
 </section>
 
 <section id="our-dataset" class="title-slide slide level1">
@@ -155,255 +158,300 @@
 
 <section>
 <section id="the-general-picture" class="title-slide slide level1">
-<h1>The general picture</h1>
-<p>The general outcome of the company’s campaign to get clients to subscribe to term deposits. <img src="presentation_files/figure-revealjs/campaign_success-1.png" width="80%" /></p>
-<p>When presenting, you use the left/right arrows to step through the top-level (horizontal) slides. When you arrive at a vertical stack you can optionally press the up/down arrows to view the vertical slides or skip past them by pressing the right arrow.</p>
-<p>(click the down key now)</p>
-</section>
-<section id="reveal.js" class="slide level2">
-<h2>reveal.js</h2>
-<ul>
-<li><p>The presentation is created using the <code>reveal.js</code> package</p></li>
-<li><p>You can create a slide show broken up into sections by using the # and ## heading tags</p></li>
-<li><p>You can also create a new slide without a header using a horizontal rule (—-)</p></li>
-</ul>
+<h1>The General Picture</h1>
+<p>The results of the marketing campaign are as follows:</p>
+<p><img src="presentation_files/figure-revealjs/campaign_success-1.png" width="70%" /></p>
 </section>
 <section class="slide level2">
 
-<ul>
-<li>You can also add pauses between content on a slide using (“. . .”)</li>
-</ul>
-<div class="fragment">
-<p>Like this.</p>
-<p>…or using “::: fragment”</p>
-<div class="fragment">
-<p>Like this.</p>
-</div>
-</div>
+<p>Could the client’s jobs have had an impact on whether they subscribed to term deposits?</p>
+</section>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<section class="slide level2">
+
+<p><img src="presentation_files/figure-revealjs/visualization_month-1.png" width="80%" /></p>
+</section>
+<section class="slide level2">
+
+<p><img src="presentation_files/figure-revealjs/visualization_contact-1.png" width="80%" /></p>
+</section>
+<section class="slide level2">
+
+<p><img src="presentation_files/figure-revealjs/visualization_pdays-1.png" width="80%" /></p>
+</section>
+<section class="slide level2">
+
+=======
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
+<section id="section" class="slide level2">
+<h2><img src="presentation_files/figure-revealjs/job_impact-1.png" width="85%" /></h2>
+</section>
+<section id="section-1" class="slide level2">
+<h2><img src="presentation_files/figure-revealjs/visualization_duration-1.png" width="80%" /></h2>
+<p><img src="presentation_files/figure-revealjs/visualization_contact-1.png" width="80%" /></p>
+<table style="width:7%;">
+<colgroup>
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><img src="presentation_files/figure-revealjs/visualization_job-1.png" width="80%" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="presentation_files/figure-revealjs/visualization_housing-1.png" width="80%" /></td>
+</tr>
+</tbody>
+</table>
+<<<<<<< HEAD
+=======
+>>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
+<p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
+<p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
 </section></section>
-<section id="layouts" class="title-slide slide level1">
-<h1>Layouts</h1>
-<p>You can use plain text</p>
-<ul>
-<li>or bullet points</li>
-</ul>
-<div>
-<div style="float: left; width: 50%;">
-or text in two columns
-</div>
-<div style="float: left; width: 50%;">
-like this
-</div>
-</div>
-<p>because you can combine HTML and Markdown syntax.</p>
-<p style="font-size: 8pt; position: absolute; bottom: -5em; width: 100%; text-align: center;">
-*You can also add footnotes
-</p>
+<section id="our-model-plan" class="title-slide slide level1">
+<h1>Our Model Plan</h1>
+
 </section>
 
-<section id="code" class="title-slide slide level1">
-<h1>Code</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a boring regression</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 5
-##   term        estimate std.error statistic  p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
-## 2 speed           3.93     0.416      9.46 1.49e-12</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 12
-##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.
-## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<section id="how-we-split-our-data" class="title-slide slide level1">
+<h1>How we Split Our Data</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45221</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#80-20 Split of Data</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>banking_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(banking_train, <span class="at">prop =</span> <span class="fl">0.8</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>reduced_train_df <span class="ot">&lt;-</span><span class="fu">training</span>(banking_split)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>reduced_test_df <span class="ot">&lt;-</span><span class="fu">testing</span>(banking_split)</span></code></pre></div>
+<p>Number of Rows in Sub-Train Dataframe:</p>
+<pre><code>## [1] 36168</code></pre>
+<p>Number of Rows in Sub-Test Dataframe:</p>
+<pre><code>## [1] 9043</code></pre>
 </section>
 
 <section>
-<section id="plots" class="title-slide slide level1">
-<h1>Plots</h1>
-<p><img src="presentation_files/figure-revealjs/plot-iris-1.png" width="80%" /></p>
+<section id="our-recipe" class="title-slide slide level1">
+<h1>Our Recipe</h1>
+<p>The recipe we used for this particular model can be observed below:</p>
+<ol type="1">
+<li>We removed the pdays variable because it had minimal correlation with our outcome.</li>
+<li>We cut the campaign variable in breaks of 0 and 1.</li>
+<li>We created relevant age groups.</li>
+<li>We created times of the month from the day variable.</li>
+<li>We classified calls by their duration in minutes rather than seconds.</li>
+<li>We created dummy variables and removed zero variance variables.</li>
+</ol>
 </section>
-<section id="plot-and-text" class="slide level2">
-<h2>Plot and text</h2>
-<div class="columns">
-<div class="column">
-<ul>
-<li>Some text</li>
-<li>goes here</li>
-</ul>
-</div><div class="column">
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="100%" /></p>
-</div>
-</div>
-</section>
-<section id="different-widths" class="slide level2">
-<h2>Different widths</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<ul>
-<li>Some text</li>
-<li>goes here</li>
-</ul>
-</div><div class="column" style="width:60%;">
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="100%" /></p>
-</div>
-</div>
+<section class="slide level2">
+
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>banking_rec<span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  y <span class="sc">~</span> .,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> reduced_train_df</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>banking_rec <span class="ot">&lt;-</span> banking_rec <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(pdays) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Removed this variable due to low impact on model.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_cut</span>(campaign, previous, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Only care about values x = 0 and x &gt;= 1 for these variables.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_cut</span>(age, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">40</span>,<span class="dv">65</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Created age groups</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_cut</span>(balance, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="dv">1000</span>, <span class="dv">10000</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Created balance groups</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_cut</span>(day, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Categorized days variable into beginning, middle, or end of the month.</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_cut</span>(duration, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">120</span>, <span class="dv">180</span>, <span class="dv">240</span>, <span class="dv">300</span>, <span class="dv">360</span>, <span class="dv">420</span>, <span class="dv">480</span>, <span class="dv">540</span>, <span class="dv">600</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Divided Calls by duration in minutes.</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal</span>(),<span class="sc">-</span><span class="fu">all_outcomes</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Created Dummy Variables</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Removed Zero Variance Variables</span></span></code></pre></div>
 </section></section>
-<section id="tables" class="title-slide slide level1">
-<h1>Tables</h1>
-<p>If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,</p>
+<section>
+<section id="fitting-it-all-together" class="title-slide slide level1">
+<h1>Fitting it all together</h1>
+<p>We applied our recipe into a workflow and fitted it all into a model.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> banking_fit <span class="ot">&lt;-</span> banking_wflow <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> reduced_train_df)</span></code></pre></div>
+</section>
+<section class="slide level2">
+
+<pre><code>## # A tibble: 57 × 5
+##    term              estimate std.error statistic  p.value
+##    &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1 (Intercept)       -5.05       0.434   -11.6    2.84e-31
+##  2 age_X.25.40.      -0.603      0.107    -5.64   1.75e- 8
+##  3 age_X.40.65.      -0.601      0.115    -5.23   1.66e- 7
+##  4 age_X.65.95.       0.00493    0.178     0.0277 9.78e- 1
+##  5 job_blue.collar   -0.272      0.0818   -3.33   8.70e- 4
+##  6 job_entrepreneur  -0.339      0.142    -2.38   1.72e- 2
+##  7 job_housemaid     -0.362      0.153    -2.37   1.80e- 2
+##  8 job_management    -0.121      0.0839   -1.45   1.48e- 1
+##  9 job_retired        0.0634     0.115     0.551  5.81e- 1
+## 10 job_self.employed -0.245      0.125    -1.96   5.02e- 2
+## # … with 47 more rows</code></pre>
+</section></section>
+<<<<<<< HEAD
+<section id="initial-results" class="title-slide slide level1">
+<h1>Initial Results</h1>
+
+=======
+<<<<<<< HEAD
+<section>
+<section id="initial-results" class="title-slide slide level1">
+<h1>Initial Results</h1>
+<p><img src="https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2Fprediction-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.908</code></pre>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section id="results-matrix" class="title-slide slide level1">
+<h1>Results Matrix</h1>
 <table>
 <thead>
 <tr>
-<th style="text-align:right;">
-Sepal.Length
-</th>
-<th style="text-align:right;">
-Sepal.Width
-</th>
-<th style="text-align:right;">
-Petal.Length
-</th>
-<th style="text-align:right;">
-Petal.Width
-</th>
 <th style="text-align:left;">
-Species
+</th>
+<th style="text-align:right;">
+Client did not Subscribe
+</th>
+<th style="text-align:right;">
+Client Subscribed
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right;">
-5.1
-</td>
-<td style="text-align:right;">
-3.5
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
 <td style="text-align:left;">
-setosa
+Client Predicted Not to Subscribe
+</td>
+<td style="text-align:right;">
+7731
+</td>
+<td style="text-align:right;">
+690
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
-4.9
-</td>
-<td style="text-align:right;">
-3.0
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
 <td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.7
+Client Predicted to Subscribe
 </td>
 <td style="text-align:right;">
-3.2
+247
 </td>
 <td style="text-align:right;">
-1.3
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.6
-</td>
-<td style="text-align:right;">
-3.1
-</td>
-<td style="text-align:right;">
-1.5
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5.0
-</td>
-<td style="text-align:right;">
-3.6
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5.4
-</td>
-<td style="text-align:right;">
-3.9
-</td>
-<td style="text-align:right;">
-1.7
-</td>
-<td style="text-align:right;">
-0.4
-</td>
-<td style="text-align:left;">
-setosa
+375
 </td>
 </tr>
 </tbody>
 </table>
+=======
+<section id="initial-results" class="title-slide slide level1">
+<h1>Initial Results</h1>
+
+>>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
+</section>
+
+<section id="cross-validation" class="title-slide slide level1">
+<h1>Cross Validation</h1>
+<<<<<<< HEAD
+
+</section>
+
+=======
+<<<<<<< HEAD
+<ul>
+<li><p>We carried out cross validation to make sure our model was not subject to overfitting.</p></li>
+<li><p>This was done by partitioning the data into 10 subsets</p></li>
+</ul>
 </section>
 
 <section>
-<section id="images" class="title-slide slide level1">
-<h1>Images</h1>
-<p><img src="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" title="Image credit: Photo by Jörg Angeli on Unsplash." alt="Image credit: Photo by Jörg Angeli on Unsplash." width="60%" style="display: block; margin: auto;" /></p>
-<p>Or you can also include a full page image. See next slide.</p>
-</section>
-<section id="section" class="slide level2" data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80">
-<h2 data-background-image="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80"></h2>
-</section></section>
-<section id="math-expressions" class="title-slide slide level1">
-<h1>Math Expressions</h1>
-<p>You can write LaTeX math expressions inside a pair of dollar signs ($…$), e.g. <span class="math inline">\(\alpha+\beta\)</span>. You can use the display style with double dollar signs:</p>
-<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i\]</span></p>
+=======
+
 </section>
 
-<section id="feeling-adventurous" class="title-slide slide level1">
-<h1>Feeling adventurous?</h1>
-<p>You can learn more about the options available at the following pages:</p>
+>>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
+<section id="final-test" class="title-slide slide level1">
+<h1>Final Test</h1>
+<p>Time for the truth. We tested our model and the results were:</p>
+<div class="fragment">
+<p><img src="https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2FFinal_Test-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<pre><code>## Rows: 9043 Columns: 18</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (10): job, marital, education, default, housing, loan, contact, month, p...
+## dbl  (8): ...1, age, balance, day, duration, campaign, pdays, previous</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.912</code></pre>
+<p>Our Model Proved to be surprisingly successful!</p>
+</div>
+</section>
+<section class="slide level2">
+
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Client did not Subscribe</th>
+<th style="text-align: right;">Client Subscribed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Client Predicted to Not Subscribe</td>
+<td style="text-align: right;">7765</td>
+<td style="text-align: right;">652</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Client Predicted to Subscribe</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">382</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section id="conclusion" class="title-slide slide level1">
+<h1>Conclusion</h1>
+
+</section>
+
+<section id="ethics" class="title-slide slide level1">
+<h1>Ethics</h1>
+<p>Models like the one we created are constantly used by financial institutions to predict future client behavior.</p>
+<p>Though effective, the ethics of this must be observed…</p>
+<div class="fragment">
 <ul>
-<li><p><a href="https://github.com/rstudio/revealjs" class="uri">https://github.com/rstudio/revealjs</a></p></li>
-<li><p><a href="https://bookdown.org/yihui/rmarkdown/revealjs.html" class="uri">https://bookdown.org/yihui/rmarkdown/revealjs.html</a></p></li>
-<li><p><a href="http://www.jenniferbradham.org/post/reveal_js_markdown/" class="uri">http://www.jenniferbradham.org/post/reveal_js_markdown/</a></p></li>
-<li><p><a href="https://revealjs.com/" class="uri">https://revealjs.com/</a></p></li>
+<li>Is it correct to leave possible customers out of the possibility of subscribing to a term deposit because they happen to have the wrong job, too little balance, or did not graduate from high school?</li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Modelling is effective but ethics must always come first.</li>
+</ul>
+</div>
+</section>
+
+<section id="thank-you-for-your-attention" class="title-slide slide level1">
+<h1>Thank You for your Attention</h1>
+
 </section>
     </div>
   </div>

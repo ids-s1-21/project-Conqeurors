@@ -6,6 +6,8 @@ output: github_document
 
 ## Summary
 
+Our team decided to make a presentation on the data of a bank's marketing campaign about if clients will subscribe to their term deposit. The question we asked ourselves was 'Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit?'. 
+
 Write-up of your project and findings go here. 
 Think of this as the text of your presentation. 
 The length should be roughly 5 minutes when read out loud.
@@ -29,11 +31,9 @@ Our presentation can be found [here](presentation/presentation.html).
 
 ## Data 
 
-Include a citation for your data here. 
-See http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840 for guidance on proper citation for datasets. 
-If you got your data off the web, make sure to note the retrieval date.
+Moro, S, Cortez, P and Rita, P, June 2014, *A Data-Driven Approach to Predict the Success of Bank Telemarketing.* Decision Support Systems, Elsevier, 62:22-31, viewed  \<https://www.kaggle.com/prakharrathi25/banking-dataset-marketing-targets>
 
 ## References
 
-List any references here. You should, at a minimum, list your data source.
+Moro, S, Cortez, P and Rita, P, June 2014, *A Data-Driven Approach to Predict the Success of Bank Telemarketing.* Decision Support Systems, Elsevier, 62:22-31, viewed  \<https://www.kaggle.com/prakharrathi25/banking-dataset-marketing-targets>
 
