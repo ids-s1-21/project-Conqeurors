@@ -378,6 +378,12 @@ At the end it is safe to say that there is no real correlation between any of th
 
 Models like the one we created are constantly used by financial institutions to predict future client behavior. 
 
+```{r ethics, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://www.roehampton.ac.uk/globalassets/images/general/ethics-ethos.jpg")
+```
+
+----
+
 Though effective, the ethics of this must be observed...
 
 . . . 
