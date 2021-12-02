@@ -29,9 +29,14 @@ Our presentation can be found [here](presentation/presentation.html).
 
 ## Data
 
-Moro, S, Cortez, P and Rita, P, June 2014, *A Data-Driven Approach to Predict the Success of Bank Telemarketing.* Decision Support Systems, Elsevier, 62:22-31, viewed  \<https://www.kaggle.com/prakharrathi25/banking-dataset-marketing-targets>
-
+Moro, S, Cortez, P and Rita, P, June 2014, *A Data-Driven Approach to
+Predict the Success of Bank Telemarketing.* Decision Support Systems,
+Elsevier, 62:22-31, viewed
+\<<https://www.kaggle.com/prakharrathi25/banking-dataset-marketing-targets>\>
 
 ## References
 
-Moro, S, Cortez, P and Rita, P, June 2014, *A Data-Driven Approach to Predict the Success of Bank Telemarketing.* Decision Support Systems, Elsevier, 62:22-31, viewed  \<https://www.kaggle.com/prakharrathi25/banking-dataset-marketing-targets>
+Moro, S, Cortez, P and Rita, P, June 2014, *A Data-Driven Approach to
+Predict the Success of Bank Telemarketing.* Decision Support Systems,
+Elsevier, 62:22-31, viewed
+\<<https://www.kaggle.com/prakharrathi25/banking-dataset-marketing-targets>\>
