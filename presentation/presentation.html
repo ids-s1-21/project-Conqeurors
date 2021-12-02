@@ -80,12 +80,12 @@
 <section id="our-question" class="title-slide slide level1">
 <h1>Our question</h1>
 <p><img src="https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-bank-account-e1534519443766.jpeg.optimal.jpeg" width="40%" /></p>
-<p>Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit?</p>
+<p>Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? Can we use these to build a predictive model?</p>
 </section>
 
 <section id="our-methodology" class="title-slide slide level1">
 <h1>Our Methodology</h1>
-<p>We built a logistic regression model to answer which variables are the most important indicators when determining wether an individual will subscribe to a term deposit via phone. Firstly we made a huge grid to determine which variables have the strongest correlation with the output variable and after that we fittet a linear regression on these variables. (Will complete after we finish the presentation)</p>
+<p>We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.</p>
 </section>
 
 <section id="our-dataset" class="title-slide slide level1">
@@ -95,17 +95,15 @@
 
 <section>
 <section id="the-general-picture" class="title-slide slide level1">
-<h1>The general picture</h1>
-<p>The general outcome of the company’s campaign to get clients to subscribe to term deposits.</p>
-<div class="fragment">
+<h1>The General Picture</h1>
+<p>The results of the marketing campaign are as follows:</p>
 <p><img src="presentation_files/figure-revealjs/campaign_success-1.png" width="70%" /></p>
-</div>
 </section>
 <section class="slide level2">
 
-<p>Could the client’s jobs have an impact on whether they subscribe to term deposits?</p>
+<p>Could the client’s jobs have had an impact on whether they subscribed to term deposits?</p>
 <div class="fragment">
-<p><img src="presentation_files/figure-revealjs/job_impact-1.png" width="900%" /></p>
+<p><img src="presentation_files/figure-revealjs/job_impact-1.png" width="90%" /></p>
 </div>
 </section></section>
 <section id="our-model-plan" class="title-slide slide level1">
@@ -118,170 +116,14 @@
 
 </section>
 
-<section>
 <section id="our-recipe" class="title-slide slide level1">
 <h1>Our recipe</h1>
-<div class="fragment">
-<ul>
-<li>Our workflow</li>
-</ul>
-<p><img src="presentation_files/figure-revealjs/plot-iris-1.png" width="80%" /></p>
-</div>
+
 </section>
-<section id="plot-and-text" class="slide level2">
-<h2>Plot and text</h2>
-<div class="columns">
-<div class="column">
-<ul>
-<li>Some text</li>
-<li>goes here</li>
-</ul>
-</div><div class="column">
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="100%" /></p>
-</div>
-</div>
-</section>
-<section id="different-widths" class="slide level2">
-<h2>Different widths</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<ul>
-<li>Some text</li>
-<li>goes here</li>
-</ul>
-</div><div class="column" style="width:60%;">
-<p><img src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="100%" /></p>
-</div>
-</div>
-</section></section>
-<section id="tables" class="title-slide slide level1">
-<h1>Tables</h1>
-<p>If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:right;">
-Sepal.Length
-</th>
-<th style="text-align:right;">
-Sepal.Width
-</th>
-<th style="text-align:right;">
-Petal.Length
-</th>
-<th style="text-align:right;">
-Petal.Width
-</th>
-<th style="text-align:left;">
-Species
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-5.1
-</td>
-<td style="text-align:right;">
-3.5
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.9
-</td>
-<td style="text-align:right;">
-3.0
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.7
-</td>
-<td style="text-align:right;">
-3.2
-</td>
-<td style="text-align:right;">
-1.3
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.6
-</td>
-<td style="text-align:right;">
-3.1
-</td>
-<td style="text-align:right;">
-1.5
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5.0
-</td>
-<td style="text-align:right;">
-3.6
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5.4
-</td>
-<td style="text-align:right;">
-3.9
-</td>
-<td style="text-align:right;">
-1.7
-</td>
-<td style="text-align:right;">
-0.4
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-</tbody>
-</table>
+
+<section id="our-workflow" class="title-slide slide level1">
+<h1>Our workflow</h1>
+
 </section>
 
 <section id="images" class="title-slide slide level1">

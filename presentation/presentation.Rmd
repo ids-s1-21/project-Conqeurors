@@ -10,11 +10,9 @@ output:
 ---
 
 ```{r load-packages, include = FALSE}
-# Add any additional packages you need to this chunk
 library(rmarkdown)
 library(tidyverse)
 library(tidymodels)
-library(palmerpenguins)
 library(knitr)
 library(revealjs)
 ```
@@ -30,61 +28,55 @@ banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 ```
 
-```{r load-data2, include=FALSE}
-banking <- read_delim("/cloud/project/data/Banking Dataset.csv",
-            delim = ";", escape_double = FALSE, trim_ws = TRUE)
-```
-
 # Our question
 
 ```{r image1, echo = FALSE, out.width = "40%", fig.align = "centre", fig.cap = ""}
 include_graphics("https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-bank-account-e1534519443766.jpeg.optimal.jpeg")
 ```
 
-Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? 
+Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? Can we use these to build a predictive model? 
 
 # Our Methodology
 
-We built a logistic regression model to answer which variables are the most important indicators when determining wether an individual will subscribe to a term deposit via phone. Firstly we made a huge grid to determine which variables have the strongest correlation with the output variable and after that we fittet a linear regression on these variables. (Will complete after we finish the presentation)
+We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.
 
 # Our Dataset
 
 The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. 
 
-# The general picture
+# The General Picture
 
-The general outcome of the company's campaign to get clients to subscribe to term deposits.
+The results of the marketing campaign are as follows:
 
-. . .
 
 ```{r campaign_success, out.width="70%", fig.width=6, echo = FALSE }
-banking %>%
+banking_train %>%
   mutate(y=fct_recode(y, Subscribed= "yes", 
-        `Not Subscribed` = "no")) %>%
+        `Didn't Subscribe` = "no")) %>%
 ggplot(aes(y = y,fill= y)) +
   geom_bar() +
   guides(fill = "none") +
   scale_fill_manual(values = c("Subscribed"="#3b9e37", 
-                              "Not Subscribed"="#d91a1a")) +
+                              "Didn't Subscribe"="#d91a1a")) +
    labs(
     x = NULL,
     y = NULL,
-    title = "Number of clients that subscribed to a term deposit",
+    title = "Effectiveness of Marketing Campaign",
   )
 ```
 
 ----
 
-Could the client's jobs have an impact on whether they subscribe to term deposits?
+Could the client's jobs have had an impact on whether they subscribed to term deposits?
 
 . . .
 
-```{r job_impact, out.width="900%", fig.width=6, echo = FALSE }
-banking %>%
+```{r job_impact, out.width="90%", fig.width=6, echo = FALSE }
+banking_train %>%
 mutate(
   job= fct_recode(job, Administrative = "admin.",
                   Management = "management", 
-                  Entrepreneur= "entrepreneur",
+                  Entrepreneur = "entrepreneur",
                   `Blue Collar` = "blue-collar", 
                   Housemaid = "housemaid", 
                   Technician = "technician" , 
@@ -94,13 +86,17 @@ mutate(
                   Unemployed = "unemployed", 
                   Unknown= "unknown", 
                   Retred = "retired" ),
-  y=fct_recode(y, Subscribed= "yes", 
-               `Not Subscribed` = "no")) %>%
+  y = fct_recode(y, Subscribed = "yes", 
+               `Didn't Subscribe` = "no")) %>%
 ggplot(aes(y = y,fill= y)) +
   geom_bar() +
   guides(fill = "none") +
   scale_fill_manual(values = c("Subscribed"="#3b9e37", 
-                               "Not Subscribed"="#d91a1a")) +
+                               "Didn't Subscribe"="#d91a1a")) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+    ) +
   facet_wrap(.~job, scales = "free_x") +
   labs(
     x = NULL,
@@ -121,69 +117,9 @@ ggplot(aes(y = y,fill= y)) +
  
 . . .  
  
-- Our workflow 
+# Our workflow 
 
-```{r recode-species, echo = FALSE}
-# In this chunk I'm doing a bunch of analysis that I don't want to present 
-# in my slides. But I need the resulting data frame for a plot I want to present.
-iris_modified <- iris %>%
-  mutate(Species = fct_other(Species, keep = "setosa"))
-```
 
-```{r plot-iris, echo = FALSE}
-# Code hidden with echo = FALSE
-# Uses modified iris dataset from previous chunk
-# Play around with height and width until you're happy with the look
-ggplot(data = iris_modified, mapping = aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
-  geom_point() + 
-  theme_minimal() # theme options: https://ggplot2.tidyverse.org/reference/ggtheme.html
-```
-
-## Plot and text
-
-::: columns
-:::: column
-* Some text
-* goes here
-::::
-
-:::: column
-```{r warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
-# see how I changed out.width and fig.width from defaults
-# to make the figure bigger
-ggplot(penguins, aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot() +
-  theme_minimal()
-```
-::::
-:::
-
-## Different widths
-
-::: columns
-:::: {.column width="40%"}
-* Some text
-* goes here
-::::
-
-:::: {.column width="60%"}
-```{r warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
-# see how I changed out.width and fig.width from defaults
-# to make the figure bigger
-ggplot(penguins, aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot() +
-  theme_minimal()
-```
-::::
-:::
-
-# Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
-
-```{r iris-table, echo = FALSE}
-kable(head(iris), format = "html")
-```
 
 # Images
 
