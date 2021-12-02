@@ -4,7 +4,6 @@ output: github_document
 ---
 
 ```{r load-packages, include = FALSE}
-# Add any additional packages you need to this chunk
 library(rmarkdown)
 library(tidyverse)
 library(tidymodels)
@@ -25,7 +24,9 @@ banking_train <- banking_train %>%
 ```{r split_csv}
 
 set.seed(45221)
+
 #80-20 Split of Data
+
 banking_split <- initial_split(banking_train, prop = 0.8)
 reduced_train_df <-training(banking_split)
 banking_test <-testing(banking_split)
@@ -106,11 +107,51 @@ set.seed(777)
 folds <-vfold_cv(banking_train, v = 10)
 #Divided data into ten folds because of the large dataset size.
 
-banking_fit <- banking_wflow %>%
+banking_fit_cross<- banking_wflow %>%
   fit_resamples(folds)
 
-banking_fit
+banking_fit_cross
 
-collect_metrics(banking_fit)
+collect_metrics(banking_fit_cross)
 
 ```
+```{r Final_Test}
+
+banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
+
+banking_test_final <- banking_test_final %>%
+  mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
+  
+
+banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
+  bind_cols(banking_test_final %>% select(y))
+
+banking_final_pred %>%
+  roc_curve(
+    truth = y,
+    .pred_1,
+    event_level = "second") %>%
+  autoplot()
+
+banking_final_pred %>%
+  roc_auc(
+    truth = y,
+    .pred_1,
+    event_level = "second") 
+
+```
+
+```{r prediction_matrix_final}
+cutoff <- 0.5
+banking_final_pred %>%
+  mutate(
+    subscribed = if_else(y == 1, "Client Subscribed", "Client did not Subscribe"),
+    subscribed_pred = if_else(.pred_1>cutoff, "Client Predicted to Subscribe", "Client Predicted to Not Subscribe") )%>%
+      count(subscribed_pred, subscribed) %>%
+      pivot_wider(names_from = subscribed, values_from = n) %>%
+      kable(col.names = c("","Client did not Subscribe", "Client Subscribed")
+  )
+```
+
+```
+
