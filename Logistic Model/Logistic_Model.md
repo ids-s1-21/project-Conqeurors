@@ -8,7 +8,9 @@ banking_train <- banking_train %>%
 
 ``` r
 set.seed(45221)
+
 #80-20 Split of Data
+
 banking_split <- initial_split(banking_train, prop = 0.8)
 reduced_train_df <-training(banking_split)
 banking_test <-testing(banking_split)
@@ -123,7 +125,7 @@ set.seed(777)
 folds <-vfold_cv(banking_train, v = 10)
 #Divided data into ten folds because of the large dataset size.
 
-banking_fit <- banking_wflow %>%
+banking_fit_cross<- banking_wflow %>%
   fit_resamples(folds)
 ```
 
@@ -134,7 +136,7 @@ banking_fit <- banking_wflow %>%
     ## ! Fold10: preprocessor 1/1, model 1/1 (predictions): There are new levels in a fac...
 
 ``` r
-banking_fit
+banking_fit_cross
 ```
 
     ## Warning: This tuning result has notes. Example notes on model fitting include:
@@ -159,7 +161,7 @@ banking_fit
     ## 10 <split [40690/4521]> Fold10 <tibble [2 × 4]> <tibble [1 × 1]>
 
 ``` r
-collect_metrics(banking_fit)
+collect_metrics(banking_fit_cross)
 ```
 
     ## # A tibble: 2 × 6
@@ -167,3 +169,71 @@ collect_metrics(banking_fit)
     ##   <chr>    <chr>      <dbl> <int>    <dbl> <chr>               
     ## 1 accuracy binary     0.899    10 0.000701 Preprocessor1_Model1
     ## 2 roc_auc  binary     0.910    10 0.00145  Preprocessor1_Model1
+
+``` r
+banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
+```
+
+    ## New names:
+    ## * `` -> ...1
+
+    ## Rows: 9043 Columns: 18
+
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (10): job, marital, education, default, housing, loan, contact, month, p...
+    ## dbl  (8): ...1, age, balance, day, duration, campaign, pdays, previous
+
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+banking_test_final <- banking_test_final %>%
+  mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
+  
+
+banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
+  bind_cols(banking_test_final %>% select(y))
+
+banking_final_pred %>%
+  roc_curve(
+    truth = y,
+    .pred_1,
+    event_level = "second") %>%
+  autoplot()
+```
+
+![](Logistic_Model_files/figure-gfm/Final_Test-1.png)<!-- -->
+
+``` r
+banking_final_pred %>%
+  roc_auc(
+    truth = y,
+    .pred_1,
+    event_level = "second") 
+```
+
+    ## # A tibble: 1 × 3
+    ##   .metric .estimator .estimate
+    ##   <chr>   <chr>          <dbl>
+    ## 1 roc_auc binary         0.912
+
+``` r
+cutoff <- 0.5
+banking_final_pred %>%
+  mutate(
+    subscribed = if_else(y == 1, "Client Subscribed", "Client did not Subscribe"),
+    subscribed_pred = if_else(.pred_1>cutoff, "Client Predicted to Subscribe", "Client Predicted to Not Subscribe") )%>%
+      count(subscribed_pred, subscribed) %>%
+      pivot_wider(names_from = subscribed, values_from = n) %>%
+      kable(col.names = c("","Client did not Subscribe", "Client Subscribed")
+  )
+```
+
+|                                   | Client did not Subscribe | Client Subscribed |
+|:----------------------------------|-------------------------:|------------------:|
+| Client Predicted to Not Subscribe |                     7765 |               652 |
+| Client Predicted to Subscribe     |                      244 |               382 |
+
+\`\`\`

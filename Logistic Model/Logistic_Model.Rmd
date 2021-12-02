@@ -4,7 +4,6 @@ output: github_document
 ---
 
 ```{r load-packages, include = FALSE}
-# Add any additional packages you need to this chunk
 library(rmarkdown)
 library(tidyverse)
 library(tidymodels)
@@ -142,7 +141,7 @@ banking_final_pred %>%
 
 ```
 
-```{r prediction_matrix}
+```{r prediction_matrix_final}
 cutoff <- 0.5
 banking_final_pred %>%
   mutate(
