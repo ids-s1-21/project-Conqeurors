@@ -113,6 +113,19 @@ ggplot(aes(y = y,fill= y)) +
 
 ----
 
+```{r visualization_duration,echo = FALSE }
+banking_train%>%
+  ggplot(aes(x=duration,y=y))+
+  geom_jitter()+
+ labs(
+    x = "Clients subscribed?",
+    y = "Duration of last contact",
+    title = "Relationship between clients duration of last contact 
+    with the bank and whether they subscribe to term deposits") 
+```
+
+----
+
 Is there a connection between the clients decision and what month of the year it is?
 
 ```{r visualization_month, echo = FALSE}
@@ -120,7 +133,7 @@ banking_train %>%
   mutate(
     month = fct_relevel(month, "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"),
      y = fct_recode(y, Subscribed = "yes", 
-               `Didn't Subscribe` = "no")
+                   Didn't Subscribe = "no")
   ) %>%
   ggplot(aes(x=month,fill=y))+
   geom_bar()+
