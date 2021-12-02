@@ -107,55 +107,18 @@ ggplot(aes(y = y,fill= y)) +
   )
 ```
 
-----
 
-- The presentation is created using the `reveal.js` package
+# Our model plan 
 
-- You can create a slide show broken up into sections by using the # and ## heading tags
 
-- You can also create a new slide without a header using a horizontal rule (----)
+# How we split our data
 
-----
 
-- You can also add pauses between content on a slide using (". . .")
-
-. . .
-
-Like this.
-
-...or using "::: fragment"
-
-::: fragment
-
-Like this.
-
-:::
-
-# Layouts
-
-You can use plain text
-
-- or bullet points
-
-<div>
-  <div style="float: left; width: 50%;">or text in two columns</div>
-  <div style="float: left; width: 50%;">like this</div>
-</div>
-
-because you can combine HTML and Markdown syntax.
-
-<p style="font-size: 8pt; position: absolute; bottom: -5em; width: 100%; text-align: center;">*You can also add footnotes</p>
-
-# Code
-
-```{r boring-regression}
-# a boring regression
-model <- lm(dist ~ speed, data = cars)
-tidy(model)
-glance(model)
-```
-
-# Plots
+# Our recipe
+ 
+. . .  
+ 
+- Our workflow 
 
 ```{r recode-species, echo = FALSE}
 # In this chunk I'm doing a bunch of analysis that I don't want to present 
@@ -246,3 +209,15 @@ You can learn more about the options available at the following pages:
 - http://www.jenniferbradham.org/post/reveal_js_markdown/
 
 - https://revealjs.com/
+
+# Ethics
+
+However, even after all this analysis and correlation, each person's ethics can affect the results in a way that is unpredictable.
+
+. . . 
+
+- Loyalty; If the client is loyal to their bank and another bank tries to make him subscribe to a term deposit, it may be that he rejects only because of his loyalty towards his bank.
+
+. . . 
+
+- Trustworthiness; If the client doesn't know about the bank and how well it does normally, he decides not to trust it despite was he is being told.
