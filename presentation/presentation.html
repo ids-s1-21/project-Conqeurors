@@ -166,6 +166,25 @@
 
 <p>Could the client’s jobs have had an impact on whether they subscribed to term deposits?</p>
 </section>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<section class="slide level2">
+
+<p><img src="presentation_files/figure-revealjs/visualization_month-1.png" width="80%" /></p>
+</section>
+<section class="slide level2">
+
+<p><img src="presentation_files/figure-revealjs/visualization_contact-1.png" width="80%" /></p>
+</section>
+<section class="slide level2">
+
+<p><img src="presentation_files/figure-revealjs/visualization_pdays-1.png" width="80%" /></p>
+</section>
+<section class="slide level2">
+
+=======
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
 <section id="section" class="slide level2">
 <h2><img src="presentation_files/figure-revealjs/job_impact-1.png" width="85%" /></h2>
 </section>
@@ -187,6 +206,10 @@
 </tr>
 </tbody>
 </table>
+<<<<<<< HEAD
+=======
+>>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
 <p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
 <p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
 </section></section>
@@ -272,21 +295,139 @@
 ## 10 job_self.employed -0.245      0.125    -1.96   5.02e- 2
 ## # … with 47 more rows</code></pre>
 </section></section>
+<<<<<<< HEAD
 <section id="initial-results" class="title-slide slide level1">
 <h1>Initial Results</h1>
 
+=======
+<<<<<<< HEAD
+<section>
+<section id="initial-results" class="title-slide slide level1">
+<h1>Initial Results</h1>
+<p><img src="https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2Fprediction-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.908</code></pre>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section id="results-matrix" class="title-slide slide level1">
+<h1>Results Matrix</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Client did not Subscribe
+</th>
+<th style="text-align:right;">
+Client Subscribed
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Client Predicted Not to Subscribe
+</td>
+<td style="text-align:right;">
+7731
+</td>
+<td style="text-align:right;">
+690
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Client Predicted to Subscribe
+</td>
+<td style="text-align:right;">
+247
+</td>
+<td style="text-align:right;">
+375
+</td>
+</tr>
+</tbody>
+</table>
+=======
+<section id="initial-results" class="title-slide slide level1">
+<h1>Initial Results</h1>
+
+>>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
 </section>
 
 <section id="cross-validation" class="title-slide slide level1">
 <h1>Cross Validation</h1>
+<<<<<<< HEAD
 
 </section>
 
+=======
+<<<<<<< HEAD
+<ul>
+<li><p>We carried out cross validation to make sure our model was not subject to overfitting.</p></li>
+<li><p>This was done by partitioning the data into 10 subsets</p></li>
+</ul>
+</section>
+
+<section>
+=======
+
+</section>
+
+>>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
+>>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
 <section id="final-test" class="title-slide slide level1">
 <h1>Final Test</h1>
-
+<p>Time for the truth. We tested our model and the results were:</p>
+<div class="fragment">
+<p><img src="https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2FFinal_Test-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<pre><code>## Rows: 9043 Columns: 18</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (10): job, marital, education, default, housing, loan, contact, month, p...
+## dbl  (8): ...1, age, balance, day, duration, campaign, pdays, previous</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.912</code></pre>
+<p>Our Model Proved to be surprisingly successful!</p>
+</div>
 </section>
+<section class="slide level2">
 
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Client did not Subscribe</th>
+<th style="text-align: right;">Client Subscribed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Client Predicted to Not Subscribe</td>
+<td style="text-align: right;">7765</td>
+<td style="text-align: right;">652</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Client Predicted to Subscribe</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">382</td>
+</tr>
+</tbody>
+</table>
+</section></section>
 <section id="conclusion" class="title-slide slide level1">
 <h1>Conclusion</h1>
 
@@ -294,17 +435,23 @@
 
 <section id="ethics" class="title-slide slide level1">
 <h1>Ethics</h1>
-<p>However, even after all this analysis and correlation, each person’s ethics can affect the results in a way that is unpredictable.</p>
+<p>Models like the one we created are constantly used by financial institutions to predict future client behavior.</p>
+<p>Though effective, the ethics of this must be observed…</p>
 <div class="fragment">
 <ul>
-<li>Loyalty; If the client is loyal to their bank and another bank tries to make him subscribe to a term deposit, it may be that he rejects only because of his loyalty towards his bank.</li>
+<li>Is it correct to leave possible customers out of the possibility of subscribing to a term deposit because they happen to have the wrong job, too little balance, or did not graduate from high school?</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>Trustworthiness; If the client doesn’t know about the bank and how well it does normally, he decides not to trust it despite was he is being told.</li>
+<li>Modelling is effective but ethics must always come first.</li>
 </ul>
 </div>
+</section>
+
+<section id="thank-you-for-your-attention" class="title-slide slide level1">
+<h1>Thank You for your Attention</h1>
+
 </section>
     </div>
   </div>
