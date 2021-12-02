@@ -26,7 +26,7 @@ banking_train%>%
     x = "Jobs",
     y = "Clients subscribed?",
     title = "Relationship between clients jobs 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=age,y=y))+
@@ -34,7 +34,7 @@ banking_train%>%
  labs(
     x = "Age",
     y = "Clients subscribed?",
-    title = "Relationship between clients age and whether they subsribe to term deposits",
+    title = "Relationship between clients age and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=marital,y=y))+
@@ -43,7 +43,7 @@ banking_train%>%
     x = "Marital status",
     y = "Clients subscribed?",
     title = "Relationship between clients  marital status 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=education,y=y))+
@@ -52,7 +52,7 @@ banking_train%>%
     x = "Education",
     y = "Clients subscribed?",
     title = "Relationship between clients education 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=default,y=y))+
@@ -70,7 +70,7 @@ banking_train%>%
     x = "balance",
     y = "Clients subscribed?",
     title = "Relationship between clients balance 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=housing,y=y))+
@@ -88,7 +88,7 @@ banking_train%>%
     x = "Loan status?",
     y = "Clients subscribed?",
     title = "Relationship between clients loan status 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=contact,y=y))+
@@ -97,7 +97,7 @@ banking_train%>%
     x = "Methods of contact",
     y = "Clients subscribed?",
     title = "Relationship between clients methods contact 
-    with the bank and whether they subsribe to term deposits",
+    with the bank and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=day,y=y))+
@@ -106,7 +106,7 @@ banking_train%>%
     x = "Day",
     y = "Clients subscribed?",
     title = "Relationship between the day 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=month,y=y))+
@@ -115,7 +115,7 @@ banking_train%>%
     x = "Month",
     y = "Clients subscribed?",
     title = "Relationship between the month 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=duration,y=y))+
@@ -124,7 +124,7 @@ banking_train%>%
     x = "Clients subscribed?",
     y = "Duration of last contact",
     title = "Relationship between clients duration of last contact 
-    with the bank and whether they subsribe to term deposits",
+    with the bank and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=campaign,y=y))+
@@ -133,7 +133,7 @@ banking_train%>%
     x = "Contacts this campaign",
     y = "Clients subscribed?",
     title = "Relationship between the number of contacts performed 
-    during this campaign and whether they subsribe to term deposits",
+    during this campaign and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=pdays,y=y))+
@@ -143,7 +143,7 @@ banking_train%>%
     y = "Clients subscribed?",
     title = "Relationship between the number of days that passed 
     by after the client was last contacted from a previous campaign  
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=previous,y=y))+
@@ -152,7 +152,7 @@ banking_train%>%
     x = "Previous contacts",
     y = "Clients subscribed?",
     title = "Relationship between the number of contacts  
-    performed before this campaign and whether they subsribe to term deposits",
+    performed before this campaign and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(x=poutcome,y=y))+
@@ -161,7 +161,7 @@ banking_train%>%
     x = "Clients prior marketing campaign outcome",
     y = "Clients subscribed?",
     title = "Relationship between clients prior marketing campaign outcome 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 ```
 
@@ -173,7 +173,7 @@ banking_train%>%
     y = "Age",
     color= "Clients subscribed?",
     title = "Relationship between clients jobs 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 
 banking_train%>%
@@ -183,7 +183,7 @@ labs(
     y = "Job",
     color= "Clients subscribed?",
     title = "Relationship between clients age 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=marital,color=y))+
@@ -192,7 +192,7 @@ banking_train%>%
     y = "Marital",
     color= "Clients subscribed?",
     title = "Relationship between clients marital
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=education,color=y))+
@@ -201,7 +201,7 @@ banking_train%>%
     y = "Education",
     color= "Clients subscribed?",
     title = "Relationship between clients education
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 
 banking_train%>%
@@ -211,7 +211,7 @@ banking_train%>%
     y= "default",
     color= "Clients subscribed?",
     title = "Relationship between clients default status
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=balance,color=y))+
@@ -220,7 +220,7 @@ banking_train%>%
     y = "Balance",
     color= "Clients subscribed?",
     title = "Relationship between clients balance
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=housing,color=y))+
@@ -229,7 +229,7 @@ banking_train%>%
     y= "Housing",
     color= "Clients subscribed?",
     title = "Relationship between clients housing
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=loan,color=y))+
@@ -238,7 +238,7 @@ banking_train%>%
     y = "Loan status",
     color= "Clients subscribed?",
     title = "Relationship between clients loan status
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=contact,color=y))+
@@ -247,7 +247,7 @@ banking_train%>%
     y= "Methods of contact",
     color= "Clients subscribed?",
     title = "Relationship between clients methods of 
-    contact and whether they subsribe to term deposits",
+    contact and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=day,color=y))+
@@ -256,7 +256,7 @@ banking_train%>%
     y = "Day",
     color= "Clients subscribed?",
     title = "Relationship between the day 
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=month,color=y))+
@@ -265,7 +265,7 @@ banking_train%>%
     x = "Month",
     color= "Clients subscribed?",
     title = "Relationship between the Month
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=duration,color=y))+
@@ -274,7 +274,7 @@ banking_train%>%
     x = "Duration of last contact",
     color= "Clients subscribed?",
     title = "Relationship between the duration of last contact
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   ) 
 banking_train%>%
   ggplot(aes(y=campaign,color=y))+
@@ -283,7 +283,7 @@ banking_train%>%
     x = "Contacts this campaign",
     color = "Clients subscribed?",
     title = "Relationship between the contacts this campaign
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   )
   
 banking_train%>%
@@ -295,7 +295,7 @@ banking_train%>%
     color = "Clients subscribed?",
     title = "Relationship between the number of days that passed 
     by after the client was last contacted
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   )
   
 banking_train%>%
@@ -305,7 +305,7 @@ banking_train%>%
     x = "Previous contacts",
     color = "Clients subscribed?",
     title = "Relationship between the previous contacts last campaign
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   )
 banking_train%>%
   ggplot(aes(y=poutcome,color=y))+
@@ -314,5 +314,5 @@ banking_train%>%
     x = "Clients prior marketing campaign outcome",
     color = "Clients subscribed?",
     title = "Relationship between the clients prior marketing campaign outcome
-    and whether they subsribe to term deposits",
+    and whether they subscribe to term deposits",
   )
