@@ -65,11 +65,44 @@ ggplot(aes(y = y,fill= y)) +
   )
 ```
 
-When presenting, you use the left/right arrows to step through the top-level (horizontal) slides. When you arrive at a vertical stack you can optionally press the up/down arrows to view the vertical slides or skip past them by pressing the right arrow.
+----
 
-(click the down key now)
+Could the client's jobs have an impact on whether they subscribe to term deposits?
 
-## reveal.js
+. . .
+
+```{r job_impact, out.width="900%", fig.width=6, echo = FALSE }
+banking %>%
+mutate(
+  job= fct_recode(job, Administrative = "admin.",
+                  Management = "management", 
+                  Entrepreneur= "entrepreneur",
+                  `Blue Collar` = "blue-collar", 
+                  Housemaid = "housemaid", 
+                  Technician = "technician" , 
+                  Services = "services", 
+                  Student = "student" , 
+                  `Self Employed`= "self-employed", 
+                  Unemployed = "unemployed", 
+                  Unknown= "unknown", 
+                  Retred = "retired" ),
+  y=fct_recode(y, Subscribed= "yes", 
+               `Not Subscribed` = "no")) %>%
+ggplot(aes(y = y,fill= y)) +
+  geom_bar() +
+  guides(fill = "none") +
+  scale_fill_manual(values = c("Subscribed"="#3b9e37", 
+                               "Not Subscribed"="#d91a1a")) +
+  facet_wrap(.~job, scales = "free_x") +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Number of clients that subscribed to a term deposit",
+    subtitle= "Faceted by jobs"
+  )
+```
+
+----
 
 - The presentation is created using the `reveal.js` package
 
