@@ -35,7 +35,9 @@ banking <- read_delim("/cloud/project/data/Banking Dataset.csv",
             delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
 
-## Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? {data-background-image="img/random.png"}
+# Our question
+
+Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? 
 
 
 # Our Methodology
@@ -49,7 +51,10 @@ The original data collection comes from the 2008-2013 records of a Portuguese Ba
 # The general picture
 
 The general outcome of the company's campaign to get clients to subscribe to term deposits.
-```{r campaign_success, out.width="80%", fig.width=6, echo = FALSE }
+
+. . .
+
+```{r campaign_success, out.width="70%", fig.width=6, echo = FALSE }
 banking %>%
   mutate(y=fct_recode(y, Subscribed= "yes", 
         `Not Subscribed` = "no")) %>%
