@@ -109,24 +109,36 @@ ggplot(aes(y = y,fill= y)) +
     subtitle= "Faceted by jobs"
   )
 ```
+
 ----
-```{r visualization_duration,echo = FALSE }
-banking_train%>%
-  ggplot(aes(y=duration,color=y))+
+
+```{r visualization_month, echo = FALSE}
+banking_train %>%
+  mutate(
+    month = fct_relevel(month, "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"),
+     y = fct_recode(y, Subscribed = "yes", 
+               `Didn't Subscribe` = "no")
+  ) %>%
+  ggplot(aes(x=month,fill=y))+
   geom_bar()+
+  scale_fill_manual(values = c("Subscribed"="#3b9e37", 
+                               "Didn't Subscribe"="#d91a1a")) +
   labs(
-    x = "Duration of last contact",
-    color= "Clients subscribed?",
-    title = "Relationship between the duration of last contact
-    and whether they subscribe to term deposits",
+    x = "Month",
+    y = "Clients Subscribed",
+    title = "Relationship between time of the year and subscriptions",
+    fill = "Outcome"
   ) 
 ```
+
 ----
+
 ```{r visualization_contact,echo = FALSE }
-banking_train%>%
-  ggplot(aes(x=contact,y=y))+
+banking_train %>%
+  ggplot(aes(x = contact, y = y, color = contact))+
   geom_jitter()+
- labs(
+  theme(legend.position = "none") +
+  labs(
     x = "Methods of contact",
     y = "Clients subscribed?",
     title = "Relationship between clients methods contact 
@@ -135,29 +147,22 @@ banking_train%>%
 ```
 
 ----
-```{r visualization_job,echo = FALSE }
+
+```{r visualization_pdays,echo = FALSE }
 banking_train%>%
-  ggplot(aes(y=job,color=y))+
-  geom_bar()+
-labs(
-    y = "Job",
-    color= "Clients subscribed?",
-    title = "Relationship between clients age 
-    and whether they subscribe to term deposits",
-  ) 
-```
-----
-```{r visualization_housing,echo = FALSE }
-banking_train%>%
-  ggplot(aes(y=housing,color=y))+
-  geom_bar()+
+  ggplot(aes(x = pdays, y = y)) +
+  geom_jitter(alpha = 0.3, color = "#2c9af5") +
+  theme_bw() +
+  theme(legend.position = "none") +
   labs(
-    y= "Housing",
-    color= "Clients subscribed?",
-    title = "Relationship between clients housing
-    and whether they subscribe to term deposits",
+    y = "Outcome",
+    x = "Days",
+    title = "Relationship between the number of days since a client was contacted
+    and whether they subscribed"
   ) 
 ```
+
+
 ----
 
 Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?
@@ -257,31 +262,113 @@ We applied our recipe into a workflow and fitted it all into a model.
   fit(data = reduced_train_df)
 
 ```
+
 ----
+
 ```{r fit2, echo = FALSE}
 tidy(banking_fit) 
 ```
 
 # Initial Results
 
+```{r initial result, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2Fprediction-1.png")
+```
+
+```{r prediction,  out.width="10%", echo = FALSE}
+banking_pred <- predict(banking_fit, reduced_test_df, type = "prob") %>%
+  bind_cols(reduced_test_df %>% select(y))
+
+banking_pred %>%
+  roc_auc(
+    truth = y,
+    .pred_1,
+    event_level = "second")
+
+
+```
+
+----
+
+# Results Matrix
+
+```{r prediction_matrix, echo = FALSE}
+cutoff <- 0.5
+banking_pred %>%
+  mutate(
+    subscribed = if_else(y == 1, "Client Subscribed", "Client did not Subscribe"),
+    subscribed_pred = if_else(.pred_1>cutoff, "Client Predicted to Subscribe", "Client Predicted Not to Subscribe")) %>%
+      count(subscribed_pred, subscribed) %>%
+      pivot_wider(names_from = subscribed, values_from = n) %>%
+      kable(col.names = c("","Client did not Subscribe", "Client Subscribed"),format = "html"
+  )
+```
 
 # Cross Validation
 
+- We carried out cross validation to make sure our model was not subject to overfitting.
+
+- This was done by partitioning the data into 10 subsets
 
 # Final Test
 
+Time for the truth. We tested our model and the results were:
+
+. . .
+
+```{r final result, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2FFinal_Test-1.png")
+```
+
+```{r Final_Test, echo = FALSE}
+
+banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
+
+banking_test_final <- banking_test_final %>%
+  mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
+  
+banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
+  bind_cols(banking_test_final %>% select(y))
+
+banking_final_pred %>%
+  roc_auc(
+    truth = y,
+    .pred_1,
+    event_level = "second") 
+
+```
+
+Our Model Proved to be surprisingly successful!
+
+----
+
+```{r results_matrix_final, echo = FALSE}
+cutoff <- 0.5
+banking_final_pred %>%
+  mutate(
+    subscribed = if_else(y == 1, "Client Subscribed", "Client did not Subscribe"),
+    subscribed_pred = if_else(.pred_1>cutoff, "Client Predicted to Subscribe", "Client Predicted to Not Subscribe") )%>%
+      count(subscribed_pred, subscribed) %>%
+      pivot_wider(names_from = subscribed, values_from = n) %>%
+      kable(col.names = c("","Client did not Subscribe", "Client Subscribed")
+  )
+```
 
 # Conclusion
 
 
 # Ethics
 
-However, even after all this analysis and correlation, each person's ethics can affect the results in a way that is unpredictable.
+Models like the one we created are constantly used by financial institutions to predict future client behavior. 
+
+Though effective, the ethics of this must be observed...
 
 . . . 
 
-- Loyalty; If the client is loyal to their bank and another bank tries to make him subscribe to a term deposit, it may be that he rejects only because of his loyalty towards his bank.
+- Is it correct to leave possible customers out of the possibility of subscribing to a term deposit because they happen to have the wrong job, too little balance, or did not graduate from high school?
 
 . . . 
 
-- Trustworthiness; If the client doesn't know about the bank and how well it does normally, he decides not to trust it despite was he is being told.
+- Modelling is effective but ethics must always come first.
+
+# Thank You for your Attention
