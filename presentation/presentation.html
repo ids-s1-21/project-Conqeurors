@@ -85,7 +85,7 @@
             code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
               </style>
 
-  <link rel="stylesheet" href="presentation_files/reveal.js-4.1.2/dist/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="presentation_files/reveal.js-4.1.2/dist/theme/sky.css" id="theme">
 
 
   <style type="text/css">
@@ -134,9 +134,9 @@
 
 <section id="title-slide">
   <h1 class="title">Client Behavior Prediction Model</h1>
-  <h1 class="subtitle"><font size='7'>For term-deposit subscriptions in banking</font></h1>
-  <h2 class="author"><font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font></h2>
-  <h3 class="institute"><font size='10'>University of Edinburgh</font></h2>
+  <h1 class="subtitle"><font size='6'>For term-deposit subscriptions in banking</font></h1>
+  <h2 class="author"><font size='9'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font></h2>
+  <h3 class="institute"><font size='8'>University of Edinburgh</font></h2>
   <h3 class="date"><font size = '6'>2021-12-02</font></h3>
 </section>
 
@@ -165,24 +165,33 @@
 <section class="slide level2">
 
 <p>Could the client’s jobs have had an impact on whether they subscribed to term deposits?</p>
+<p><img src="presentation_files/figure-revealjs/job_impact-1.png" width="85%" /></p>
 </section>
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 756211e0125c6d101f6bd36ab3e71430dc421ee9
 <section class="slide level2">
 
+<p>Is there a connection between the clients decision and what month of the year it is?</p>
 <p><img src="presentation_files/figure-revealjs/visualization_month-1.png" width="80%" /></p>
 </section>
 <section class="slide level2">
 
+<p>Is there a correlation between how the client was contacted and if they subscribed to the term deposit?</p>
 <p><img src="presentation_files/figure-revealjs/visualization_contact-1.png" width="80%" /></p>
 </section>
 <section class="slide level2">
 
+<p>Do the number of days since the client has been contacted matter?</p>
 <p><img src="presentation_files/figure-revealjs/visualization_pdays-1.png" width="80%" /></p>
 </section>
 <section class="slide level2">
 
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
 <section id="section" class="slide level2">
@@ -210,14 +219,10 @@
 =======
 >>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
 >>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
+>>>>>>> 756211e0125c6d101f6bd36ab3e71430dc421ee9
 <p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
 <p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
 </section></section>
-<section id="our-model-plan" class="title-slide slide level1">
-<h1>Our Model Plan</h1>
-
-</section>
-
 <section id="how-we-split-our-data" class="title-slide slide level1">
 <h1>How we Split Our Data</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45221</span>)</span>
@@ -296,11 +301,14 @@
 ## # … with 47 more rows</code></pre>
 </section></section>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <section id="initial-results" class="title-slide slide level1">
 <h1>Initial Results</h1>
 
 =======
 <<<<<<< HEAD
+>>>>>>> 756211e0125c6d101f6bd36ab3e71430dc421ee9
 <section>
 <section id="initial-results" class="title-slide slide level1">
 <h1>Initial Results</h1>
@@ -353,22 +361,28 @@ Client Predicted to Subscribe
 </tr>
 </tbody>
 </table>
+<<<<<<< HEAD
+=======
 =======
 <section id="initial-results" class="title-slide slide level1">
 <h1>Initial Results</h1>
 
 >>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
 >>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
+>>>>>>> 756211e0125c6d101f6bd36ab3e71430dc421ee9
 </section>
 
 <section id="cross-validation" class="title-slide slide level1">
 <h1>Cross Validation</h1>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 
 </section>
 
 =======
 <<<<<<< HEAD
+>>>>>>> 756211e0125c6d101f6bd36ab3e71430dc421ee9
 <ul>
 <li><p>We carried out cross validation to make sure our model was not subject to overfitting.</p></li>
 <li><p>This was done by partitioning the data into 10 subsets</p></li>
@@ -376,12 +390,15 @@ Client Predicted to Subscribe
 </section>
 
 <section>
+<<<<<<< HEAD
+=======
 =======
 
 </section>
 
 >>>>>>> 2b4885d60ac42c6b60a11d8e8aae58bec29aa06f
 >>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
+>>>>>>> 756211e0125c6d101f6bd36ab3e71430dc421ee9
 <section id="final-test" class="title-slide slide level1">
 <h1>Final Test</h1>
 <p>Time for the truth. We tested our model and the results were:</p>
@@ -430,7 +447,7 @@ Client Predicted to Subscribe
 </section></section>
 <section id="conclusion" class="title-slide slide level1">
 <h1>Conclusion</h1>
-
+<p>At the end it is safe to say that there is no real correlation between any of the variables and their decision to subscribe or not.</p>
 </section>
 
 <section id="ethics" class="title-slide slide level1">

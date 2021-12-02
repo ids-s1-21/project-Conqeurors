@@ -1,15 +1,16 @@
 ---
 title: "Client Behavior Prediction Model"
-subtitle: <font size='7'>For term-deposit  subscriptions  in  banking</font>
-author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
-institute: <font size='10'>University of Edinburgh</font>
+subtitle: <font size='6'>For term-deposit  subscriptions  in  banking</font>
+author: <font size='9'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
+institute: <font size='8'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
-    theme: default
+    theme: sky
     highlightLines: true
     background_transition: fade
+
 ---
 
 ```{r load-packages, include = FALSE}
@@ -111,7 +112,7 @@ ggplot(aes(y = y,fill= y)) +
 ```
 
 ----
-<<<<<<< HEAD
+
 ```{r visualization_duration,echo = FALSE }
 banking_train%>%
   ggplot(aes(x=duration,y=y))+
@@ -120,15 +121,19 @@ banking_train%>%
     x = "Clients subscribed?",
     y = "Duration of last contact",
     title = "Relationship between clients duration of last contact 
-    with the bank and whether they subscribe to term deposits",
-=======
+    with the bank and whether they subscribe to term deposits") 
+```
+
+----
+
+Is there a connection between the clients decision and what month of the year it is?
 
 ```{r visualization_month, echo = FALSE}
 banking_train %>%
   mutate(
     month = fct_relevel(month, "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"),
      y = fct_recode(y, Subscribed = "yes", 
-               `Didn't Subscribe` = "no")
+                   Didn't Subscribe = "no")
   ) %>%
   ggplot(aes(x=month,fill=y))+
   geom_bar()+
@@ -139,11 +144,12 @@ banking_train %>%
     y = "Clients Subscribed",
     title = "Relationship between time of the year and subscriptions",
     fill = "Outcome"
->>>>>>> 2dc0a63c6aa3845d45bfd2eeb7534cf50c389998
   ) 
 ```
 
 ----
+
+Is there a correlation between how the client was contacted and if they subscribed to the term deposit?
 
 ```{r visualization_contact,echo = FALSE }
 banking_train %>%
@@ -159,6 +165,8 @@ banking_train %>%
 ```
 
 ----
+
+Do the number of days since the client has been contacted matter?
 
 ```{r visualization_pdays,echo = FALSE }
 banking_train%>%
@@ -190,9 +198,6 @@ corrplot(cor,type = "lower", bg = "#e8e8e8", method = c("number"), order = "orig
 
 ```
 
-# Our Model Plan 
-
-
 # How we Split Our Data
 ```{r modify_df, echo = FALSE}
 banking_train <- banking_train %>%
@@ -219,7 +224,6 @@ nrow(reduced_test_df)
 ```
 
 # Our Recipe
-
 The recipe we used for this particular model can be observed below:
 
 1. We removed the pdays variable because it had minimal correlation with our outcome.
@@ -228,6 +232,7 @@ The recipe we used for this particular model can be observed below:
 4. We created times of the month from the day variable.
 5. We classified calls by their duration in minutes rather than seconds.
 6. We created dummy variables and removed zero variance variables.
+
 
 ----
 
@@ -368,6 +373,7 @@ banking_final_pred %>%
 
 # Conclusion
 
+At the end it is safe to say that there is no real correlation between any of the variables and their decision to subscribe or not.
 
 # Ethics
 
@@ -384,3 +390,6 @@ Though effective, the ethics of this must be observed...
 - Modelling is effective but ethics must always come first.
 
 # Thank You for your Attention
+
+
+
