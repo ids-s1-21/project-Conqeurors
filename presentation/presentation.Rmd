@@ -15,6 +15,7 @@ library(tidyverse)
 library(tidymodels)
 library(knitr)
 library(revealjs)
+library(corrplot)
 ```
 
 ```{r setup, include=FALSE}
@@ -69,7 +70,6 @@ ggplot(aes(y = y,fill= y)) +
 
 Could the client's jobs have had an impact on whether they subscribed to term deposits?
 
-. . .
 
 ```{r job_impact, out.width="90%", fig.width=6, echo = FALSE }
 banking_train %>%
@@ -107,12 +107,48 @@ ggplot(aes(y = y,fill= y)) +
 ```
 
 
+----
+
+Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?
+
+<font size = '6'>**Correlation between numerical predictors**</font>
+```{r correlation_matrix, out.width="80%", fig.align = "centre", fig.width=6, echo = FALSE }
+cor <-banking_train %>%
+  mutate(Outcome = if_else(y == "yes", 1, 0)) %>%
+  summarize(age, balance, day, duration, campaign, pdays, previous,Outcome) %>%
+cor(method = "pearson")
+
+corrplot(cor,type = "lower", bg = "#e8e8e8", method = c("number"), order = "original", tl.col = "black", tl.srt = 45)
+
+```
+
 # Our model plan 
 
 
 # How we split our data
+```{r modify_df, echo = FALSE}
+banking_train <- banking_train %>%
+  mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
+```
 
+```{r split_csv, echo = TRUE}
 
+set.seed(45221)
+
+#80-20 Split of Data
+
+banking_split <- initial_split(banking_train, prop = 0.8)
+reduced_train_df <-training(banking_split)
+reduced_test_df <-testing(banking_split)
+```
+Number of Rows in Sub-Train Dataframe:
+```{r display_subclass1, echo = FALSE}
+nrow(reduced_train_df)
+```
+Number of Rows in Sub-Test Dataframe:
+```{r display_subclass2, echo = FALSE}
+nrow(reduced_test_df)
+```
 # Our recipe
  
 . . .  
