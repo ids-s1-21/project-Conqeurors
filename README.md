@@ -5,6 +5,12 @@ by Conquerors
 
 ## Summary
 
+Our team decided to make a presentation on the data of a bank’s
+marketing campaign about if clients will subscribe to their term
+deposit. The question we asked ourselves was ‘Which variables (or
+combinations of these) are the most important indicators when
+determining whether an individual will subscribe to a term deposit?’.
+
 Write-up of your project and findings go here. Think of this as the text
 of your presentation. The length should be roughly 5 minutes when read
 out loud. Although pacing varies, a 5-minute speech is roughly 750

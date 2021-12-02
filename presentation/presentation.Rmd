@@ -1,14 +1,23 @@
 ---
 title: "Client Behavior Prediction Model"
+<<<<<<< HEAD
 subtitle: <font size='7'>For term-deposit  subscriptions  in  banking</font>
+=======
+subtitle: <font size='6'>For    term-deposit    subscriptions   in    banking</font>
+>>>>>>> c3c600444637b52707c53eac468929540cdb79e3
 author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
 institute: <font size='10'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
+<<<<<<< HEAD
     theme: default
     highlightLines: true
+=======
+    theme: sky
+    background_transition: fade
+>>>>>>> c3c600444637b52707c53eac468929540cdb79e3
 ---
 
 ```{r load-packages, include = FALSE}
