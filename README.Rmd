@@ -7,7 +7,7 @@ output: github_document
 ## Summary
 
 Our team decided to make a presentation on the data of a bank's marketing campaign about if clients will subscribe to their term deposit. The question we asked ourselves was 'Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit?'. 
- When looking at the visualization that generally describes the number of clients who subscribed to their term deposit, we can see that the number of clients who did not subscribe to their term deposit far outweighs the number of clients who did subscribe. This is important to keep in mind when looking at how the variables correlate with getting a term deposit in the graphs.Firstly looking at the visualization of whether clients subscribed or not faceted 
+ 
 
 Write-up of your project and findings go here. 
 Think of this as the text of your presentation. 
