@@ -51,13 +51,25 @@ clients who subscribed drastically falls, showing there is a clear
 correlation between number of days since a client was contacted and
 whether the client subscribes.
 
+We then used a correlation matrix to compare all the numerical variables
+and to observe if there are any correlation between variables. From this
+we the had enough information to create the logistic regression model
+
+The downloaded 2 data sets- test and train- the test data set is 10% of
+the train data set.
+
+We made a recipe for the model by removing pdays variable because it had
+minimal correlation with our outcome, cutting the campaign variable in
+breaks of 0 and 1, creating relevant age groups, creating times of the
+month from the day variable, classifying calls by their duration in
+minutes rather than seconds and creating dummy variables and removed
+zero variance variables.
+
 The model we used was 90% effective in determining whether an individual
 will subscribe to a term deposit or not so therefore they are used often
 in banking and other areas however there are many ethical implications
 from this as it is segregating or discriminating racial, age, or job
 groups- the conditions may not be fair.
-
-
 
 ## Presentation
 

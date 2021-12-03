@@ -24,7 +24,7 @@ We made a recipe for the model by removing pdays variable because it had minimal
 The model we used was 90% effective in determining whether an individual will subscribe to a term deposit or not so therefore they are used often in banking and other areas however there are many ethical implications from this as it is segregating or discriminating racial, age, or job groups- the conditions may not be fair.
 
 
->>>>>>> d891fbcb700e7b7c44db1a853438515ce8587f58
+
 ```{r load-data, echo = FALSE}
 # load data here, if you like
 ```
