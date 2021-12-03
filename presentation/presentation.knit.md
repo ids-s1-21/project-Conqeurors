@@ -41,38 +41,38 @@ The results of the marketing campaign are as follows:
 <img src="presentation_files/figure-revealjs/campaign_success-1.png" width="70%" />
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Could the client's jobs have had an impact on whether they subscribed to term deposits?
 
 
 <img src="presentation_files/figure-revealjs/job_impact-1.png" width="85%" />
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Could the client's duration of their last contact have had an impact on whether they subscribed to term deposits?
 <img src="presentation_files/figure-revealjs/visualization_duration-1.png" width="80%" />
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Is there a connection between the clients decision and what month of the year it is?
 
 <img src="presentation_files/figure-revealjs/visualization_month-1.png" width="80%" />
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Is there a correlation between how the client was contacted and if they subscribed to the term deposit?
 
 <img src="presentation_files/figure-revealjs/visualization_contact-1.png" width="80%" />
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Do the number of days since the client has been contacted matter?
 
 <img src="presentation_files/figure-revealjs/visualization_pdays-1.png" width="80%" />
 
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?
 
 <font size = '6'>**Correlation between numerical predictors**</font>
@@ -115,6 +115,8 @@ The recipe we used for this particular model can be observed below:
 
 
 ----
+
+<img src="https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg" width="50%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -178,16 +180,18 @@ We applied our recipe into a workflow and fitted it all into a model.
 <img data-src="img/prediction-1.png" height="420" width="700" />
 
 
+
+----
+
+# AUC and Results Matrix {data-background-image="img/Theme.png"}
+
+
 ```
 ## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
 ## 1 roc_auc binary         0.908
 ```
-
-----
-
-# Results Matrix {data-background-image="img/Theme.png"}
 
 <table>
  <thead>
@@ -222,30 +226,16 @@ We applied our recipe into a workflow and fitted it all into a model.
 Time for the truth. We tested our model and the results were:
 
 . . .
+
 <img data-src="img/Final_Test-1.png" height="420" width="700" />
 
-```
-## New names:
-## * `` -> ...1
-```
 
-```
-## Rows: 9043 Columns: 18
-```
 
-```
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## chr (10): job, marital, education, default, housing, loan, contact, month, p...
-## dbl  (8): ...1, age, balance, day, duration, campaign, pdays, previous
-```
+Our Model Proved to be surprisingly successful!
 
-```
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-```
+----
 
+# Final AUC and Results Matrix {data-background-image="img/Theme.png"}
 
 ```
 ## # A tibble: 1 × 3
@@ -253,22 +243,19 @@ Time for the truth. We tested our model and the results were:
 ##   <chr>   <chr>          <dbl>
 ## 1 roc_auc binary         0.912
 ```
-Our Model Proved to be surprisingly successful!
 
-----
 
-# Final Results Matrix {data-background-image="img/Theme.png"}
 
 |                                  | Client did not Subscribe| Client Subscribed|
 |:---------------------------------|------------------------:|-----------------:|
 |Client Predicted to Not Subscribe |                     7765|               652|
 |Client Predicted to Subscribe     |                      244|               382|
 
-# Conclusion
+# Conclusion {data-background-image="img/Theme.png"}
 
-In addition, we can managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.
+In addition, we managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.
 
-# Ethics
+# Ethics {data-background-image="img/Theme.png"}
 
 Models like the one we created are constantly used by financial institutions to predict future client behavior. 
 
