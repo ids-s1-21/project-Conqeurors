@@ -1,8 +1,8 @@
 ---
 title: "Client Behavior Prediction Model"
 subtitle: <font size='6'>For term-deposit  subscriptions  in  banking</font>
-author: <font size='9'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
-institute: <font size='8'>University of Edinburgh</font>
+author: <font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font>
+institute: <font size='6'>University of Edinburgh</font>
 date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
@@ -43,11 +43,19 @@ Which variables (or combinations of these) are the most important indicators whe
 
 # Our Methodology {data-background-image="img/Theme.png"}
 
-We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.
+
+<font size='6'>
+
+We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.</font>
 
 # Our Dataset {data-background-image="img/Theme.png"}
 
-The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. 
+<font size='6'>
+
+The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. </font>
+```{r df_image, echo = FALSE, out.width = "40%", fig.align = "center"}
+include_graphics("https://images.startsat60.com/wp-content/uploads/20191010154048/Getty-term-deposits-720x405.jpg?")
+```
 
 # The General Picture {data-background-image="img/Theme.png"}
 
@@ -113,16 +121,17 @@ ggplot(aes(y = y,fill= y)) +
 ----
 
 Could the client's duration of their last contact have had an impact on whether they subscribed to term deposits?
+
 ```{r visualization_duration,echo = FALSE }
 banking_train %>%
   ggplot(aes(x=duration,y=y, color=y))+
   theme(legend.position = "none")+
   geom_jitter()+
  labs(
-    x = "Clients subscribed",
-    y = "Duration of last contact",
-    title = "Relationship between clients duration of last contact 
-    with the bank and whether they subscribe to term deposits") 
+    x = "Duration of last contact",
+    y = "Clients subscribed",
+    title = "Relationship between duration of last contact 
+    with the bank and whether a client subscribes to a term deposit") 
 ```
 
 ----
@@ -141,7 +150,7 @@ ggplot(aes(x=month,fill=y))+
                                "Didn't Subscribe"="#d91a1a")) +
   labs(
     x = "Month",
-    y = "Clients Subscribed",
+    y = "Clients Contacted",
     title = "Relationship between time of the year and subscriptions",
     fill = "Outcome"
   ) 
@@ -159,8 +168,7 @@ banking_train %>%
   labs(
     x = "Methods of contact",
     y = "Clients subscribed?",
-    title = "Relationship between clients methods contact 
-    with the bank and whether they subscribe to term deposits",
+    title = "Relationship between contact method and subscriptions",
   ) 
 ```
 
@@ -198,7 +206,7 @@ corrplot(cor,type = "lower", bg = "#e8e8e8", method = c("number"), order = "orig
 
 ```
 
-# Logistic Regression Model {data-background-image="img/Theme2.png"}
+# {data-background-image="img/Theme3.png"}
 
 # How we Split Our Data {data-background-image="img/Theme.png"}
 ```{r modify_df, echo = FALSE}
@@ -216,17 +224,17 @@ banking_split <- initial_split(banking_train, prop = 0.8)
 reduced_train_df <-training(banking_split)
 reduced_test_df <-testing(banking_split)
 ```
-Number of Rows in Sub-Train Dataframe:
+<font size = '5'>Number of Rows in Sub-Train Dataframe:</font>
 ```{r display_subclass1, echo = FALSE}
 nrow(reduced_train_df)
 ```
-Number of Rows in Sub-Test Dataframe:
+<font size = '5'>Number of Rows in Sub-Test Dataframe:</font>
 ```{r display_subclass2, echo = FALSE}
 nrow(reduced_test_df)
 ```
 
 # Our Recipe {data-background-image="img/Theme.png"}
-<font size = '8'>The recipe we used for this particular model can be observed below:</font>
+<font size = '6'>The recipe we used for this particular model can be observed below:</font>
 
 <font size = '5'>
 
@@ -246,6 +254,8 @@ nrow(reduced_test_df)
 
 
 ----
+
+A Behind the Scenes
 
 ```{r recipe}
 banking_rec<- recipe(
@@ -284,21 +294,25 @@ banking_wflow <-workflow() %>%
   add_model(banking_mod) %>%
   add_recipe(banking_rec)
 ```
-We applied our recipe into a workflow and fitted it all into a model.
+<font size = '6'>We applied our recipe into a workflow and fitted it all into a model.</font>
+
+```{r recipe_image, echo = FALSE, out.width = "40%", fig.align = "center"}
+include_graphics("https://images.squarespace-cdn.com/content/v1/53f32bfbe4b0cf69a8daaab1/1521498736326-8W28Z14WXYT9JQAZC5KD/SIM69.WHATITREASURE_J+Hitt+What+I+Treasure+Recipe+Book+Image.JPG")
+```
+
 ```{r fit}
  banking_fit <- banking_wflow %>%
   fit(data = reduced_train_df)
 
 ```
 
-```{r recipe_image, echo = FALSE, out.width = "40%", fig.align = "center"}
-include_graphics("https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg")
-```
-
 ----
 
+Our Model comes to Life!
 ```{r fit2, echo = FALSE}
-tidy(banking_fit) 
+LGModel <-tidy(banking_fit) 
+LGModel %>%
+  arrange(desc(abs(estimate)))
 ```
 
 # Initial Results {data-background-image="img/Theme.png"}
@@ -321,6 +335,7 @@ banking_pred %>%
     truth = y,
     .pred_1,
     event_level = "second")
+
 cutoff <- 0.5
 banking_pred %>%
   mutate(
@@ -333,11 +348,14 @@ banking_pred %>%
 ```
 
 # Cross Validation {data-background-image="img/Theme.png"}
+<font size = '6'>
 
-- We carried out cross validation to make sure our model was not subject to overfitting.
-- This was done by partitioning the data into 10 subsets
+- We carried out cross validation to make sure our model was not subject to over fitting.
+
+- This was done by partitioning the data into 10 subsets.</font>
+
 ```{r cross, echo = FALSE, out.width = "60%", fig.align = "center"}
-include_graphics("https://dataaspirant.com/wp-content/uploads/2020/12/1-Cross-Validation.png")
+include_graphics("https://www.askpython.com/wp-content/uploads/2020/11/5-Fold-Cross-Validation.jpg")
 ```
 
 
@@ -347,20 +365,23 @@ include_graphics("https://dataaspirant.com/wp-content/uploads/2020/12/1-Cross-Va
 
 . . .
 
-<img data-src="img/Final_Test-1.png" height="420" width="700" />
+<img data-src="img/Final_Test-1.png" height="400" width="680" />
 ```{r Load_test_csv, include = FALSE}
 
-banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
+Banking_Test_Final <- read_delim("/cloud/project/data/Banking_Test_Final.csv", 
+    delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-banking_test_final <- banking_test_final %>%
+Banking_Test_Final <- Banking_Test_Final %>%
   mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
 ```  
 
 ``` {r Final_Test, include = FALSE}
-banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
-  bind_cols(banking_test_final %>% select(y))
+
+banking_final_pred <- predict(banking_fit, Banking_Test_Final, type = "prob") %>%
+  bind_cols(Banking_Test_Final %>% select(y))
 
 ```
+
 <font size = '4'> Our Model Proved to be surprisingly successful! </font>
 
 
@@ -387,11 +408,11 @@ banking_final_pred %>%
 
 # Conclusion {data-background-image="img/Theme.png"}
 
-In addition, we managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.
+<font size = '6'>As discovered by our preliminary analysis and logistic regression, we observed that call duration, month of the year and past campaign outcome were the most relevant predictors to our outcome variable. In addition, we managed to build a model which predicted with 90% certainty whether or not a client would subscribe to a term deposit. In fact, our model was much better at predicting whether a client would not subscribe. </font>
 
 # Ethics {data-background-image="img/Theme.png"}
 
-Models like the one we created are constantly used by financial institutions to predict future client behavior. 
+<font size = '6'>Models like the one we created are constantly used by financial institutions to predict future client behavior. </font>
 
 ```{r ethics, echo = FALSE, out.width = "60%", fig.align = "center"}
 include_graphics("https://www.roehampton.ac.uk/globalassets/images/general/ethics-ethos.jpg")
@@ -399,18 +420,25 @@ include_graphics("https://www.roehampton.ac.uk/globalassets/images/general/ethic
 
 ----
 
-Though effective, the ethics of this must be observed...
+<font size = '7'> Though effective, the ethics of this must be observed...</font>
 
 . . . 
 
-- Is it correct to leave possible customers out of the possibility of subscribing to a term deposit because they happen to have the wrong job, too little balance, or did not graduate from high school?
+<font size = '6'>- Is it correct to leave possible customers out of the possibility of subscribing to a term deposit because they happen to have the wrong job?</font>
 
 . . . 
 
+<font size = '6'>- Perhaps their balance is too low?</font>
 
-- Modelling is effective but ethics must always come first.
+. . .
 
-# Thank You for your Attention {data-background-image="img/Theme2.png"}
+<font size = '6'>-Or maybe they didn't graduate from highschool?</font>
+
+. . .
+
+<font size = '7'>- Modelling is effective but ethics must always come first.</font>
+
+# {data-background-image="img/theme4.png"}
 
 
 

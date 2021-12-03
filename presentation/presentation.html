@@ -135,8 +135,8 @@
 <section id="title-slide">
   <h1 class="title">Client Behavior Prediction Model</h1>
   <h1 class="subtitle"><font size='6'>For term-deposit subscriptions in banking</font></h1>
-  <h2 class="author"><font size='9'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font></h2>
-  <h3 class="institute"><font size='8'>University of Edinburgh</font></h2>
+  <h2 class="author"><font size='8'>Conquerors <br>Mia Bain, Charlie Ames, Konstantinos Loizides, Stefano Lema </font></h2>
+  <h3 class="institute"><font size='6'>University of Edinburgh</font></h2>
   <h3 class="date"><font size = '6'>2021-12-03</font></h3>
 </section>
 
@@ -148,12 +148,14 @@
 
 <section id="our-methodology" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Our Methodology</h1>
-<p>We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.</p>
+<p><font size='6'></p>
+<p>We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.</font></p>
 </section>
 
 <section id="our-dataset" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Our Dataset</h1>
-<p>The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called “Banking Dataset - Marketing Targets” by Prakhar Rathi and contains data derived from <em>S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing</em>.</p>
+<p><font size='6'></p>
+<p>The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called “Banking Dataset - Marketing Targets” by Prakhar Rathi and contains data derived from <em>S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing</em>. </font> <img src="https://images.startsat60.com/wp-content/uploads/20191010154048/Getty-term-deposits-720x405.jpg?" width="40%" style="display: block; margin: auto;" /></p>
 </section>
 
 <section>
@@ -169,7 +171,8 @@
 </section>
 <section class="slide level2">
 
-<p>Could the client’s duration of their last contact have had an impact on whether they subscribed to term deposits? <img src="presentation_files/figure-revealjs/visualization_duration-1.png" width="80%" /></p>
+<p>Could the client’s duration of their last contact have had an impact on whether they subscribed to term deposits?</p>
+<p><img src="presentation_files/figure-revealjs/visualization_duration-1.png" width="80%" /></p>
 </section>
 <section class="slide level2">
 
@@ -191,8 +194,8 @@
 <p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
 <p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
 </section></section>
-<section id="logistic-regression-model" class="title-slide slide level1" data-background-image="img/Theme2.png">
-<h1 data-background-image="img/Theme2.png">Logistic Regression Model</h1>
+<section id="section" class="title-slide slide level1" data-background-image="img/Theme3.png">
+<h1 data-background-image="img/Theme3.png"></h1>
 
 </section>
 
@@ -205,16 +208,16 @@
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>banking_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(banking_train, <span class="at">prop =</span> <span class="fl">0.8</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>reduced_train_df <span class="ot">&lt;-</span><span class="fu">training</span>(banking_split)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>reduced_test_df <span class="ot">&lt;-</span><span class="fu">testing</span>(banking_split)</span></code></pre></div>
-<p>Number of Rows in Sub-Train Dataframe:</p>
+<p><font size = '5'>Number of Rows in Sub-Train Dataframe:</font></p>
 <pre><code>## [1] 36168</code></pre>
-<p>Number of Rows in Sub-Test Dataframe:</p>
+<p><font size = '5'>Number of Rows in Sub-Test Dataframe:</font></p>
 <pre><code>## [1] 9043</code></pre>
 </section>
 
 <section>
 <section id="our-recipe" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Our Recipe</h1>
-<p>The recipe we used for this particular model can be observed below:</p>
+<p><font size = '6'>The recipe we used for this particular model can be observed below:</font></p>
 <p><font size = '5'></p>
 <ol type="1">
 <li><p>We removed the pdays variable because it had minimal correlation with our outcome.</p></li>
@@ -228,6 +231,7 @@
 </section>
 <section class="slide level2">
 
+<p>A Behind the Scenes</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>banking_rec<span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  y <span class="sc">~</span> .,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> reduced_train_df</span>
@@ -254,26 +258,27 @@
 <section>
 <section id="fitting-it-all-together" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Fitting it all together</h1>
-<p>We applied our recipe into a workflow and fitted it all into a model.</p>
+<p><font size = '6'>We applied our recipe into a workflow and fitted it all into a model.</font></p>
+<p><img src="https://images.squarespace-cdn.com/content/v1/53f32bfbe4b0cf69a8daaab1/1521498736326-8W28Z14WXYT9JQAZC5KD/SIM69.WHATITREASURE_J+Hitt+What+I+Treasure+Recipe+Book+Image.JPG" width="40%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> banking_fit <span class="ot">&lt;-</span> banking_wflow <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> reduced_train_df)</span></code></pre></div>
-<p><img src="https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg" width="50%" style="display: block; margin: auto;" /></p>
 </section>
 <section class="slide level2">
 
+<p>Our Model comes to Life!</p>
 <pre><code>## # A tibble: 57 × 5
-##    term              estimate std.error statistic  p.value
-##    &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-##  1 (Intercept)       -5.05       0.434   -11.6    2.84e-31
-##  2 age_X.25.40.      -0.603      0.107    -5.64   1.75e- 8
-##  3 age_X.40.65.      -0.601      0.115    -5.23   1.66e- 7
-##  4 age_X.65.95.       0.00493    0.178     0.0277 9.78e- 1
-##  5 job_blue.collar   -0.272      0.0818   -3.33   8.70e- 4
-##  6 job_entrepreneur  -0.339      0.142    -2.38   1.72e- 2
-##  7 job_housemaid     -0.362      0.153    -2.37   1.80e- 2
-##  8 job_management    -0.121      0.0839   -1.45   1.48e- 1
-##  9 job_retired        0.0634     0.115     0.551  5.81e- 1
-## 10 job_self.employed -0.245      0.125    -1.96   5.02e- 2
+##    term                     estimate std.error statistic  p.value
+##    &lt;chr&gt;                       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1 duration_X.600.4.92e.03.     6.45     0.381     16.9  3.71e-64
+##  2 duration_X.540.600.          5.51     0.390     14.1  2.94e-45
+##  3 (Intercept)                 -5.05     0.434    -11.6  2.84e-31
+##  4 duration_X.480.540.          4.98     0.389     12.8  1.81e-37
+##  5 duration_X.420.480.          4.64     0.389     11.9  8.06e-33
+##  6 duration_X.360.420.          4.41     0.386     11.4  3.74e-30
+##  7 duration_X.300.360.          4.06     0.386     10.5  5.74e-26
+##  8 duration_X.240.300.          3.91     0.384     10.2  2.15e-24
+##  9 duration_X.180.240.          3.61     0.383      9.41 5.07e-21
+## 10 duration_X.120.180.          3.08     0.383      8.05 8.43e-16
 ## # … with 47 more rows</code></pre>
 </section></section>
 <section id="initial-results" class="title-slide slide level1" data-background-image="img/Theme.png">
@@ -329,18 +334,20 @@ Client Predicted to Subscribe
 
 <section id="cross-validation" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Cross Validation</h1>
+<p><font size = '6'></p>
 <ul>
-<li>We carried out cross validation to make sure our model was not subject to overfitting.</li>
-<li>This was done by partitioning the data into 10 subsets <img src="https://dataaspirant.com/wp-content/uploads/2020/12/1-Cross-Validation.png" width="60%" style="display: block; margin: auto;" /></li>
+<li><p>We carried out cross validation to make sure our model was not subject to over fitting.</p></li>
+<li><p>This was done by partitioning the data into 10 subsets.</font></p></li>
 </ul>
+<p><img src="https://www.askpython.com/wp-content/uploads/2020/11/5-Fold-Cross-Validation.jpg" width="60%" style="display: block; margin: auto;" /></p>
 </section>
 
 <section id="final-test" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Final Test</h1>
 <p><font size = '6'>Time for the truth. We tested our model and the results were:</font></p>
 <div class="fragment">
-<p><img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
-<p><font size = '4'>Our Model Proved to be surprisingly successful!</font></p>
+<p><img data-src="img/Final_Test-1.png" height="400" width="680" /></p>
+<p><font size = '4'> Our Model Proved to be surprisingly successful! </font></p>
 </div>
 </section>
 
@@ -349,7 +356,7 @@ Client Predicted to Subscribe
 <pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 roc_auc binary         0.912</code></pre>
+## 1 roc_auc binary         0.901</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -361,13 +368,13 @@ Client Predicted to Subscribe
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Client Predicted to Not Subscribe</td>
-<td style="text-align: right;">7765</td>
-<td style="text-align: right;">652</td>
+<td style="text-align: right;">3878</td>
+<td style="text-align: right;">334</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Client Predicted to Subscribe</td>
-<td style="text-align: right;">244</td>
-<td style="text-align: right;">382</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">187</td>
 </tr>
 </tbody>
 </table>
@@ -375,31 +382,33 @@ Client Predicted to Subscribe
 
 <section id="conclusion" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Conclusion</h1>
-<p>In addition, we managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.</p>
+<p><font size = '6'>As discovered by our preliminary analysis and logistic regression, we observed that call duration, month of the year and past campaign outcome were the most relevant predictors to our outcome variable. In addition, we managed to build a model which predicted with 90% certainty whether or not a client would subscribe to a term deposit. In fact, our model was much better at predicting whether a client would not subscribe. </font></p>
 </section>
 
 <section>
 <section id="ethics" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Ethics</h1>
-<p>Models like the one we created are constantly used by financial institutions to predict future client behavior.</p>
+<p><font size = '6'>Models like the one we created are constantly used by financial institutions to predict future client behavior. </font></p>
 <p><img src="https://www.roehampton.ac.uk/globalassets/images/general/ethics-ethos.jpg" width="60%" style="display: block; margin: auto;" /></p>
 </section>
 <section class="slide level2">
 
-<p>Though effective, the ethics of this must be observed…</p>
+<p><font size = '7'> Though effective, the ethics of this must be observed…</font></p>
 <div class="fragment">
-<ul>
-<li>Is it correct to leave possible customers out of the possibility of subscribing to a term deposit because they happen to have the wrong job, too little balance, or did not graduate from high school?</li>
-</ul>
+<p><font size = '6'>- Is it correct to leave possible customers out of the possibility of subscribing to a term deposit because they happen to have the wrong job?</font></p>
 </div>
 <div class="fragment">
-<ul>
-<li>Modelling is effective but ethics must always come first.</li>
-</ul>
+<p><font size = '6'>- Perhaps their balance is too low?</font></p>
+</div>
+<div class="fragment">
+<p><font size = '6'>-Or maybe they didn’t graduate from highschool?</font></p>
+</div>
+<div class="fragment">
+<p><font size = '7'>- Modelling is effective but ethics must always come first.</font></p>
 </div>
 </section></section>
-<section id="thank-you-for-your-attention" class="title-slide slide level1" data-background-image="img/Theme2.png">
-<h1 data-background-image="img/Theme2.png">Thank You for your Attention</h1>
+<section id="section-1" class="title-slide slide level1" data-background-image="img/theme4.png">
+<h1 data-background-image="img/theme4.png"></h1>
 
 </section>
     </div>
