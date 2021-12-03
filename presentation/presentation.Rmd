@@ -7,7 +7,6 @@ date: <font size = '6'>`r Sys.Date()`</font>
 output:
   revealjs::revealjs_presentation:
     self_contained: false
-    theme: sky
     highlightLines: true
     background_transition: fade
 
@@ -33,7 +32,7 @@ banking_train<- read_delim("/cloud/project/data/Banking Dataset.csv",
 
 ```
 
-# Our question 
+# Our question {data-background-image="img/Theme.png"}
 
 
 ```{r image1, echo = FALSE, out.width = "30%", fig.align = "centre", fig.cap = ""}
@@ -42,15 +41,15 @@ include_graphics("https://s37564.pcdn.co/wp-content/uploads/2018/08/Business-ban
 
 Which variables (or combinations of these) are the most important indicators when determining whether an individual will subscribe to a term deposit? Can we use these to build a predictive model? 
 
-# Our Methodology
+# Our Methodology {data-background-image="img/Theme.png"}
 
 We built a logistic regression model to answer which variables are the most important indicators when determining whether an individual will subscribe to a term deposit. Firstly, we made some preliminary data analysis and visualizations to get a general gist of our data. We then used advanced statistical and modelling techniques to create an adequate model and finally tested it in a separate set of data it had never seen before to properly assess its performance.
 
-# Our Dataset
+# Our Dataset {data-background-image="img/Theme.png"}
 
 The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. 
 
-# The General Picture
+# The General Picture {data-background-image="img/Theme.png"}
 
 The results of the marketing campaign are as follows:
 
@@ -72,7 +71,7 @@ ggplot(aes(y = y,fill= y)) +
 ```
 
 ----
-
+#{data-background-image="img/Theme.png"}
 Could the client's jobs have had an impact on whether they subscribed to term deposits?
 
 
@@ -112,6 +111,7 @@ ggplot(aes(y = y,fill= y)) +
 ```
 
 ----
+#{data-background-image="img/Theme.png"}
 Could the client's duration of their last contact have had an impact on whether they subscribed to term deposits?
 ```{r visualization_duration,echo = FALSE }
 banking_train %>%
@@ -126,7 +126,7 @@ banking_train %>%
 ```
 
 ----
-
+#{data-background-image="img/Theme.png"}
 Is there a connection between the clients decision and what month of the year it is?
 
 ```{r visualization_month, echo = FALSE}
@@ -148,7 +148,7 @@ ggplot(aes(x=month,fill=y))+
 ```
 
 ----
-
+#{data-background-image="img/Theme.png"}
 Is there a correlation between how the client was contacted and if they subscribed to the term deposit?
 
 ```{r visualization_contact,echo = FALSE }
@@ -165,7 +165,7 @@ banking_train %>%
 ```
 
 ----
-
+#{data-background-image="img/Theme.png"}
 Do the number of days since the client has been contacted matter?
 
 ```{r visualization_pdays,echo = FALSE }
@@ -184,7 +184,7 @@ banking_train%>%
 
 
 ----
-
+#{data-background-image="img/Theme.png"}
 Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?
 
 <font size = '6'>**Correlation between numerical predictors**</font>
@@ -197,8 +197,9 @@ cor(method = "pearson")
 corrplot(cor,type = "lower", bg = "#e8e8e8", method = c("number"), order = "original", tl.col = "black", tl.srt = 45)
 
 ```
+# Logistic Regression Model {data-background-image="img/Theme2.png"}
 
-# How we Split Our Data
+# How we Split Our Data {data-background-image="img/Theme.png"}
 ```{r modify_df, echo = FALSE}
 banking_train <- banking_train %>%
   mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
@@ -223,7 +224,7 @@ Number of Rows in Sub-Test Dataframe:
 nrow(reduced_test_df)
 ```
 
-# Our Recipe
+# Our Recipe {data-background-image="img/Theme.png"}
 The recipe we used for this particular model can be observed below:
 
 1. We removed the pdays variable because it had minimal correlation with our outcome.
@@ -261,7 +262,7 @@ banking_rec <- banking_rec %>%
   #Removed Zero Variance Variables
 ``` 
  
-# Fitting it all together
+# Fitting it all together {data-background-image="img/Theme.png"}
 
 ```{r banking_logistic_model, echo = FALSE}
 banking_mod <- logistic_reg() %>%
@@ -286,11 +287,8 @@ We applied our recipe into a workflow and fitted it all into a model.
 tidy(banking_fit) 
 ```
 
-# Initial Results
-
-```{r initial result, echo = FALSE, out.width = "60%", fig.align = "center"}
-include_graphics("https://afbd3caf05c64f1aa714b15d28a90829.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2Fprediction-1.png")
-```
+# Initial Results {data-background-image="img/Theme.png"}
+<img data-src="img/prediction-1.png" height="420" width="700" />
 
 ```{r prediction,  out.width="10%", echo = FALSE}
 banking_pred <- predict(banking_fit, reduced_test_df, type = "prob") %>%
@@ -307,7 +305,7 @@ banking_pred %>%
 
 ----
 
-# Results Matrix
+# Results Matrix {data-background-image="img/Theme.png"}
 
 ```{r prediction_matrix, echo = FALSE}
 cutoff <- 0.5
@@ -321,29 +319,27 @@ banking_pred %>%
   )
 ```
 
-# Cross Validation
+# Cross Validation {data-background-image="img/Theme.png"}
 
 - We carried out cross validation to make sure our model was not subject to overfitting.
 
 - This was done by partitioning the data into 10 subsets
 
-# Final Test
+# Final Test {data-background-image="img/Theme.png"}
 
 Time for the truth. We tested our model and the results were:
 
 . . .
-
-```{r final result, echo = FALSE, out.width = "60%", fig.align = "center"}
-include_graphics("https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2FFinal_Test-1.png")
-```
-
-```{r Final_Test, echo = FALSE}
+<img data-src="img/Final_Test-1.png" height="420" width="700" />
+```{r Load_test_csv, echo = FALSE}
 
 banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
 
 banking_test_final <- banking_test_final %>%
   mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
-  
+```  
+
+``` {r Final_Test, echo = FALSE}
 banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
   bind_cols(banking_test_final %>% select(y))
 
@@ -354,11 +350,11 @@ banking_final_pred %>%
     event_level = "second") 
 
 ```
-
 Our Model Proved to be surprisingly successful!
 
 ----
 
+# Final Results Matrix {data-background-image="img/Theme.png"}
 ```{r results_matrix_final, echo = FALSE}
 cutoff <- 0.5
 banking_final_pred %>%
@@ -393,9 +389,10 @@ Though effective, the ethics of this must be observed...
 
 . . . 
 
+
 - Modelling is effective but ethics must always come first.
 
-# Thank You for your Attention
+# Thank You for your Attention {data-background-image="img/Theme2.png"}
 
 
 
