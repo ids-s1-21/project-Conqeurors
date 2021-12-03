@@ -322,8 +322,11 @@ banking_pred %>%
 # Cross Validation {data-background-image="img/Theme.png"}
 
 - We carried out cross validation to make sure our model was not subject to overfitting.
-
 - This was done by partitioning the data into 10 subsets
+```{r cross, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://dataaspirant.com/wp-content/uploads/2020/12/1-Cross-Validation.png")
+```
+
 
 # Final Test {data-background-image="img/Theme.png"}
 
