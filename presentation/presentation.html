@@ -189,8 +189,13 @@
 <section class="slide level2">
 
 <p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
-<p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /> # Logistic Regression Model {data-background-image=“img/Theme2.png”}</p>
+<p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
 </section></section>
+<section id="logistic-regression-model" class="title-slide slide level1" data-background-image="img/Theme2.png">
+<h1 data-background-image="img/Theme2.png">Logistic Regression Model</h1>
+
+</section>
+
 <section id="how-we-split-our-data" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">How we Split Our Data</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45221</span>)</span>
@@ -210,13 +215,13 @@
 <section id="our-recipe" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Our Recipe</h1>
 <p>The recipe we used for this particular model can be observed below:</p>
-<ol type="1">
-<li>We removed the pdays variable because it had minimal correlation with our outcome.</li>
-<li>We cut the campaign variable in breaks of 0 and 1.</li>
-<li>We created relevant age groups.</li>
-<li>We created times of the month from the day variable.</li>
-<li>We classified calls by their duration in minutes rather than seconds.</li>
-<li>We created dummy variables and removed zero variance variables.</li>
+<p><font size = '5'> 1. We removed the pdays variable because it had minimal correlation with our outcome.</p>
+<ol start="2" type="1">
+<li><p>We cut the campaign variable in breaks of 0 and 1.</p></li>
+<li><p>We created relevant age groups.</p></li>
+<li><p>We created times of the month from the day variable.</p></li>
+<li><p>We classified calls by their duration in minutes rather than seconds.</p></li>
+<li><p>We created dummy variables and removed zero variance variables.</font></p></li>
 </ol>
 </section>
 <section class="slide level2">
@@ -268,14 +273,11 @@
 ## 10 job_self.employed -0.245      0.125    -1.96   5.02e- 2
 ## # … with 47 more rows</code></pre>
 </section></section>
-<section>
 <section id="initial-results" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Initial Results</h1>
 <p><img data-src="img/prediction-1.png" height="420" width="700" /></p>
 </section>
-<section class="slide level2">
 
-</section></section>
 <section id="auc-and-results-matrix" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">AUC and Results Matrix</h1>
 <pre><code>## # A tibble: 1 × 3
@@ -330,18 +332,13 @@ Client Predicted to Subscribe
 </ul>
 </section>
 
-<section>
 <section id="final-test" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Final Test</h1>
-<p>Time for the truth. We tested our model and the results were:</p>
-<div class="fragment">
+<p><font size = '6'>Time for the truth. We tested our model and the results were:</font> . . .</p>
 <p><img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
-<p>Our Model Proved to be surprisingly successful!</p>
-</div>
+<p><font size = '4'>Our Model Proved to be surprisingly successful!</font></p>
 </section>
-<section class="slide level2">
 
-</section></section>
 <section id="final-auc-and-results-matrix" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Final AUC and Results Matrix</h1>
 <pre><code>## # A tibble: 1 × 3
@@ -371,14 +368,14 @@ Client Predicted to Subscribe
 </table>
 </section>
 
-<section id="conclusion" class="title-slide slide level1">
-<h1>Conclusion</h1>
-<p>In addition, we can managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.</p>
+<section id="conclusion" class="title-slide slide level1" data-background-image="img/Theme.png">
+<h1 data-background-image="img/Theme.png">Conclusion</h1>
+<p>In addition, we managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.</p>
 </section>
 
 <section>
-<section id="ethics" class="title-slide slide level1">
-<h1>Ethics</h1>
+<section id="ethics" class="title-slide slide level1" data-background-image="img/Theme.png">
+<h1 data-background-image="img/Theme.png">Ethics</h1>
 <p>Models like the one we created are constantly used by financial institutions to predict future client behavior.</p>
 <p><img src="https://www.roehampton.ac.uk/globalassets/images/general/ethics-ethos.jpg" width="60%" style="display: block; margin: auto;" /></p>
 </section>
