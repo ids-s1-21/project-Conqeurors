@@ -369,7 +369,7 @@ banking_final_pred %>%
 
 # Conclusion
 
-At the end it is safe to say that there is no real correlation between any of the variables and their decision to subscribe or not.
+In addition, we can managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.
 
 # Ethics
 

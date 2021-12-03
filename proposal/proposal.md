@@ -1,7 +1,7 @@
 Project Proposal
 ================
 Conquerors
-2021-11-19
+2021-12-03
 
 ``` r
 library(tidyverse)
@@ -27,7 +27,7 @@ to subscribe to term deposits.
 **How was it collected?**
 
 The data was collected directly from the bank’s records through a
-semi-outomatic feature selection and DM models.
+semi-automatic feature selection and DM models.
 
 **What are the cases?**
 
