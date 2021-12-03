@@ -12,9 +12,13 @@ We built a logistic regression model to answer which variables are the most impo
  
 The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called "Banking Dataset - Marketing Targets" by Prakhar Rathi and contains data derived from *S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing*. 
 
-The first thing we did with the data was a preliminary visualisation, which we used to compare the outcome variable with the variables themselves. This helped us understand what variables were more important in determining whether someone would subscribe to a term deposit.
+The first thing we did with the data was a preliminary visualisation, which we used to compare the outcome variable with the variables themselves. This helped us understand what variables were more important in determining whether someone would subscribe to a term deposit. We then plotted a correlation matrix to compare all numerical variables against each other so we could observe any coorealation between variables.
+
+We now had all the information we needed to create our 
 
 The model we used was 90% effective in determining whether an individual will subscribe to a term deposit or not so therefore they are used often in banking and other areas however there are many ethical implications from this as it is segregating or discriminating racial, age, or job groups- the conditions may not be fair.
+
+
 
 
 
