@@ -156,11 +156,28 @@
 <p>The original data collection comes from the 2008-2013 records of a Portuguese Banking Institution and their success in convincing clients to subscribe to term deposits. It is called “Banking Dataset - Marketing Targets” by Prakhar Rathi and contains data derived from <em>S. Moro, P. Cortez and P. Rita.-A Data-Driven Approach to Predict the Success of Bank Telemarketing</em>.</p>
 </section>
 
-<section>
 <section id="the-general-picture" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">The General Picture</h1>
 <p>The results of the marketing campaign are as follows:</p>
 <p><img src="presentation_files/figure-revealjs/campaign_success-1.png" width="70%" /></p>
+<<<<<<< HEAD
+<table style="width:7%;">
+<colgroup>
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>#{data-background-image=“img/Theme.png”} Could the client’s jobs have had an impact on whether they subscribed to term deposits?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#{data-background-image=“img/Theme.png”} Could the client’s duration of their last contact have had an impact on whether they subscribed to term deposits? <img src="presentation_files/figure-revealjs/visualization_duration-1.png" width="80%" /></td>
+</tr>
+</tbody>
+</table>
+<p>#{data-background-image=“img/Theme.png”} Is there a connection between the clients decision and what month of the year it is?</p>
+=======
 </section>
 <section class="slide level2">
 
@@ -174,20 +191,31 @@
 <section class="slide level2">
 
 <p>Is there a connection between the clients decision and what month of the year it is?</p>
+>>>>>>> 84a9940d8b1a6aa98ebc08e8c25bb7f16b2b3eb8
 <p><img src="presentation_files/figure-revealjs/visualization_month-1.png" width="80%" /></p>
+<table style="width:7%;">
+<colgroup>
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>#{data-background-image=“img/Theme.png”} Is there a correlation between how the client was contacted and if they subscribed to the term deposit?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#{data-background-image=“img/Theme.png”} Do the number of days since the client has been contacted matter?</td>
+</tr>
+<tr class="even">
+<td><img src="presentation_files/figure-revealjs/visualization_pdays-1.png" width="80%" /></td>
+</tr>
+</tbody>
+</table>
+<p>#{data-background-image=“img/Theme.png”} Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
+<p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /> # Logistic Regression Model {data-background-image=“img/Theme2.png”}</p>
 </section>
-<section class="slide level2">
 
-<p>Is there a correlation between how the client was contacted and if they subscribed to the term deposit?</p>
-<p><img src="presentation_files/figure-revealjs/visualization_contact-1.png" width="80%" /></p>
-</section>
-<section class="slide level2">
-
-<p>Do the number of days since the client has been contacted matter?</p>
-<p><img src="presentation_files/figure-revealjs/visualization_pdays-1.png" width="80%" /></p>
-</section>
-<section class="slide level2">
-
+<<<<<<< HEAD
 <p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
 <p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
 </section></section>
@@ -196,6 +224,8 @@
 
 </section>
 
+=======
+>>>>>>> fe354c4d915dd5b016f4d660688a4a55d9f3835b
 <section id="how-we-split-our-data" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">How we Split Our Data</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45221</span>)</span>
@@ -226,6 +256,7 @@
 </section>
 <section class="slide level2">
 
+<p><img src="https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg" width="50%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>banking_rec<span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  y <span class="sc">~</span> .,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> reduced_train_df</span>
@@ -334,9 +365,35 @@ Client Predicted to Subscribe
 
 <section id="final-test" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Final Test</h1>
+<<<<<<< HEAD
 <p><font size = '6'>Time for the truth. We tested our model and the results were:</font> . . .</p>
 <p><img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
 <p><font size = '4'>Our Model Proved to be surprisingly successful!</font></p>
+=======
+<p>Time for the truth. We tested our model and the results were:</p>
+<<<<<<< HEAD
+<p>. . . <img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<pre><code>## Rows: 9043 Columns: 18</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (10): job, marital, education, default, housing, loan, contact, month, p...
+## dbl  (8): ...1, age, balance, day, duration, campaign, pdays, previous</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 roc_auc binary         0.912</code></pre>
+=======
+<div class="fragment">
+<p><img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
+>>>>>>> 84a9940d8b1a6aa98ebc08e8c25bb7f16b2b3eb8
+<p>Our Model Proved to be surprisingly successful!</p>
+</div>
+>>>>>>> fe354c4d915dd5b016f4d660688a4a55d9f3835b
 </section>
 
 <section id="final-auc-and-results-matrix" class="title-slide slide level1" data-background-image="img/Theme.png">

@@ -247,6 +247,10 @@ The recipe we used for this particular model can be observed below:
 
 ----
 
+```{r recipe_image, echo = FALSE, out.width = "50%", fig.align = "center"}
+include_graphics("https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg")
+```
+
 ```{r recipe}
 banking_rec<- recipe(
   y ~ .,
