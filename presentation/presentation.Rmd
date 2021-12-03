@@ -197,6 +197,7 @@ cor(method = "pearson")
 corrplot(cor,type = "lower", bg = "#e8e8e8", method = c("number"), order = "original", tl.col = "black", tl.srt = 45)
 
 ```
+
 # Logistic Regression Model {data-background-image="img/Theme2.png"}
 
 # How we Split Our Data {data-background-image="img/Theme.png"}
@@ -227,15 +228,28 @@ nrow(reduced_test_df)
 # Our Recipe {data-background-image="img/Theme.png"}
 The recipe we used for this particular model can be observed below:
 
+<font size = '5'>
+
 1. We removed the pdays variable because it had minimal correlation with our outcome.
+
 2. We cut the campaign variable in breaks of 0 and 1.
+
 3. We created relevant age groups.
+
 4. We created times of the month from the day variable.
+
 5. We classified calls by their duration in minutes rather than seconds.
+
 6. We created dummy variables and removed zero variance variables.
+
+</font>
 
 
 ----
+
+```{r recipe_image, echo = FALSE, out.width = "50%", fig.align = "center"}
+include_graphics("https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg")
+```
 
 ```{r recipe}
 banking_rec<- recipe(
@@ -297,7 +311,6 @@ banking_pred <- predict(banking_fit, reduced_test_df, type = "prob") %>%
 
 ```
 
-----
 
 # AUC and Results Matrix {data-background-image="img/Theme.png"}
 
@@ -322,12 +335,15 @@ banking_pred %>%
 # Cross Validation {data-background-image="img/Theme.png"}
 
 - We carried out cross validation to make sure our model was not subject to overfitting.
-
 - This was done by partitioning the data into 10 subsets
+```{r cross, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://dataaspirant.com/wp-content/uploads/2020/12/1-Cross-Validation.png")
+```
+
 
 # Final Test {data-background-image="img/Theme.png"}
 
-Time for the truth. We tested our model and the results were:
+<font size = '6'>Time for the truth. We tested our model and the results were:</font>
 
 . . .
 
@@ -345,9 +361,8 @@ banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>
   bind_cols(banking_test_final %>% select(y))
 
 ```
-Our Model Proved to be surprisingly successful!
+<font size = '4'>Our Model Proved to be surprisingly successful!</font>
 
-----
 
 # Final AUC and Results Matrix {data-background-image="img/Theme.png"}
 ```{r results_matrix_final, echo = FALSE}

@@ -178,6 +178,7 @@
 </section>
 <section class="slide level2">
 
+<<<<<<< HEAD
 <p>Is there a correlation between how the client was contacted and if they subscribed to the term deposit?</p>
 <p><img src="presentation_files/figure-revealjs/visualization_contact-1.png" width="80%" /></p>
 </section>
@@ -191,6 +192,19 @@
 <p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
 <p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /> # Logistic Regression Model {data-background-image=“img/Theme2.png”}</p>
 </section></section>
+=======
+<<<<<<< HEAD
+<p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
+<p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
+</section></section>
+<section id="logistic-regression-model" class="title-slide slide level1" data-background-image="img/Theme2.png">
+<h1 data-background-image="img/Theme2.png">Logistic Regression Model</h1>
+
+</section>
+
+=======
+>>>>>>> fe354c4d915dd5b016f4d660688a4a55d9f3835b
+>>>>>>> 2ed6419c9489c2bda48a1ec18ffc29f13ef0bf0c
 <section id="how-we-split-our-data" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">How we Split Our Data</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45221</span>)</span>
@@ -210,17 +224,18 @@
 <section id="our-recipe" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Our Recipe</h1>
 <p>The recipe we used for this particular model can be observed below:</p>
-<ol type="1">
-<li>We removed the pdays variable because it had minimal correlation with our outcome.</li>
-<li>We cut the campaign variable in breaks of 0 and 1.</li>
-<li>We created relevant age groups.</li>
-<li>We created times of the month from the day variable.</li>
-<li>We classified calls by their duration in minutes rather than seconds.</li>
-<li>We created dummy variables and removed zero variance variables.</li>
+<p><font size = '5'> 1. We removed the pdays variable because it had minimal correlation with our outcome.</p>
+<ol start="2" type="1">
+<li><p>We cut the campaign variable in breaks of 0 and 1.</p></li>
+<li><p>We created relevant age groups.</p></li>
+<li><p>We created times of the month from the day variable.</p></li>
+<li><p>We classified calls by their duration in minutes rather than seconds.</p></li>
+<li><p>We created dummy variables and removed zero variance variables.</font></p></li>
 </ol>
 </section>
 <section class="slide level2">
 
+<p><img src="https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg" width="50%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>banking_rec<span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  y <span class="sc">~</span> .,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> reduced_train_df</span>
@@ -268,14 +283,11 @@
 ## 10 job_self.employed -0.245      0.125    -1.96   5.02e- 2
 ## # … with 47 more rows</code></pre>
 </section></section>
-<section>
 <section id="initial-results" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Initial Results</h1>
 <p><img data-src="img/prediction-1.png" height="420" width="700" /></p>
 </section>
-<section class="slide level2">
 
-</section></section>
 <section id="auc-and-results-matrix" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">AUC and Results Matrix</h1>
 <pre><code>## # A tibble: 1 × 3
@@ -325,23 +337,26 @@ Client Predicted to Subscribe
 <section id="cross-validation" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Cross Validation</h1>
 <ul>
-<li><p>We carried out cross validation to make sure our model was not subject to overfitting.</p></li>
-<li><p>This was done by partitioning the data into 10 subsets</p></li>
+<li>We carried out cross validation to make sure our model was not subject to overfitting.</li>
+<li>This was done by partitioning the data into 10 subsets <img src="https://dataaspirant.com/wp-content/uploads/2020/12/1-Cross-Validation.png" width="60%" style="display: block; margin: auto;" /></li>
 </ul>
 </section>
 
-<section>
 <section id="final-test" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Final Test</h1>
+<<<<<<< HEAD
+<p><font size = '6'>Time for the truth. We tested our model and the results were:</font> . . .</p>
+<p><img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
+<p><font size = '4'>Our Model Proved to be surprisingly successful!</font></p>
+=======
 <p>Time for the truth. We tested our model and the results were:</p>
 <div class="fragment">
 <p><img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
 <p>Our Model Proved to be surprisingly successful!</p>
 </div>
+>>>>>>> fe354c4d915dd5b016f4d660688a4a55d9f3835b
 </section>
-<section class="slide level2">
 
-</section></section>
 <section id="final-auc-and-results-matrix" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Final AUC and Results Matrix</h1>
 <pre><code>## # A tibble: 1 × 3
