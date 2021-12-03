@@ -112,13 +112,14 @@ ggplot(aes(y = y,fill= y)) +
 ```
 
 ----
-
+Could the client's duration of their last contact have had an impact on whether they subscribed to term deposits?
 ```{r visualization_duration,echo = FALSE }
-banking_train%>%
-  ggplot(aes(x=duration,y=y))+
+banking_train %>%
+  ggplot(aes(x=duration,y=y, color=y))+
+  theme(legend.position = "none")+
   geom_jitter()+
  labs(
-    x = "Clients subscribed?",
+    x = "Clients subscribed",
     y = "Duration of last contact",
     title = "Relationship between clients duration of last contact 
     with the bank and whether they subscribe to term deposits") 
@@ -132,10 +133,9 @@ Is there a connection between the clients decision and what month of the year it
 banking_train %>%
   mutate(
     month = fct_relevel(month, "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"),
-     y = fct_recode(y, Subscribed = "yes", 
-                   Didn't Subscribe = "no")
-  ) %>%
-  ggplot(aes(x=month,fill=y))+
+ y = fct_recode(y, Subscribed = "yes", 
+               `Didn't Subscribe` = "no")) %>%
+ggplot(aes(x=month,fill=y))+
   geom_bar()+
   scale_fill_manual(values = c("Subscribed"="#3b9e37", 
                                "Didn't Subscribe"="#d91a1a")) +
@@ -177,8 +177,8 @@ banking_train%>%
   labs(
     y = "Outcome",
     x = "Days",
-    title = "Relationship between the number of days since a client was contacted
-    and whether they subscribed"
+    title = "Relationship between the number of days since a client was 
+    contacted and whether they subscribed"
   ) 
 ```
 
@@ -289,7 +289,7 @@ tidy(banking_fit)
 # Initial Results
 
 ```{r initial result, echo = FALSE, out.width = "60%", fig.align = "center"}
-include_graphics("https://c56a8771599045dc83d759202a2b79d2.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2Fprediction-1.png")
+include_graphics("https://afbd3caf05c64f1aa714b15d28a90829.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2FLogistic+Model%2FLogistic_Model_files%2Ffigure-gfm%2Fprediction-1.png")
 ```
 
 ```{r prediction,  out.width="10%", echo = FALSE}
@@ -378,6 +378,12 @@ At the end it is safe to say that there is no real correlation between any of th
 # Ethics
 
 Models like the one we created are constantly used by financial institutions to predict future client behavior. 
+
+```{r ethics, echo = FALSE, out.width = "60%", fig.align = "center"}
+include_graphics("https://www.roehampton.ac.uk/globalassets/images/general/ethics-ethos.jpg")
+```
+
+----
 
 Though effective, the ethics of this must be observed...
 
