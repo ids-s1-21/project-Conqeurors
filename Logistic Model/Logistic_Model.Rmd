@@ -117,14 +117,15 @@ collect_metrics(banking_fit_cross)
 ```
 ```{r Final_Test}
 
-banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
+Banking_Test_Final <- read_delim("/cloud/project/data/Banking_Test_Final.csv", 
+    delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-banking_test_final <- banking_test_final %>%
+Banking_Test_Final <- Banking_Test_Final %>%
   mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
   
 
-banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
-  bind_cols(banking_test_final %>% select(y))
+banking_final_pred <- predict(banking_fit, Banking_Test_Final, type = "prob") %>%
+  bind_cols(Banking_Test_Final %>% select(y))
 
 banking_final_pred %>%
   roc_curve(

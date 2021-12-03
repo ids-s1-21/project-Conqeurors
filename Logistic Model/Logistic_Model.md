@@ -171,30 +171,28 @@ collect_metrics(banking_fit_cross)
     ## 2 roc_auc  binary     0.910    10 0.00145  Preprocessor1_Model1
 
 ``` r
-banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
+Banking_Test_Final <- read_delim("/cloud/project/data/Banking_Test_Final.csv", 
+    delim = ";", escape_double = FALSE, trim_ws = TRUE)
 ```
 
-    ## New names:
-    ## * `` -> ...1
-
-    ## Rows: 9043 Columns: 18
+    ## Rows: 4521 Columns: 17
 
     ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
+    ## Delimiter: ";"
     ## chr (10): job, marital, education, default, housing, loan, contact, month, p...
-    ## dbl  (8): ...1, age, balance, day, duration, campaign, pdays, previous
+    ## dbl  (7): age, balance, day, duration, campaign, pdays, previous
 
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 ``` r
-banking_test_final <- banking_test_final %>%
+Banking_Test_Final <- Banking_Test_Final %>%
   mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
   
 
-banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
-  bind_cols(banking_test_final %>% select(y))
+banking_final_pred <- predict(banking_fit, Banking_Test_Final, type = "prob") %>%
+  bind_cols(Banking_Test_Final %>% select(y))
 
 banking_final_pred %>%
   roc_curve(
@@ -217,7 +215,7 @@ banking_final_pred %>%
     ## # A tibble: 1 × 3
     ##   .metric .estimator .estimate
     ##   <chr>   <chr>          <dbl>
-    ## 1 roc_auc binary         0.912
+    ## 1 roc_auc binary         0.901
 
 ``` r
 cutoff <- 0.5
@@ -233,7 +231,7 @@ banking_final_pred %>%
 
 |                                   | Client did not Subscribe | Client Subscribed |
 |:----------------------------------|-------------------------:|------------------:|
-| Client Predicted to Not Subscribe |                     7765 |               652 |
-| Client Predicted to Subscribe     |                      244 |               382 |
+| Client Predicted to Not Subscribe |                     3878 |               334 |
+| Client Predicted to Subscribe     |                      122 |               187 |
 
 \`\`\`
