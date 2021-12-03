@@ -71,7 +71,7 @@ ggplot(aes(y = y,fill= y)) +
 ```
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Could the client's jobs have had an impact on whether they subscribed to term deposits?
 
 
@@ -111,7 +111,7 @@ ggplot(aes(y = y,fill= y)) +
 ```
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Could the client's duration of their last contact have had an impact on whether they subscribed to term deposits?
 ```{r visualization_duration,echo = FALSE }
 banking_train %>%
@@ -126,7 +126,7 @@ banking_train %>%
 ```
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Is there a connection between the clients decision and what month of the year it is?
 
 ```{r visualization_month, echo = FALSE}
@@ -148,7 +148,7 @@ ggplot(aes(x=month,fill=y))+
 ```
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Is there a correlation between how the client was contacted and if they subscribed to the term deposit?
 
 ```{r visualization_contact,echo = FALSE }
@@ -165,7 +165,7 @@ banking_train %>%
 ```
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Do the number of days since the client has been contacted matter?
 
 ```{r visualization_pdays,echo = FALSE }
@@ -184,7 +184,7 @@ banking_train%>%
 
 
 ----
-#{data-background-image="img/Theme.png"}
+
 Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?
 
 <font size = '6'>**Correlation between numerical predictors**</font>
@@ -294,20 +294,20 @@ tidy(banking_fit)
 banking_pred <- predict(banking_fit, reduced_test_df, type = "prob") %>%
   bind_cols(reduced_test_df %>% select(y))
 
-banking_pred %>%
-  roc_auc(
-    truth = y,
-    .pred_1,
-    event_level = "second")
-
 
 ```
 
 ----
 
-# Results Matrix {data-background-image="img/Theme.png"}
+# AUC and Results Matrix {data-background-image="img/Theme.png"}
 
 ```{r prediction_matrix, echo = FALSE}
+
+banking_pred %>%
+  roc_auc(
+    truth = y,
+    .pred_1,
+    event_level = "second")
 cutoff <- 0.5
 banking_pred %>%
   mutate(
@@ -330,8 +330,9 @@ banking_pred %>%
 Time for the truth. We tested our model and the results were:
 
 . . .
+
 <img data-src="img/Final_Test-1.png" height="420" width="700" />
-```{r Load_test_csv, echo = FALSE}
+```{r Load_test_csv, include = FALSE}
 
 banking_test_final <- read_csv("/cloud/project/data/banking_test.csv")
 
@@ -339,9 +340,17 @@ banking_test_final <- banking_test_final %>%
   mutate(y = factor(if_else(y == "yes", 1, 0))) #Changed Outcome Variable to Factor Type
 ```  
 
-``` {r Final_Test, echo = FALSE}
+``` {r Final_Test, include = FALSE}
 banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>%
   bind_cols(banking_test_final %>% select(y))
+
+```
+Our Model Proved to be surprisingly successful!
+
+----
+
+# Final AUC and Results Matrix {data-background-image="img/Theme.png"}
+```{r results_matrix_final, echo = FALSE}
 
 banking_final_pred %>%
   roc_auc(
@@ -349,13 +358,6 @@ banking_final_pred %>%
     .pred_1,
     event_level = "second") 
 
-```
-Our Model Proved to be surprisingly successful!
-
-----
-
-# Final Results Matrix {data-background-image="img/Theme.png"}
-```{r results_matrix_final, echo = FALSE}
 cutoff <- 0.5
 banking_final_pred %>%
   mutate(
@@ -365,13 +367,14 @@ banking_final_pred %>%
       pivot_wider(names_from = subscribed, values_from = n) %>%
       kable(col.names = c("","Client did not Subscribe", "Client Subscribed")
   )
+
 ```
 
-# Conclusion
+# Conclusion {data-background-image="img/Theme.png"}
 
-In addition, we can managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.
+In addition, we managed to build a model which predicted with 90% certainty wether or not the client would subscribe to the term deposit.
 
-# Ethics
+# Ethics {data-background-image="img/Theme.png"}
 
 Models like the one we created are constantly used by financial institutions to predict future client behavior. 
 
