@@ -13,8 +13,7 @@ The original data collection comes from the 2008-2013 records of a Portuguese Ba
 
 The first thing we did with the data was a preliminary visualisation, which we used to compare the outcome variable with the variables themselves. This helped us understand what variables were more important in determining whether someone would subscribe to a term deposit.
 
-
-The model we used was 90% effective in determining whether an individual will subscribe to a term deposit or not so therefore they are used often in banking and other areas however there are many ethical implications from this as it is segregating or discriminationg racial, age, or job groups- the conditions may not be fair.
+The model we used was 90% effective in determining whether an individual will subscribe to a term deposit or not so therefore they are used often in banking and other areas however there are many ethical implications from this as it is segregating or discriminating racial, age, or job groups- the conditions may not be fair.
 
 
 
