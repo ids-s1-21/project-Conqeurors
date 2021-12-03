@@ -178,7 +178,6 @@
 </section>
 <section class="slide level2">
 
-<<<<<<< HEAD
 <p>Is there a correlation between how the client was contacted and if they subscribed to the term deposit?</p>
 <p><img src="presentation_files/figure-revealjs/visualization_contact-1.png" width="80%" /></p>
 </section>
@@ -190,11 +189,6 @@
 <section class="slide level2">
 
 <p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
-<p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /> # Logistic Regression Model {data-background-image=“img/Theme2.png”}</p>
-</section></section>
-=======
-<<<<<<< HEAD
-<p>Which numerical variables have the the strongest correlation? Is there some collinearity perhaps?</p>
 <p><font size = '6'><strong>Correlation between numerical predictors</strong></font> <img src="presentation_files/figure-revealjs/correlation_matrix-1.png" width="80%" /></p>
 </section></section>
 <section id="logistic-regression-model" class="title-slide slide level1" data-background-image="img/Theme2.png">
@@ -202,9 +196,6 @@
 
 </section>
 
-=======
->>>>>>> fe354c4d915dd5b016f4d660688a4a55d9f3835b
->>>>>>> 2ed6419c9489c2bda48a1ec18ffc29f13ef0bf0c
 <section id="how-we-split-our-data" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">How we Split Our Data</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45221</span>)</span>
@@ -224,14 +215,16 @@
 <section id="our-recipe" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Our Recipe</h1>
 <p>The recipe we used for this particular model can be observed below:</p>
-<p><font size = '5'> 1. We removed the pdays variable because it had minimal correlation with our outcome.</p>
-<ol start="2" type="1">
+<p><font size = '5'></p>
+<ol type="1">
+<li><p>We removed the pdays variable because it had minimal correlation with our outcome.</p></li>
 <li><p>We cut the campaign variable in breaks of 0 and 1.</p></li>
 <li><p>We created relevant age groups.</p></li>
 <li><p>We created times of the month from the day variable.</p></li>
 <li><p>We classified calls by their duration in minutes rather than seconds.</p></li>
-<li><p>We created dummy variables and removed zero variance variables.</font></p></li>
+<li><p>We created dummy variables and removed zero variance variables.</p></li>
 </ol>
+<p></font></p>
 </section>
 <section class="slide level2">
 
@@ -344,17 +337,11 @@ Client Predicted to Subscribe
 
 <section id="final-test" class="title-slide slide level1" data-background-image="img/Theme.png">
 <h1 data-background-image="img/Theme.png">Final Test</h1>
-<<<<<<< HEAD
-<p><font size = '6'>Time for the truth. We tested our model and the results were:</font> . . .</p>
-<p><img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
-<p><font size = '4'>Our Model Proved to be surprisingly successful!</font></p>
-=======
-<p>Time for the truth. We tested our model and the results were:</p>
+<p><font size = '6'>Time for the truth. We tested our model and the results were:</font></p>
 <div class="fragment">
 <p><img data-src="img/Final_Test-1.png" height="420" width="700" /></p>
-<p>Our Model Proved to be surprisingly successful!</p>
+<p><font size = '4'>Our Model Proved to be surprisingly successful!</font></p>
 </div>
->>>>>>> fe354c4d915dd5b016f4d660688a4a55d9f3835b
 </section>
 
 <section id="final-auc-and-results-matrix" class="title-slide slide level1" data-background-image="img/Theme.png">
