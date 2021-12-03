@@ -226,7 +226,7 @@ nrow(reduced_test_df)
 ```
 
 # Our Recipe {data-background-image="img/Theme.png"}
-The recipe we used for this particular model can be observed below:
+<font size = '8'>The recipe we used for this particular model can be observed below:</font>
 
 <font size = '5'>
 
@@ -246,10 +246,6 @@ The recipe we used for this particular model can be observed below:
 
 
 ----
-
-```{r recipe_image, echo = FALSE, out.width = "50%", fig.align = "center"}
-include_graphics("https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg")
-```
 
 ```{r recipe}
 banking_rec<- recipe(
@@ -293,6 +289,10 @@ We applied our recipe into a workflow and fitted it all into a model.
  banking_fit <- banking_wflow %>%
   fit(data = reduced_train_df)
 
+```
+
+```{r recipe_image, echo = FALSE, out.width = "40%", fig.align = "center"}
+include_graphics("https://d2r9yr7oxbpi8x.cloudfront.net/media/catalog/product/cache/8966210dcaec7ff4acd02ae1bc9b40eb/n/3/n319-bella_perle_bowl-xmas21-2.jpg")
 ```
 
 ----
@@ -358,7 +358,7 @@ banking_final_pred <- predict(banking_fit, banking_test_final, type = "prob") %>
   bind_cols(banking_test_final %>% select(y))
 
 ```
-<font size = '4'>Our Model Proved to be surprisingly successful!</font>
+<font size = '4'> Our Model Proved to be surprisingly successful! </font>
 
 
 # Final AUC and Results Matrix {data-background-image="img/Theme.png"}
