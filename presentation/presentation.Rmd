@@ -112,7 +112,7 @@ ggplot(aes(y = y,fill= y)) +
 ```
 
 ----
-
+Could the client's duration of their last contact have had an impact on whether they subscribed to term deposits?
 ```{r visualization_duration,echo = FALSE }
 banking_train %>%
   ggplot(aes(x=duration,y=y, color=y))+
@@ -177,8 +177,8 @@ banking_train%>%
   labs(
     y = "Outcome",
     x = "Days",
-    title = "Relationship between the number of days since a client was contacted
-    and whether they subscribed"
+    title = "Relationship between the number of days since a client was 
+    contacted and whether they subscribed"
   ) 
 ```
 
